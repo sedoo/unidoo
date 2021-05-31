@@ -2,7 +2,7 @@
 <span> XXXXXXXXXXXXXXXXXXX
   <v-snackbar v-model="snackbar" :color="type" :timeout="4000" vertical="vertical">
     <component v-bind:is="type">{{ message }}</component>
-    <v-btn dark text @click="snackbar = false">Chiudi</v-btn>
+    <v-btn dark text @click="snackbar = false">Close</v-btn>
   </v-snackbar>
   </span>
 </template>
