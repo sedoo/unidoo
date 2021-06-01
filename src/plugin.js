@@ -1,60 +1,86 @@
-
 // Import vue components
 // import * as components from './components/index'
 // var components = {}
 
 // install function executed by Vue.use()
-function install (Vue) {
-  if (install.installed) return
-  install.installed = true
+function install(Vue) {
+    if (install.installed) return
+    install.installed = true
 
-  // For each matching file name...
-  requireComponent.keys().forEach((fileName) => {
-    // Get the component config
-    const componentConfig = requireComponent(fileName)
-    // Get the PascalCase version of the component name
-    const componentName = fileName
-      .split('/')
-      .pop()
-      .replace(/\.\w+$/, '')
-    // components[componentName] = componentConfig.default || componentConfig
-    // Globally register the component
-    Vue.component(componentName, componentConfig.default || componentConfig)
-  })
-  // Register Global event to show AppMessage, related to AppSnackbar
-  // https://medium.com/@panzelva/writing-modals-for-vue-js-callable-from-anywhere-6994d180451
-  this.EventBus = new Vue()
-  Vue.prototype.$unidooAlert = {
-    show (params) {
-      plugin.EventBus.$emit('app-message-show', params)
+    // For each matching file name...
+    requireComponent.keys().forEach((fileName) => {
+            // Get the component config
+            const componentConfig = requireComponent(fileName)
+                // Get the PascalCase version of the component name
+            const componentName = fileName
+                .split('/')
+                .pop()
+                .replace(/\.\w+$/, '')
+                // components[componentName] = componentConfig.default || componentConfig
+                // Globally register the component
+            Vue.component(componentName, componentConfig.default || componentConfig)
+        })
+        // Register Global event to show AppMessage, related to AppSnackbar
+        // https://medium.com/@panzelva/writing-modals-for-vue-js-callable-from-anywhere-6994d180451
+    this.EventBus = new Vue()
+    Vue.prototype.$unidooAlert = {
+        show(params) {
+            plugin.EventBus.$emit("unidoo-alert-show", params)
+        },
+
+        defaultParams(params) {
+            plugin.EventBus.$emit("unidoo-alert-params", params)
+        },
+
+        showSuccess(message) {
+            this.showMessage(message, "success")
+        },
+
+        showError(message) {
+            this.showMessage(message, "error", 8000)
+        },
+
+        showMessage(message, type, timeout, position) {
+            const params = {}
+            if (position) {
+                params.position = position
+            }
+
+            if (timeout) {
+                params.timeout = timeout
+            }
+
+            params.message = message
+            params.type = type
+            this.show(params)
+        },
     }
-  }
 }
 
 // Create module definition for Vue.use()
 const plugin = {
-  install
+    install
 }
 
 // To auto-install when vue is found
 
 let GlobalVue = null
 if (typeof window !== 'undefined') {
-  GlobalVue = window.Vue
+    GlobalVue = window.Vue
 } else if (typeof global !== 'undefined') {
-  GlobalVue = global.Vue
+    GlobalVue = global.Vue
 }
 if (GlobalVue) {
-  GlobalVue.use(plugin)
+    GlobalVue.use(plugin)
 }
 
 const requireComponent = require.context(
-  // Look for files in the current directory
-  './components',
-  // Do not look in subdirectories
-  false,
-  // Only include "_base-" prefixed .vue files
-  /[\w-]+\.vue$/
+    // Look for files in the current directory
+    './components',
+    // Do not look in subdirectories
+    false,
+    // Only include "_base-" prefixed .vue files
+    /[\w-]+\.vue$/
 )
 
 // Default export is library as a whole, registered via Vue.use()
