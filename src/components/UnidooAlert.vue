@@ -51,4 +51,9 @@ export default {
 </script>
 
 <style scoped>
+
+.v-snack:not(.v-snack--absolute) {
+  z-index: 2000;
+}
+
 </style>

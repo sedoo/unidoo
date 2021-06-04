@@ -55,6 +55,33 @@ function install(Vue) {
             this.show(params)
         },
     }
+
+    Vue.prototype.$unidooConfirmDialog = {
+        showWithParams(params) {
+            plugin.EventBus.$emit("unidoo-confirm-dialog-show", params)
+        },
+
+        defaultParams(params) {
+            plugin.EventBus.$emit("unidoo-confirm-dialog-params", params)
+        },
+
+        show(callback, message, title) {
+            const params = {}
+            if (callback) {
+                params.callback = callback
+            }
+
+            if (message) {
+                params.message = message
+            }
+
+            if (title) {
+                params.title = title
+            }
+
+            this.showWithParams(params)
+        },
+    }
 }
 
 // Create module definition for Vue.use()
