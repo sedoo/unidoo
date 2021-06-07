@@ -4,6 +4,7 @@
     "private": false,
     "scripts": {
         "serve": "vue-cli-service serve ./demo/main.js",
+        "build:demo": "vue-cli-service build --dest demo-build ./demo/main.js",
         "build": "vue-cli-service build --target lib --name unidoo src/plugin.js",
         "lint": "vue-cli-service lint --fix && vue-cli-service lint dev --fix"
     },
@@ -33,7 +34,9 @@
         "vue-json-tree": "^0.4.3",
         "vue-template-compiler": "^2.6.12",
         "vuetify": "^2.3.13",
-        "vuetify-loader": "^1.6.0"
+        "vuetify-loader": "^1.6.0",
+        "webpack-cdn-upload-plugin": "^2.0.2",
+        "axios": "^0.19.0"
     },
     "eslintConfig": {
         "root": true,
@@ -62,7 +65,6 @@
     "description": "Commons components to simplify vuetify based application developement",
     "main": "./dist/unidoo.common.js",
     "module": "./dist/unidoo.umd.min.js",
-
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sedoo/unidoo.git"
