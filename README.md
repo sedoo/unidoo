@@ -16,7 +16,11 @@ npm publish --access public
 
 ### Demo app
 
-To build the demo: npm run build:demo
+To build the demo: 
+
+```shell
+npm run build:demo
+```
 
 ## Usage instructions
 
