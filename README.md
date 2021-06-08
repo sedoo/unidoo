@@ -7,9 +7,11 @@
 
 To build the library
 
+```shell
 npm login
 npm run build
 npm publish --access public
+```
 
 
 ### Demo app
