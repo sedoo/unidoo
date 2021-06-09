@@ -1,6 +1,6 @@
 {
     "name": "@sedoo/unidoo",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "private": false,
     "scripts": {
         "serve": "vue-cli-service serve ./demo/main.js",
@@ -12,7 +12,9 @@
         "dist",
         "src/**/*"
     ],
-    "dependencies": {},
+    "dependencies": {
+        "jsdoc": "^3.6.7"
+    },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^4.5.7",
         "@vue/cli-plugin-eslint": "^4.5.7",

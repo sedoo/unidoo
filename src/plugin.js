@@ -36,8 +36,30 @@ function install(Vue) {
             this.showMessage(message, "success")
         },
 
+        /**
+         * Display the given error message for 8 seconds
+         * @param {string} message 
+         */
         showError(message) {
             this.showMessage(message, "error", 8000)
+        },
+
+        /**
+         * This method return the message from an error object ResponseStatusException or RuntimeException
+         * @param {string} prefix e.g. 'An error has occured :'
+         * @param {*} error The error object from the catch(function(error)
+         * @returns {string} The error message
+         */
+        formatError(prefix, error) {
+            let message = 'An error has occured'
+            if (typeof error === 'object') {
+              if (error.message) {
+                message = prefix + ' ' + error.message
+              } else if (error.response && error.response.data) {
+                message = prefix + ' ' + error.response.data
+              }
+            }
+            return message
         },
 
         showMessage(message, type, timeout, position) {
