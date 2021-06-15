@@ -1,6 +1,8 @@
 <template>
     <v-app>
-        <v-btn @click="showConfirmDialog"></v-btn>
+        <div>
+            <v-btn @click="showConfirmDialog">Open confirm dialog</v-btn>
+        </div>
         <unidoo-confirm-dialog />
     </v-app>
 </template>
