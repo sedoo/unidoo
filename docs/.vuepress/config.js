@@ -1,6 +1,7 @@
 module.exports = {
     title: "UNIDOO Library",
     description: 'by Sedoo',
+    base:'/unidoo/',
     themeConfig: {
         nav: [
             { text: 'root', link: '/' },
