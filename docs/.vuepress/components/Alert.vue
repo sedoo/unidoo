@@ -1,21 +1,28 @@
 <template>
     <v-app>
-        <div>
-            <v-btn
-                color="success"
-                @click="$unidooAlert.showSuccess('Success Message')"
-                >show success</v-btn
-            >
-            <v-btn
-                color="error"
-                @click="$unidooAlert.showError('error message')"
-                >show Error</v-btn
-            >
-
-            <v-btn color="warning" @click="showMessage"
-                >show custom message</v-btn
-            >
-        </div>
+        <v-container>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        color="success"
+                        @click="$unidooAlert.showSuccess('Success Message')"
+                        >show success</v-btn
+                    >
+                </v-col>
+                <v-col>
+                    <v-btn
+                        color="error"
+                        @click="$unidooAlert.showError('error message')"
+                        >show Error</v-btn
+                    >
+                </v-col>
+                <v-col>
+                    <v-btn color="warning" @click="showMessage"
+                        >show custom message</v-btn
+                    >
+                </v-col>
+            </v-row>
+        </v-container>
 
         <UnidooAlert />
     </v-app>

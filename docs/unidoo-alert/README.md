@@ -1,7 +1,9 @@
 # Alert / Snackbar
 
 ## Description
-role du compsant == "informer utilisateur"
+
+Il s'agit d'un composant permettant d'afficher un message à l'utilisateur, généralement accompagné d'un code couleur correspondant au type de retour : succès, warning, erreur.
+
 
 ## Utilisation 
 
@@ -9,7 +11,8 @@ role du compsant == "informer utilisateur"
 - must be call with this.$unidooAlert[method]
 
 ## Exemple 
+
+
 <Alert/>
 
 
-## what else ?
