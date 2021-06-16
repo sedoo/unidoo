@@ -4,7 +4,7 @@ on:
   # trigger deployment on every push to doc branch
   push:
     branches:
-      - docs
+      - main
 
 jobs:
   docs:
