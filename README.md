@@ -1,5 +1,6 @@
 # unidoo
 
+see [Documentation](https://sedoo.github.io/unidoo/)
 
 ## Build instructions
 
