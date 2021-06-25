@@ -7,6 +7,6 @@ actionLink: /unidoo-alert/
 
 ### doc state <Badge text="beta" type="warning"/>
 
-Cette documentation est en cours de rédaction !!!
+Cette documentation est en cours de rédaction
 
 
