@@ -3,6 +3,7 @@ module.exports = {
     description: 'by Sedoo',
     base: '/unidoo/',
     themeConfig: {
+    	logo: '/assets/img/unidoo.png',
         nav: [
             { text: 'root', link: '/' },
             // { text: 'components', items: [{ text: 'Unidoo Alert', link: '/unidoo-alert/' }, { text: 'modal de confirmation', link: '/confirm-dialog/' }] },
