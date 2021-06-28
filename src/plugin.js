@@ -104,6 +104,12 @@ function install(Vue) {
             this.showWithParams(params)
         },
     }
+    
+    Vue.prototype.$unidooCrudTable = {
+        show(params) {
+            plugin.EventBus.$emit("unidoo-crud-show", params)         
+        },  
+    }
 }
 
 // Create module definition for Vue.use()
