@@ -20,10 +20,10 @@
               @click="showCrudTable()"
               :disabled="params.url ? false : true"
               >Draw table</v-btn
-            >       
+            >    <unidoo-crud-table />   
     </v-row>
 
-            <unidoo-crud-table />
+            
     </v-app>
 </template>
 

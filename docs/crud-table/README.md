@@ -11,7 +11,6 @@ Le composant se sert du lien REST comme racine pour les opérations CRUD, pour l
 - Méthode PUT pour mettre à jour un element :  lienREST/update
 - Méthode DELETE pour supprimer un element :  lienREST/delete/{id}
 
-
 Pour une utilisation optimale de ce composant il faut choisir des données non imbriquées.
 Exemple de données à afficher:
          [
