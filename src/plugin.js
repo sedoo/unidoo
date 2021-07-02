@@ -62,7 +62,7 @@ function install(Vue) {
             return message
         },
 
-        showMessage(message, type, timeout, position) {
+        showMessage(message, type, timeout, position, closeButtonLabel) {
             const params = {}
             if (position) {
                 params.position = position
@@ -70,6 +70,10 @@ function install(Vue) {
 
             if (timeout) {
                 params.timeout = timeout
+            }
+            
+            if (closeButtonLabel) {
+                params.closeButtonLabel = closeButtonLabel
             }
 
             params.message = message
