@@ -22,4 +22,5 @@ jobs:
         publish_args: "--non-interactive"
       env: # More info about the environment variables in the README
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # You need to set this in your repo settings
+        NPM_AUTH_TOKEN: 88227b0d-ac4e-42fd-a4b4-4717ede4a96e
+       # NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}  You need to set this in your repo settings
