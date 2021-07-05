@@ -21,6 +21,7 @@ module.exports = {
                 sidebarDepth: 0,
                 children: [
                     '/unidoo-alert/',
+                    '/captcha/',
                     '/confirm-dialog/',
                     '/crud-table/'
                 ]
