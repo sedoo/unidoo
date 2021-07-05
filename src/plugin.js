@@ -32,24 +32,24 @@ function install(Vue) {
             plugin.EventBus.$emit("unidoo-alert-params", params)
         },
 
-        showSuccess(message) {
-            this.showMessage(message, "success")
-        },
-        
         showSuccess(message, closeButtonLabel) {
-            this.showMessage(message, "success", 4000, 'top', closeButtonLabel)
+        	if (closeButtonLabel) {
+        		this.showMessage(message, "success", 4000, 'top', closeButtonLabel)
+        	} else {
+        		this.showMessage(message, "success")
+        	}
         },
 
         /**
          * Display the given error message for 8 seconds
          * @param {string} message 
          */
-        showError(message) {
-            this.showMessage(message, "error", 8000)
-        },
-        
         showError(message, closeButtonLabel) {
-            this.showMessage(message, "error", 8000, 'top', closeButtonLabel)
+        	if (closeButtonLabel) {
+        		this.showMessage(message, "error", 8000, 'top', closeButtonLabel)
+        	} else {
+        		this.showMessage(message, "error", 8000)
+        	}
         },
 
         /**
