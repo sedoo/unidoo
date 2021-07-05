@@ -1,5 +1,10 @@
 module.exports = {
     title: "UNIDOO Library",
+    head: [
+    	['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons' }],
+    	['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' }],
+    	['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css' }]
+    ],
     description: 'by Sedoo',
     base: '/unidoo/',
     themeConfig: {
