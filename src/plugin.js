@@ -33,11 +33,11 @@ function install(Vue) {
         },
 
         showSuccess(message, closeButtonLabel) {
-        	if (closeButtonLabel) {
-        		this.showMessage(message, "success", 4000, 'top', closeButtonLabel)
-        	} else {
-        		this.showMessage(message, "success")
-        	}
+            if (closeButtonLabel) {
+                this.showMessage(message, "success", 4000, 'top', closeButtonLabel)
+            } else {
+                this.showMessage(message, "success")
+            }
         },
 
         /**
@@ -45,11 +45,11 @@ function install(Vue) {
          * @param {string} message 
          */
         showError(message, closeButtonLabel) {
-        	if (closeButtonLabel) {
-        		this.showMessage(message, "error", 8000, 'top', closeButtonLabel)
-        	} else {
-        		this.showMessage(message, "error", 8000)
-        	}
+            if (closeButtonLabel) {
+                this.showMessage(message, "error", 8000, 'top', closeButtonLabel)
+            } else {
+                this.showMessage(message, "error", 8000)
+            }
         },
 
         /**
