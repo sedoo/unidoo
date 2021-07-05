@@ -24,8 +24,8 @@ export default ({
 ]
 // adding CDN css font url
 urlCdnStyle.forEach(CdnStyleUrl => {
-  const styleTag = document.createElement("link");
-  styleTag.href = CdnStyleUrl;
-  styleTag.rel = "stylesheet"
-  document.getElementsByTagName('head')[0].appendChild(styleTag);
+ // const styleTag = document.createElement("link");
+ // styleTag.href = CdnStyleUrl;
+ // styleTag.rel = "stylesheet"
+ // document.getElementsByTagName('head')[0].appendChild(styleTag);
 })

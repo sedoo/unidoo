@@ -25,3 +25,5 @@ yarn-error.log*
 *.tgz
 /.project
 /demo-build/
+/docs/.vuepress/dist/**
+
