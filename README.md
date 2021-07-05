@@ -10,7 +10,7 @@ see [Documentation](https://sedoo.github.io/unidoo/)
 
 1. Install the module
 
-```
+```shell
 npm i @sedoo/unidoo
 ```
 
@@ -38,18 +38,22 @@ If this version corresponds to an already published version, the build will stop
 
 Hence, to publish an new version, it is important to modify the number in the *package.json* file.    
 
-## Demo app
+## Demo application
 
-To build the demo: 
+### On developement station
+
+To run the demo locally: 
 
 ```shell
 npm run build:demo
 ```
 
-## Usage instructions
+### Publishing of the online application
 
+The publishing if the library is an automated mechanism based on Github workflow system. No other method should be used.
+After each push on the *main* branch, the online application is launched.
 
 
 ## Demonstration
 
-[Live demonstration](https://www.sedoo.fr/demonstration-librairie-unidoo/)
+[Live demonstration](https://sedoo.github.io/unidoo/)
