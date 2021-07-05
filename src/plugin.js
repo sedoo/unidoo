@@ -35,6 +35,10 @@ function install(Vue) {
         showSuccess(message) {
             this.showMessage(message, "success")
         },
+        
+        showSuccess(message, closeButtonLabel) {
+            this.showMessage(message, "success", 4000, 'top', closeButtonLabel)
+        },
 
         /**
          * Display the given error message for 8 seconds
@@ -42,6 +46,10 @@ function install(Vue) {
          */
         showError(message) {
             this.showMessage(message, "error", 8000)
+        },
+        
+        showError(message, closeButtonLabel) {
+            this.showMessage(message, "error", 8000, 'top', closeButtonLabel)
         },
 
         /**
