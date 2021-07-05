@@ -61,10 +61,10 @@ function install(Vue) {
         formatError(prefix, error) {
             let message = 'An error has occured'
             if (typeof error === 'object') {
-              if (error.message) {
+              if (error.response && error.response.data && error.response.data.message) {
+                message = prefix + ' ' + error.response.data.message
+              } else if (error.message) {
                 message = prefix + ' ' + error.message
-              } else if (error.response && error.response.data) {
-                message = prefix + ' ' + error.response.data
               }
             }
             return message
