@@ -10,6 +10,8 @@ Provide a v-model based captcha mechanism
 | ------------- |----------------| ---------|--------------|
 | **size**          | String | 6 | Number of letter in the captcha |
 | **color**          | String | primary | Color of the refresh button |
+| **textFieldLabel**          | String | Text | Text field label |
+| **refreshButtonLabel**          | String | Refesh | Refresh button label |
 
 
 ## Example

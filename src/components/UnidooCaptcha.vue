@@ -3,10 +3,10 @@
   <div ref="captcha"></div>
   <div>
    <v-text-field
-            label="Text"
+            :label="textFieldLabel"
             v-model ="text"
           ></v-text-field>
-  <v-btn :color="color" @click="refresh">Refresh</v-btn>
+  <v-btn :color="color" @click="refresh">{{refreshButtonLabel}}</v-btn>
   </div>
   </span>
 </template>
@@ -101,7 +101,15 @@ export default {
       },
       value: {
         type: Boolean
-      }
+      },
+      textFieldLabel: {
+        type: String,
+        default: "Text"
+      },
+      refreshButtonLabel: {
+        type: String,
+        default: "Refresh"
+      },
     },
 
 }
