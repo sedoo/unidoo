@@ -29,7 +29,7 @@ export default {
       this.position = params.position ? params.position : this.position
       this.timeout = params.timeout ? params.timeout : this.timeout
       this.type = params.type ? params.type : this.type
-      this.closeButtonLabel = params.closeButtonLabel ? params.type : this.closeButtonLabel
+      this.closeButtonLabel = params.closeButtonLabel ? params.closeButtonLabel : this.closeButtonLabel
       this.snackbar = true
     },
 
@@ -37,7 +37,7 @@ export default {
       this.position = params.position ? params.position : this.position
       this.timeout = params.timeout ? params.timeout : this.timeout
       this.type = params.type ? params.type : this.type
-      this.closeButtonLabel = params.closeButtonLabel ? params.type : this.closeButtonLabel
+      this.closeButtonLabel = params.closeButtonLabel ? params.closeButtonLabel : this.closeButtonLabel
     }
   },
   beforeMount () {
