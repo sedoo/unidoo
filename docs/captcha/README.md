@@ -1,6 +1,6 @@
 # Captcha 
 
-## Utilisation 
+## Use 
 
 Provide a v-model based captcha mechanism
 
@@ -12,7 +12,7 @@ Provide a v-model based captcha mechanism
 | **color**          | String | primary | Color of the refresh button |
 
 
-## Exemple
+## Example
 
 ```html
 <UnidooCaptcha size="6" v-model="valid"></UnidooCaptcha>
