@@ -6,7 +6,7 @@
 function install(Vue) {
     if (install.installed) return
     install.installed = true
-
+    
     // For each matching file name...
     requireComponent.keys().forEach((fileName) => {
             // Get the component config
@@ -145,7 +145,7 @@ const requireComponent = require.context(
     // Look for files in the current directory
     './components',
     // Do not look in subdirectories
-    false,
+    true,
     // Only include "_base-" prefixed .vue files
     /[\w-]+\.vue$/
 )
