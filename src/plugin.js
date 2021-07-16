@@ -144,7 +144,7 @@ if (GlobalVue) {
 const requireComponent = require.context(
     // Look for files in the current directory
     './components',
-    // Do not look in subdirectories
+    // Look in subdirectories
     true,
     // Only include "_base-" prefixed .vue files
     /[\w-]+\.vue$/

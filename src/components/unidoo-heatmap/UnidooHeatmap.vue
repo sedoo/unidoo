@@ -6,12 +6,12 @@
       :key="monthIndex">
        <header>{{ lo.months[monthIndex] }}</header>
        <div
-        :class="computedClass(day)"
+        :class="computeClass(day)"
         v-for="(day, dayIndex) in month"
         :key="dayIndex"
         :data-day="formatDate(day.date)"
         :data-count="day.count"
-        :style="{ opacity : ((day.date < now) ? 1 : 0.2), backgroundColor: getColor(day.colorIndex) }"
+        :style="{ opacity : ((day.date < now) ? 1 : 0.3), backgroundColor: getColor(day.colorIndex) }"
         v-tooltip="tooltipOptions(day)"
         @click="handleClick($event,day)">
           <div v-if="day.date < now" :style="{ color: getTextColor(day) }">{{ dayIndex + 1 }}</div> 
@@ -35,9 +35,9 @@ export default {
     value: {
       type: Date
     },
-    missingAllowed: {
-      type: Boolean,
-      default: () => false
+    values: {
+      required: true,
+      type: Array
     },
     endDate: {
       required: true
@@ -49,9 +49,9 @@ export default {
       type: Array,
       default: () => DEFAULT_RANGE_COLOR
     },
-    values: {
-      required: true,
-      type: Array
+    missingAllowed: {
+      type: Boolean,
+      default: () => false
     },
     locale: {
       type: Object
@@ -64,18 +64,10 @@ export default {
       type: String,
       default: DEFAULT_TOOLTIP_UNIT
     },
-    showUnit: {
+    showCount: {
       type: Boolean,
       default: false
-    },
-    showDate: {
-      type: Boolean,
-      default: true
-    },
-    showMonth: {
-      type: Boolean,
-      default: false
-    },    
+    },   
     noDataText: {
       type: String,
       default: null
@@ -116,10 +108,13 @@ export default {
     }
   },
   methods: {
+    computeClass (day) {
+      return `monthday ${((day.date < this.now) ? 'clickable' : 'not-clickable')} ${(this.isSameDay(day.date, this.value) ? 'day-focus' : '')}`
+    },
     tooltipOptions (day) {
       if (this.tooltip) {
         if (day.count != null) {
-          if (this.showUnit) {
+          if (this.showCount) {
             return {
               content: `<b>${day.count} ${this.tooltipUnit}</b> ${this.lo.on} ${this.lo.months[day.date.getMonth()]} ${day.date.getDate()}, ${day.date.getFullYear()}`,
               delay: { show: 150, hide: 50 }
@@ -143,15 +138,6 @@ export default {
         }
       }
       return false
-    },
-    computedClass (day) {
-      return 'monthday' + ' ' + ((day.date < this.now) ? 'clickable' : 'not-clickable') + ' ' + (this.isSameDay(day.date, this.value) ? 'day-focus' : '')
-    },
-    isSameDay (first, second) {
-      if (!first || !second) return false
-      return first.getFullYear() === second.getFullYear() &&
-        first.getMonth() === second.getMonth() &&
-        first.getDate() === second.getDate()
     },
     handleClick (e, day) {
       if (day) {
@@ -220,6 +206,12 @@ export default {
       const mm = date.getMonth() + 1
       const yyyy = date.getFullYear()
       return `${yyyy}-${mm}-${dd}`
+    },
+    isSameDay (first, second) {
+      if (!first || !second) return false
+      return first.getFullYear() === second.getFullYear() &&
+        first.getMonth() === second.getMonth() &&
+        first.getDate() === second.getDate()
     }
   }
 }
