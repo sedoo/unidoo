@@ -20,8 +20,8 @@
                     <v-checkbox
                         class="checkbox"
                         v-model="year"
-                        label="2022"
-                        value="2022"
+                        :label="nextYear"
+                        :value="nextYear"
                         hide-details
                     ></v-checkbox>
                 </v-row>
@@ -65,6 +65,11 @@ export default {
     watch: {
         date (val) {
             this.$unidooAlert.showSuccess("Selected date : ", val.toLocaleDateString('en-EN'));
+        }
+    },
+    computed: {
+        nextYear() {
+            return (new Date().getFullYear() + 1).toString()
         }
     },
 

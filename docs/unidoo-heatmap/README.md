@@ -2,7 +2,11 @@
 
 ## Use 
 
-Provide a data availability calendar with selectable date and displayed as an heatmap. Inspired by https://github.com/julienr114/vue-calendar-heatmap
+Provide a data availability calendar with selectable date and displayed as an heatmap.
+
+To use this component insert the tag **unidoo-heatmap** and pass a  **Date** type parameter in **v-model**.
+
+Inspired by https://github.com/julienr114/vue-calendar-heatmap
 
 ## Props
 
