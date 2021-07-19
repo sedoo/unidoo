@@ -82,7 +82,7 @@ export default {
     },
     endDate (val) {
       if (val !== this.endDate) {
-        const rects = document.querySelectorAll('section[heatmap-calendar] [month] .monthday')
+        const rects = document.querySelectorAll('[heatmap-calendar] [month] .monthday')
         rects.forEach(element => {
           element.classList.remove('day-focus')
         });
@@ -155,7 +155,7 @@ export default {
       }
     },
     focusElement (el) {
-      const rects = this.$el.querySelectorAll('section[heatmap-calendar] [month] .monthday')
+      const rects = this.$el.querySelectorAll('[heatmap-calendar] [month] .monthday')
       rects.forEach(element => {
         element.classList.remove('day-focus')
       });
@@ -217,52 +217,52 @@ export default {
 }
 </script>
 <style scoped>
-  section[heatmap-calendar] {
+  [heatmap-calendar] {
     display:flex;
     flex-flow:row wrap;
     justify-content:space-evenly;
     max-width: 1300px;
   }
 
-  section[heatmap-calendar] [month] {
+  [heatmap-calendar] [month] {
     flex:1 0 570px;
     display:flex;
     flex-flow:row wrap;
     align-items: center;
   }
-  section[heatmap-calendar] [month] header {
+  [heatmap-calendar] [month] header {
     width: 40px;
     color:#767676;
     font-size: 12px;
   }
-  section[heatmap-calendar] [month] .monthday{
+  [heatmap-calendar] [month] .monthday{
     margin-right: 2px;
     width:15px;
     height:15px;
     text-align: center;
     background-color:rgb(235, 237, 240);
   }
-  section[heatmap-calendar] .monthday:not(:nth-child(7n+1)) > div {
+  [heatmap-calendar] .monthday:not(:nth-child(7n+1)) > div {
     display:none;
   }
-  section[heatmap-calendar] [month] .monthday.not-clickable {
+  [heatmap-calendar] [month] .monthday.not-clickable {
     opacity:0.2;
   }
-  section[heatmap-calendar] [month] .monthday.clickable:hover {
+  [heatmap-calendar] [month] .monthday.clickable:hover {
     outline:2px solid rgb(195, 195, 195);
     cursor: pointer;
   }
-  section[heatmap-calendar] [month] .monthday > div {
+  [heatmap-calendar] [month] .monthday > div {
     fill:black;
     pointer-events:none;
     font-size: 11px;
     letter-spacing: 0;
     line-height: 15px;
   }
-  section[heatmap-calendar] [month] .monthday.day-focus{
+  [heatmap-calendar] [month] .monthday.day-focus{
     box-shadow: 0px 0px 0px 1px rgba(255,0,0,0.5);
   }
-  section[heatmap-calendar] [month] .monthday.day-focus::before{
+  [heatmap-calendar] [month] .monthday.day-focus::before{
     display: block;
     position: absolute;
     content: '';
@@ -271,7 +271,7 @@ export default {
     background: rgba(255,55,43,0.5);
   }
   @media screen and (max-width: 650px) {
-    section[heatmap-calendar] [month] {
+    [heatmap-calendar] [month] {
       flex:auto;
     }
   }
