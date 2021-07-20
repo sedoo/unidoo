@@ -1,23 +1,25 @@
 <template>
-  <section heatmap-calendar>
-    <div
-      month
-      v-for="(month, monthIndex) in heatmap.monthCalendar"
-      :key="monthIndex">
-       <header>{{ lo.months[monthIndex] }}</header>
-       <div
-        :class="computeClass(day)"
-        v-for="(day, dayIndex) in month"
-        :key="dayIndex"
-        :data-day="formatDate(day.date)"
-        :data-count="day.count"
-        :style="{ opacity : ((day.date < now) ? 1 : 0.3), backgroundColor: getColor(day.colorIndex) }"
-        v-tooltip="tooltipOptions(day)"
-        @click="handleClick($event,day)">
-          <div v-if="day.date < now" :style="{ color: getTextColor(day) }">{{ dayIndex + 1 }}</div> 
-        </div>
-    </div>
-  </section>
+  <v-container>
+    <section heatmap-calendar>
+      <div
+        month
+        v-for="(month, monthIndex) in heatmap.monthCalendar"
+        :key="monthIndex">
+        <header>{{ lo.months[monthIndex] }}</header>
+        <div
+          :class="computeClass(day)"
+          v-for="(day, dayIndex) in month"
+          :key="dayIndex"
+          :data-day="formatDate(day.date)"
+          :data-count="day.count"
+          :style="{ opacity : ((day.date < now) ? 1 : 0.3), backgroundColor: getColor(day.colorIndex) }"
+          v-tooltip="tooltipOptions(day)"
+          @click="handleClick($event,day)">
+            <div v-if="day.date < now" :style="{ color: getTextColor(day) }">{{ dayIndex + 1 }}</div> 
+          </div>
+      </div>
+    </section>
+  </v-container>
 </template>
 
 <script>
@@ -217,52 +219,52 @@ export default {
 }
 </script>
 <style scoped>
-  [heatmap-calendar] {
+  section[heatmap-calendar] {
     display:flex;
     flex-flow:row wrap;
     justify-content:space-evenly;
     max-width: 1300px;
   }
 
-  [heatmap-calendar] [month] {
+  section[heatmap-calendar] [month] {
     flex:1 0 570px;
     display:flex;
     flex-flow:row wrap;
     align-items: center;
   }
-  [heatmap-calendar] [month] header {
+  section[heatmap-calendar] [month] header {
     width: 40px;
     color:#767676;
     font-size: 12px;
   }
-  [heatmap-calendar] [month] .monthday{
+  section[heatmap-calendar] [month] .monthday{
     margin-right: 2px;
     width:15px;
     height:15px;
     text-align: center;
     background-color:rgb(235, 237, 240);
   }
-  [heatmap-calendar] .monthday:not(:nth-child(7n+1)) > div {
+  section[heatmap-calendar] .monthday:not(:nth-child(7n+1)) > div {
     display:none;
   }
-  [heatmap-calendar] [month] .monthday.not-clickable {
+  section[heatmap-calendar] [month] .monthday.not-clickable {
     opacity:0.2;
   }
-  [heatmap-calendar] [month] .monthday.clickable:hover {
+  section[heatmap-calendar] [month] .monthday.clickable:hover {
     outline:2px solid rgb(195, 195, 195);
     cursor: pointer;
   }
-  [heatmap-calendar] [month] .monthday > div {
+  section[heatmap-calendar] [month] .monthday > div {
     fill:black;
     pointer-events:none;
     font-size: 11px;
     letter-spacing: 0;
     line-height: 15px;
   }
-  [heatmap-calendar] [month] .monthday.day-focus{
+  section[heatmap-calendar] [month] .monthday.day-focus{
     box-shadow: 0px 0px 0px 1px rgba(255,0,0,0.5);
   }
-  [heatmap-calendar] [month] .monthday.day-focus::before{
+  section[heatmap-calendar] [month] .monthday.day-focus::before{
     display: block;
     position: absolute;
     content: '';
@@ -271,7 +273,7 @@ export default {
     background: rgba(255,55,43,0.5);
   }
   @media screen and (max-width: 650px) {
-    [heatmap-calendar] [month] {
+    section[heatmap-calendar] [month] {
       flex:auto;
     }
   }
