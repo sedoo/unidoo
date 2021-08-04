@@ -1,0 +1,580 @@
+[
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L00",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L00.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L02",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L02.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L04",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L04.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L06",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L06.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L08",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L08.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L10",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L10.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L12",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L12.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L14",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L14.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L16",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L16.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L18",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L18.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L20",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L20.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L22",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L22.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L24",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L24.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L26",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L26.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L28",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L28.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L30",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L30.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    },
+    {
+      "date": "2021-07-29T00:00:00Z",
+      "realDate": "2021-07-28T22:00:00.000+0000",
+      "parentIdentifier": null,
+      "type": "L32",
+      "totalSize": 0,
+      "fileNumber": 0,
+      "media": {
+        "category": "QUICKLOOK",
+        "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-07-29&file=20210729_ECMWF_PW_NONE_Raw-Anomaly_MAP_Regional_L32.png&campaign=MISVA"
+      },
+      "levels": [
+        {
+          "name": "Level1",
+          "value": "ECMWF"
+        },
+        {
+          "name": "Level2",
+          "value": "Regional"
+        },
+        {
+          "name": "Level3",
+          "value": "PW"
+        },
+        {
+          "name": "Level4",
+          "value": "NONE"
+        },
+        {
+          "name": "Level5",
+          "value": "Raw-Anomaly"
+        }
+      ]
+    }
+  ]

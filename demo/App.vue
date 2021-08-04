@@ -25,6 +25,11 @@
             <v-list-item-title>unidoo-heatmap</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link @click="current = 'unidoo-player'">
+          <v-list-item-content>
+            <v-list-item-title>unidoo-player</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
@@ -122,16 +127,30 @@
               :values="[{ 'count' : 100, 'date' : '2021-07-10T00:00:00Z' }, { 'count' : 50, 'date' : '2021-07-09T00:00:00Z' }, { 'count' : 1, 'date' : '2021-07-08T00:00:00Z' }, { 'count' : 0, 'date' : '2021-01-04T00:00:00Z' }]"
               :missingAllowed="heatmap.missingAllowed"
               :completeValue="(heatmap.maxDefinedToZero) ? 0 : undefined"
-              :end-date="new Date(Date.UTC(2021, 11, 31))"
+              :year="new Date(Date.UTC(2021, 11, 31))"
               :showUnit="heatmap.showCount"
               :rangeColor="(heatmap.customRangeColor) ? ['#E7FFD4', '#CBFFA3', '#ACFF6B', '#9af356', '#70ea12', '#62B621'] : undefined"
             ></unidoo-heatmap>
           </v-col>
       </section>
     </v-main>
+
+    <v-main v-if="current == 'unidoo-player'">
+      <section class="pa-5">
+          <v-col>
+            <unidoo-player
+              :label="'2021-05-25'"
+              :entries="playerData"
+            ></unidoo-player>
+            <a href="https://misva.aeris-data.fr/products/synopt_cartes_prevues/">*Images from MISVA web site</a>
+          </v-col>
+      </section>
+    </v-main>
   </v-app>
 </template>
 <script>
+import playerEntries from "./data/player_entries_example.json"
+
 export default {
   name: "App",
   data: () => ({
@@ -148,8 +167,10 @@ export default {
       missingAllowed: false,
       maxDefinedToZero: true,
       showCount: false
-    }
+    },
+    playerData: playerEntries
   }),
+  
   computed: {
     heatmapDate() {
       return this.heatmap.date;

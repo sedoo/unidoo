@@ -1,7 +1,7 @@
 
 export default class CalendarHeatmap {
-  constructor (endDate, values, max) {
-    this.endDate = this._parseDate(endDate)
+  constructor (year, values, max) {
+    this.year = this._parseDate(year)
     if (typeof max === 'number' && max >= 0) {
       this.max = max
     } else {
@@ -21,7 +21,7 @@ export default class CalendarHeatmap {
   }
 
   get monthCalendar () {
-    const year = this.endDate.getFullYear()
+    const year = this.year.getFullYear()
     const date = new Date(year, 0, 1)
     let i = 0
     return Array.from({ length: 12 },

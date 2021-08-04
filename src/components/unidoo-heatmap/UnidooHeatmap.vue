@@ -41,7 +41,7 @@ export default {
       required: true,
       type: Array
     },
-    endDate: {
+    year: {
       required: true
     },
     completeValue: {
@@ -82,8 +82,8 @@ export default {
     value (val) {
       this.focusDate(val)
     },
-    endDate (val) {
-      if (val !== this.endDate) {
+    year (val) {
+      if (val !== this.year) {
         const rects = document.querySelectorAll('[heatmap-calendar] [month] .monthday')
         rects.forEach(element => {
           element.classList.remove('day-focus')
@@ -94,7 +94,7 @@ export default {
   },
   computed: {
     heatmap () {
-      return new Heatmap(this.endDate, this.values, this.completeValue)
+      return new Heatmap(this.year, this.values, this.completeValue)
     },
     lo () {
       if (this.locale) {

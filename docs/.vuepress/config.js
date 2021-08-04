@@ -24,7 +24,8 @@ module.exports = {
                     '/captcha/',
                     '/confirm-dialog/',
                     '/crud-table/',
-                    '/unidoo-heatmap/'
+                    '/unidoo-heatmap/',
+                    '/unidoo-player/'
                 ]
             }],
             // '/unidoo-alert': [{

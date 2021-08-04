@@ -13,7 +13,7 @@ Inspired by https://github.com/julienr114/vue-calendar-heatmap
 | Name          | Type           | Default  | Required   | Description  |
 | ------------- |----------------| --------- | ---------|--------------|
 | **values**          | Array | undefined | yes | List of dates with associated count ( format : [{ 'count' : Number, 'date' : Date or ISO String date }] ) |
-| **endDate**          | Date or String | undefined | yes | Use to determine time range (displayed by year). String can be like '2021' |
+| **year**          | Date or String | undefined | yes | Use to determine time range (year coverage). String can be like '2021' |
 | **completeValue**          | Number | undefined | no | Use to set the count rank, if not defined it uses the max of count |
 | **rangeColor**          | Array | Default colors | no | Array of hexadecimal colors, use to set color using rank and count index |
 | **missingAllowed**          | Boolean | false | no | Specify if missing entry selection is allowed |
