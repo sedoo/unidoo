@@ -1,27 +1,19 @@
 <template>
     <v-app>
         <v-col>
-            <v-radio-group
-                v-model="select"
-                row
-            >
-                <v-radio
-                    label="multi entries"
-                    value="multi"
-                ></v-radio>
-                <v-radio
-                    label="other multi entries"
-                    value="other"
-                ></v-radio>
-                <v-radio
-                    label="single entry"
-                    value="single"
-                ></v-radio>
-            </v-radio-group>
+            <v-text-field label="label" v-model="label"/>
+            <v-row>
+                <v-switch style="margin-left: 15px;" v-model="passData" label="Show data"></v-switch>
+                <v-switch style="margin-left: 15px;" v-model="mask" label="Mask player"></v-switch>
+            </v-row>
+            <v-text-field label="no data message" v-model="noDataMessage"/>
+            <v-text-field label="mask message" v-model="maskMessage"/>
             <unidoo-player
-              style="display:block; height: 610px"
               :label="label"
-              :entries="values"
+              :data="(passData) ? values : null"
+              :mask="mask"
+              :maskMessage="maskMessage"
+              :noDataMessage="noDataMessage"
             ></unidoo-player>
             <a href="https://misva.aeris-data.fr/products/synopt_cartes_prevues/">* Images from MISVA web site</a>
         </v-col>
@@ -29,37 +21,18 @@
 </template>
 
 <script>
-import multiData from "./data/unidoo-player/multi_entries.json"
-import singleData from "./data/unidoo-player/single_entry.json"
-import otherMultiData from "./data/unidoo-player/other_multi.json"
+import dataJson from "../public/data/unidoo-player/data.json"
 
 export default {
     data() {
         return {
-            select: 'multi',
-            mapEntries: {
-                multi: {
-                    data: multiData,
-                    label: '2021-07-29'
-                },
-                single: {
-                    data: singleData,
-                    label: '2021-08-02'
-                },
-                other: {
-                    data: otherMultiData,
-                    label: 'Custom label'
-                }
-            }
+            label: '2021-08-03',
+            values: dataJson,
+            mask: false,
+            passData: true,
+            noDataMessage: 'no data',
+            maskMessage: 'maybe loading ...'
         };
-    },
-    computed:{
-        label() {
-            return this.mapEntries[this.select].label;
-        },
-        values() {
-            return this.mapEntries[this.select].data;
-        }
     }
 };
 </script>

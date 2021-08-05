@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import availability from "./data/unidoo-heatmap/availability.json"
+import availability from "../public/data/unidoo-heatmap/availability.json"
 
 export default {
     data() {

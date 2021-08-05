@@ -1,290 +1,99 @@
 <template>
-  <div>
-    <unidoo-player-layout
-      ref="player"
-      v-model="playerCounter"
-      :initialValue="0"
-      :min="0"
-      :max="max"
-      :autoPlay="autoPlay"
-      :graduation="graduation"
-      :frequency="300"
-      :loadedFrames="loadedFrames"
-      @reload-frames="preloadFrames(loadIndex)"
-      progressBarTitle="Loading image"
-    >
+  <v-col style="position: relative">
+    <div level-selector >
 
-      <template v-slot:displayer>
+     <level-selector
+        v-model="entries"
+        :data="data"
+      ></level-selector>
 
-        <image-viewer
-          :style="{ opacity : ((isLoadingFirstFrame) ? '0.5' : '1')}"
-          :url="currentUrl"
-          :title="frameTitle"
-        ></image-viewer>
+    </div>
+    <div>
+      <div v-if="hasData">
 
-      </template>
+        <unidoo-simple-player
+          class="constrained"
+          :label="label"
+          :entries="entries"
+        ></unidoo-simple-player>
 
-      <template v-slot:frameTitle>
-
-        <v-col>
-        
-          <v-row v-if="max > 0 && loadedFrames < (max + 1)" player-title justify="center">
-
-            <div spinner>
-              <loading-component></loading-component>
-            </div>
-          
-          </v-row>
-
-          <v-row  v-else justify="center">
-            <span frame-title>{{frameTitle}}</span>
-          </v-row>
-        </v-col>
-        
-      </template>
-
-    </unidoo-player-layout>
-  
-  </div>
+      </div>
+      <v-row class="constrained placeholder" v-else-if="mask">{{ maskMessage }}</v-row>
+      <v-row class="constrained placeholder" v-else>{{ noDataMessage }}</v-row>
+    </div>
+    <div mask v-if="mask"></div>
+  </v-col>
 </template>
 
 <script>
 
 export default {
+
   props: {
-    label: { 
+    label: {
       type: String,
       default: 'frame'
     },
 
-    entries: {
-      type: Array,
+
+    data:{
+      type: Object,
       default: () => null
+    },
+
+    mask:{
+      type: Boolean,
+      default: () => false
+    },
+
+    maskMessage: {
+      type: String,
+      default: 'Loading ...'
+    },
+
+    noDataMessage: {
+      type: String,
+      default: 'no accessible data'
     }
   },
 
   data: () => ({
-    autoPlay: false,
-    playerCounter: 0,
-    graduation: [],
-    currentUrl: null,
-    currentQualifier: null,
-    loadedFrames: 0,
-    currentFrames: [],
-    isLoadingFirstFrame: false,
-    isLoadingFrame: true,
-    lastFrameQualifier: null,
-    loadIndex: 0 // handle async load conflicts
+    entries: null
   }),
 
-  computed: {
-
-    frameTitle() {
-      return ((this.label) ? this.label : 'no value') + ((this.currentQualifier) ? ' : ' + this.currentQualifier : '');
+  computed:{
+    hasData(){
+      return (this.data && this.data.entries && this.data.entries.length);
     },
-
-    max() {
-      if (this.entries && this.entries.length > 0) {
-        return this.entries.length - 1;
-      }
-      return null;
-    },
-
-  },
-
-  watch: {
-    
-    entries: {
-      handler(val, old) {
-        if (this.$refs.player) {
-          if (old && old.length > 0) {
-            this.lastFrameQualifier = this.currentQualifier;
-          }
-          this.loadIndex += 1;
-          this.preloadFrames(this.loadIndex);
-          this.initGraduation();
-          this.updateCurrentFrame(0);
-          this.$refs.player.stop();
-        }
-      },
-      deep: true
-    },
-
-    playerCounter(val) {
-      this.updateCurrentFrame(val);
-    },
-
-    isLoadingFrame(val) {
-      if (!val) {
-        if (this.$refs.player) {
-          this.init();
-        }
-      }
-    }
-  },
-
-  mounted() {
-    this.preloadFrames(this.loadIndex);
-    this.initGraduation();
-    this.init();
-  },
-
-  methods: {
-
-    init() {
-      if (this.$refs.player) {
-        const lastIndex = this.getFrameQualifierIndex(this.lastFrameQualifier);
-        if (lastIndex > 0) {
-          this.$refs.player.goTo(lastIndex);
-          this.updateCurrentFrame(lastIndex);
-        } else {
-          this.$refs.player.goTo(0);
-          this.updateCurrentFrame(0);
-        }
-      }
-    },
-    
-    initGraduation() {
-      if (this.entries && this.entries.length) {
-        const entriesLength = this.entries.length;
-        if (entriesLength <= 8) {
-          this.graduation = []
-          this.entries.forEach(element => {
-            this.graduation.push(element.type);
-          });
-        } else {
-          const firstType = this.entries[0].type;
-          const typeLengthFactor = (firstType.length < 5) ? 1 : (firstType.length / 6);
-          const delta = (entriesLength <= 30) ? 2 : Math.round((entriesLength * typeLengthFactor) / 10);
-          this.graduation = []
-          let n = 0;
-          this.entries.forEach(element => {
-            if (n % delta) {
-              this.graduation.push(null);
-            } else {
-              this.graduation.push(element.type);
-            }
-            n++;
-          });
-        }
-      }
-    },
-
-    preloadFrames(loadIndex) {
-      if (this.entries) {
-        this.isLoadingFirstFrame = true;
-        this.isLoadingFrame = true;
-        this.loadedFrames = 0;
-
-        // cancel current preloads
-        if (this.currentFrames && this.currentFrames.length > 0) {
-          this.currentFrames.forEach(item => {
-            item.src = '#';
-          })
-          this.currentFrames = []; // empty preloads list
-        }
-
-        if (this.entries.length) {
-          const self = this;
-          this.entries.forEach(item => {
-            if (item.media && item.media.content) {
-              var img = new Image();
-              img.onload = function() {
-                if (self.loadIndex === loadIndex) {
-                  self.incrementPreload();
-                  self.isLoadingFirstFrame = false;
-                }
-                img.onload = null;
-                img.onerror = null;
-              }
-              img.onerror = function(e) {
-                if (self.loadIndex === loadIndex) {
-                  self.incrementPreload();
-                  console.log('Error loading frame ' + item.media.content + ' : ' + e);
-                }
-                img.onload = null;
-                img.onerror = null;
-              }
-              img.src = item.media.content;
-              self.currentFrames.push(img); // store preload
-            } else {
-              console.log('Missing frame ' + item.date);
-              if (self.loadIndex === loadIndex) {
-                self.incrementPreload();
-              }
-            }
-          });
-        } else {
-          this.isLoadingFirstFrame = false;
-        }
-      }
-    },
-
-    incrementPreload() {
-      this.loadedFrames++;
-      if (this.loadedFrames === this.max + 1) {
-        this.currentFrames = []; // empty preloads list
-        this.isLoadingFrame = false;
-      }
-    },
-
-    updateCurrentFrame(index) {
-      this.currentUrl = this.getFrameUrl(index);
-      this.currentQualifier = this.getFrameQualifier(index);
-    },
-
-    getFrameUrl(index) {
-      if (this.entries && this.entries[index]) {
-        if (this.entries[index].media && this.entries[index].media.content) {
-          return this.entries[index].media.content;
-        }
-      }
-      return '#';
-    },
-
-    getFrameQualifier(index) {
-      if (this.entries && this.entries[index]) {
-        return this.entries[index].type;
-      }
-      return 'no value';
-    },
-
-    getFrameQualifierIndex(k) {
-      let index = -1;
-      if (k) {
-        this.entries.forEach((element, i) => {
-            if (k === element.type) {
-              index = i;
-            };
-          });
-      }
-      return index;
-    }
   }
+
 }
 </script>
 <style scoped>
-  [right-top]>* {
-    margin : 10px 5px;
+  .constrained {
+    display: block;
+    height: 610px;
   }
 
-  .right-bottom {
-    margin-top: 0;
+  [level-selector]{
+    margin: 0 10px;
   }
 
-  [player-title] {
-    position: relative;
-    height: 1.5em;
+  .placeholder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 
-  [spinner] {
+  [mask]{
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity : 0.5;
+    background: white;
   }
 
-  [frame-title] {
-    font-weight: 500;
-    font-size: 1.1rem;
-  }
 </style>
