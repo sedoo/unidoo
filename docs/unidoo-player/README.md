@@ -30,7 +30,8 @@ The **data** parameter has to be filled with an object containing fields **level
 - **entries** contains an array of data entries. Each entry must define fields *type*, *media.content* (image location) and optionally the field *levels* (to define the level association of the entry). Basic example :
 
 ```
-    {
+    "entries": [
+      {
         "type": "ech240",
         "media": {
           "content": "https://services.aeris-data.fr/campaigns/data/v1_0/getimage?product=Synopt_Cartes_Prevues&day=2021-08-04&file=20210804_ECMWF_CAPE-CIN_0h_Raw_MAP_Synoptic_ech240.png&campaign=MISVA"
@@ -49,7 +50,8 @@ The **data** parameter has to be filled with an object containing fields **level
             "value": "CAPE-CIN"
           }
         ]
-    }
+      }
+    ]
 ```
 
 
