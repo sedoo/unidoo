@@ -61,7 +61,7 @@ The **data** parameter has to be filled with an object containing fields **level
 | **data**          | Object | undefined | no | Object containing data entries and level definition |
 | **noDataMessage**          | String | 'no accessible data' | no | Message displayed if there is no data |
 | **mask**          | Boolean | false | no | Masks the player if true |
-| **maskMessaege**          | String | 'Loading ...' | no | Message displayed if there is no data and mask is set to true |
+| **maskMessage**          | String | 'Loading ...' | no | Message displayed if there is no data and mask is set to true |
 
 ## Example
 
