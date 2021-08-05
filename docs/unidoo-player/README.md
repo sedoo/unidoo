@@ -6,9 +6,16 @@ Provide a player to display a set of images filterer by level selector and handl
 
 To use this component insert the tag **unidoo-player**.
 
+## Props
+
+| Name          | Type           | Default  | Required   | Description  |
+| ------------- |----------------| --------- | ---------|--------------|
+| **label**          | String | 'frame' | no | Label used to prefix frame title |
+| **data**          | Object | undefined | no | Object containing data entries and level definition |
+
 The **data** parameter has to be filled with an object containing fields **levels** and **entries** :
 
-- **levels** contains an array of levels definition. The display order use the alphabetical sort of *name* fields. Definition example :
+- **levels** contains an array of levels definition. Display order use the alphabetical sort of *name* field values. Definition example :
 
 ```
     "levels": [
@@ -53,17 +60,6 @@ The **data** parameter has to be filled with an object containing fields **level
       }
     ]
 ```
-
-
-## Props
-
-| Name          | Type           | Default  | Required   | Description  |
-| ------------- |----------------| --------- | ---------|--------------|
-| **label**          | String | 'frame' | no | Label used to prefix frame title |
-| **data**          | Object | undefined | no | Object containing data entries and level definition |
-| **noDataMessage**          | String | 'no accessible data' | no | Message displayed if there is no data |
-| **mask**          | Boolean | false | no | Masks the player if true |
-| **maskMessage**          | String | 'Loading ...' | no | Message displayed if there is no data and mask is set to true |
 
 ## Example
 
