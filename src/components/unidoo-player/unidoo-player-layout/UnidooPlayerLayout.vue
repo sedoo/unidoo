@@ -328,7 +328,7 @@ export default {
       const slider = this.$refs.slider;
       if (slider && slider.$refs.thumb) {
         const thumb = slider.$refs.thumb;
-        thumb.focus();
+        thumb.focus({ preventScroll: true });
       }
     },
 

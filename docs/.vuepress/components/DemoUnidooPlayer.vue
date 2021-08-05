@@ -15,7 +15,7 @@
               :maskMessage="maskMessage"
               :noDataMessage="noDataMessage"
             ></unidoo-player>
-            <a href="https://misva.aeris-data.fr/products/synopt_cartes_prevues/">* Images from MISVA web site</a>
+            <a href="https://misva.aeris-data.fr/">* Images from MISVA web site</a>
         </v-col>
     </v-app>
 </template>
