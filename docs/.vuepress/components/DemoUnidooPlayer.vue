@@ -19,7 +19,7 @@
                 ></v-radio>
             </v-radio-group>
             <unidoo-player
-              style="height: 610px"
+              style="display:block; height: 610px"
               :label="label"
               :entries="values"
             ></unidoo-player>
