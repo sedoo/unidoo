@@ -15,7 +15,7 @@ To use this component insert the tag **unidoo-player**.
 
 The **data** parameter has to be filled with an object containing fields **levels** and **entries** :
 
-- **levels** contains an array of levels definition. Display order use the alphabetical sort of *name* field values. Definition example :
+- the field **levels** is optional, it contains an array of levels definition. Display order use the alphabetical sort of *name* field values. Definition example :
 
 ```
     "levels": [
@@ -34,7 +34,7 @@ The **data** parameter has to be filled with an object containing fields **level
     ]
 ```
 
-- **entries** contains an array of data entries. Each entry must define fields *type*, *media.content* (image location) and optionally the field *levels* (to define the level association of the entry). Basic example :
+- the field **entries** contains an array of data entries. Each entry must define fields *type (displayed value on graduation)*, *media.content (image location)* and optionally the field *levels (to define entry/level associations)*. Basic example for one entry with levels :
 
 ```
     "entries": [
@@ -60,6 +60,8 @@ The **data** parameter has to be filled with an object containing fields **level
       }
     ]
 ```
+
+*NB : the number of levels in entries objects must be the same as in levels definition.*
 
 ## Example
 

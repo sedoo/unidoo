@@ -427,10 +427,10 @@ export default {
   [player-layout].zoomed [body] {
     position: fixed;
     z-index: 99999;
-    top: 55px;
+    top: 6vh;
     left: 4vw;
     right: 4vw;
-    max-height: 90vh;
+    max-height: 92vh;
     overflow: auto;
     margin-top: -5px;
     margin-bottom: 5px;
