@@ -224,6 +224,7 @@ export default {
     flex-flow:row wrap;
     justify-content:space-evenly;
     max-width: 1300px;
+    line-height: 1.5;
   }
 
   section[heatmap-calendar] [month] {

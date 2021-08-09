@@ -1,7 +1,7 @@
 <template>
   <div root>
 
-    <v-card player-layout elevation="0" :class="{ zoomed: isZoomed }">
+    <div player-layout elevation="0" :class="{ zoomed: isZoomed }">
 
       <div mask @click="zoomPlayer"></div>
 
@@ -96,7 +96,7 @@
         <v-divider style="order: 5;"></v-divider>
 
       </div>
-    </v-card>
+    </div>
   </div>
 
 </template>

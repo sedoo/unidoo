@@ -36,9 +36,7 @@
           
           </v-row>
 
-          <v-row  v-else justify="center">
-            <span frame-title>{{frameTitle}}</span>
-          </v-row>
+          <div  v-else frame-title>{{frameTitle}}</div>
         </v-col>
         
       </template>
@@ -284,6 +282,8 @@ export default {
   }
 
   [frame-title] {
+    display: flex;
+    justify-content: center;
     font-weight: 500;
     font-size: 1.1rem;
   }
