@@ -4,7 +4,7 @@
 
 Provide a player to display a set of images filterer by level selector and handled as frames.
 
-To use this component insert the tag **unidoo-player**.
+To use this component insert the tag **unidoo-player** inside a **v-app** component.
 
 ## Props
 

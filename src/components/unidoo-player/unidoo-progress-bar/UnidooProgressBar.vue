@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div progress-bar justify="center" v-bind:style="{ background: barColor }">
+    <div progress-bar v-bind:style="{ background: barColor }">
       <div progress v-bind:style="{ width: barWidth, background: barColor }"></div>
       <span detail>{{title}} {{current}}/{{max}}</span>
     </div>

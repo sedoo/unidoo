@@ -28,13 +28,13 @@
 
         <v-col>
         
-          <v-row v-if="max > 0 && loadedFrames < (max + 1)" player-title justify="center">
+          <div v-if="0 == 0 || max > 0 && loadedFrames < (max + 1)" player-title justify="center">
 
             <div spinner>
               <loading-component></loading-component>
             </div>
           
-          </v-row>
+          </div>
 
           <div  v-else frame-title>{{frameTitle}}</div>
         </v-col>
