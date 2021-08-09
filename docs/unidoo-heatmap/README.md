@@ -27,8 +27,8 @@ Inspired by https://github.com/julienr114/vue-calendar-heatmap
 ```
     "values": [
         { 
-            'count' : Number, 
-            'date' : Date or ISO String date 
+            "count" : Number, 
+            "date" : Date or ISO String date 
         }
     ]
 ```

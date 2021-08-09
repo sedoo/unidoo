@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-row progress-bar justify="center" v-bind:style="{ background: barColor }">
+    <div progress-bar justify="center" v-bind:style="{ background: barColor }">
       <div progress v-bind:style="{ width: barWidth, background: barColor }"></div>
       <span detail>{{title}} {{current}}/{{max}}</span>
-    </v-row>
+    </div>
   </div>
 </template>
 
@@ -54,6 +54,8 @@ export default {
   
   [progress-bar]{
     position: relative;
+    display: flex;
+    justify-content: center;
     margin: 5px 0;
   }
 
