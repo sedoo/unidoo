@@ -9,7 +9,7 @@
       
         <v-divider style="order: 1;"></v-divider>
 
-        <v-row viewer-part :style="{ order: ((playerBarTop) ? 2 : 4) }">
+        <div viewer-part :style="{ order: ((playerBarTop) ? 2 : 4) }">
         
           <v-list-item player-layout-slider-part >
             <v-col>
@@ -77,7 +77,7 @@
             </v-col>
           </v-list-item>
           
-        </v-row>
+        </div>
 
         <v-divider style="order: 3;"></v-divider>
 
