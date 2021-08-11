@@ -9,7 +9,7 @@
       
         <v-divider style="order: 1;"></v-divider>
 
-        <div viewer-part :style="{ order: ((playerBarTop) ? 2 : 4) }">
+        <v-row viewer-part :style="{ order: ((playerBarTop) ? 2 : 4) }">
         
           <v-list-item player-layout-slider-part >
             <v-col>
@@ -77,7 +77,7 @@
             </v-col>
           </v-list-item>
           
-        </div>
+        </v-row>
 
         <v-divider style="order: 3;"></v-divider>
 
@@ -386,11 +386,16 @@ export default {
     transition: all 0.2s;
   }
 
+    [viewer-part] {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
   [player-layout-slider-part] {
     position: relative;
     margin: 10px 0;
   }
-  
+
   [player-part] [player-layout-displayer] {
     height: 450px;
   }
@@ -445,7 +450,10 @@ export default {
 
   [player-layout] [player-part] {
     height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
   }
+
   [player-layout].zoomed [player-part] {
     min-height: 60vh;
   }
