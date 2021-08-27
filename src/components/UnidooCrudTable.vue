@@ -22,7 +22,7 @@
             vertical
           ></v-divider>
           <v-spacer></v-spacer>
-          <v-btn color="blue" dark min-width="150px" @click="addItem"
+          <v-btn v-if="!onlyUpdate" color="blue" dark min-width="150px" @click="addItem"
             >Create Item</v-btn
           >
         <v-spacer></v-spacer>
@@ -40,7 +40,7 @@
           <v-icon color="blue" class="ma-2" @click="editItem(item)"
             >edit</v-icon
           >
-          <v-icon color="red" class="ma-2" @click="deleteItem(item)"
+          <v-icon v-if="!onlyUpdate" color="red" class="ma-2" @click="deleteItem(item)"
             >delete</v-icon
           >
         </template>
@@ -105,6 +105,12 @@
 import Plugin from "../plugin.js";
 
 export default {
+  props: {
+    onlyUpdate: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       resturl: null,
