@@ -27,7 +27,7 @@
             </v-col>
             <unidoo-heatmap
                 v-model="date"
-                :values="values"
+                :values="availability"
                 :missingAllowed="missingAllowed"
                 :completeValue="(maxDefinedToZero) ? 0 : undefined"
                 :year="year"
@@ -55,7 +55,7 @@ export default {
             showCustomMessage: false,
             customMessage: 'This is a custom message for no data',
             customRangeColor: ['#E7FFD4', '#CBFFA3', '#ACFF6B', '#9af356', '#70ea12', '#62B621'],
-            values: availability
+            availability
         };
     },
     watch: {

@@ -12,14 +12,29 @@
 </template>
 
 <script>
-import dataJson from "../public/data/unidoo-player/data.json"
-
 export default {
     data() {
         return {
-            label: '2021-08-03',
-            values: dataJson,
+            label: '2021-09-01',
+            values: null,
         };
+    },
+    mounted() {
+        this.loadItems();
+    },
+    methods: {
+        loadItems(){
+            const self = this;
+            this.axios
+                .get("https://services.aeris-data.fr/campaigns/data/v1_0/request?product=Synopt_Cartes_Prevues&filter=2021-09-01&campaign=MISVA")
+                .then(response => {
+                    if(response.data){
+                        self.values = response.data
+                    }
+                }).catch(e => {
+                    console.log(e);
+                })
+        }
     }
 };
 </script>
