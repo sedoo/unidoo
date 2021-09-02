@@ -149,7 +149,6 @@
   </v-app>
 </template>
 <script>
-import playerEntries from "./data/player_entries_example.json"
 
 export default {
   name: "App",
@@ -168,7 +167,7 @@ export default {
       maxDefinedToZero: true,
       showCount: false
     },
-    playerData: playerEntries
+    playerData: {}
   }),
   
   computed: {
