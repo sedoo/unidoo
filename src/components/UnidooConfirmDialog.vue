@@ -1,7 +1,7 @@
 <template>
-<v-dialog v-model="confirmDialog" persistent max-width="500">
+<v-dialog v-model="confirmDialog" persistent :width="width">
       <v-card>
-        <v-card-title class="headline">{{title}}</v-card-title>
+        <v-card-title :class="titleClasses">{{title}}</v-card-title>
         <v-card-text>{{message}}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -23,6 +23,8 @@ export default {
       confirmDialog: false,
       message: 'Do you confirm this action ?',
       title: 'Confirmation',
+      titleClasses: 'headline',
+      width: '500px',
       callback: {}
     }
   },
@@ -44,6 +46,15 @@ export default {
       if (params.callback) {
         this.callback = params.callback
       }
+
+      if (params.titleClasses) {
+        this.titleClasses = params.titleClasses
+      }
+
+      if (params.width) {
+        this.width = params.width
+      }
+
       this.confirmDialog = true
     },
 
