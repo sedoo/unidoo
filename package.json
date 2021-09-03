@@ -10,7 +10,7 @@
     },
     "comments": {
     	"scripts": "The npm run build is used by github for publishing. It musn't be removed"
-    }
+    },
     "files": [
         "dist",
         "src/**/*"
