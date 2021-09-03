@@ -1,6 +1,6 @@
 {
     "name": "@sedoo/unidoo",
-    "version": "0.0.28",
+    "version": "0.0.29",
     "private": false,
     "scripts": {
         "lint": "vue-cli-service lint --fix && vue-cli-service lint dev --fix",
