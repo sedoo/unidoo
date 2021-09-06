@@ -5,8 +5,8 @@
         <v-card-text>{{message}}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="confirmDialog=false">Cancel</v-btn>
-          <v-btn color="primary" @click="confirm">Confirm</v-btn>
+          <v-btn @click="confirmDialog=false">{{ cancelButtonLabel }}</v-btn>
+          <v-btn color="primary" @click="confirm">{{ confirmButtonLabel }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -25,6 +25,8 @@ export default {
       title: 'Confirmation',
       titleClasses: 'headline',
       width: '500px',
+      cancelButtonLabel: "Cancel",
+      confirmButtonLabel: "Confirm",
       callback: {}
     }
   },
@@ -53,6 +55,14 @@ export default {
 
       if (params.width) {
         this.width = params.width
+      }
+
+      if (params.cancelButtonLabel) {
+        this.cancelButtonLabel = params.cancelButtonLabel
+      }
+
+      if (params.confirmButtonLabel) {
+        this.confirmButtonLabel = params.confirmButtonLabel
       }
 
       this.confirmDialog = true
