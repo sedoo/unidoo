@@ -109,7 +109,7 @@ function install(Vue) {
             plugin.EventBus.$emit("unidoo-confirm-dialog-params", params)
         },
 
-        show(callback, message, title) {
+        show(callback, message, title, titleClasses, width, cancelButtonLabel, confirmButtonLabel) {
             const params = {}
             if (callback) {
                 params.callback = callback
@@ -123,8 +123,25 @@ function install(Vue) {
                 params.title = title
             }
 
+            if (titleClasses) {
+                params.titleClasses = titleClasses
+            }
+
+            if (width) {
+                params.width = width
+            }
+
+            if (cancelButtonLabel) {
+                params.cancelButtonLabel = cancelButtonLabel
+            }
+
+            if (confirmButtonLabel) {
+                params.confirmButtonLabel = confirmButtonLabel
+            }
+
             this.showWithParams(params)
         },
+
     }
 
     Vue.prototype.$unidooCrudTable = {
