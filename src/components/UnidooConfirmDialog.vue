@@ -6,7 +6,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn @click="confirmDialog=false">{{ cancelButtonLabel }}</v-btn>
-          <v-btn color="primary" @click="confirm">{{ confirmButtonLabel }}</v-btn>
+          <v-btn color="info" @click="confirm">{{ confirmButtonLabel }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
