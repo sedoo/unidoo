@@ -14,7 +14,7 @@
           <v-list-item player-layout-slider-part >
             <v-col>
 
-              <v-row justify="center">
+              <div style="display: flex; justify-content: center;">
                 <slot name="frameTitle">
 
                 </slot>
@@ -29,7 +29,7 @@
                 >
                   <v-icon>mdi-cached</v-icon>
                 </v-btn>
-              </v-row>
+              </div>
 
               <unidoo-progress-bar v-if="showProgressBar"
                 :title="progressBarTitle"
@@ -386,10 +386,10 @@ export default {
     transition: all 0.2s;
   }
 
-    [viewer-part] {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
+  [viewer-part] {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
   [player-layout-slider-part] {
     position: relative;

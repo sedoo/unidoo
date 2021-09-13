@@ -19,11 +19,11 @@
                         :value="nextYear"
                     ></v-radio>
                 </v-radio-group>
-                <v-switch v-model="missingAllowed" label="Allow selection on missing entry"></v-switch>
-                <v-switch v-model="maxDefinedToZero" label="Consider zero as complete value"></v-switch>
-                <v-switch v-model="showCustomColor" label="Use custom range of hexa color"></v-switch>
-                <v-switch v-model="showCount" label="Show count in tooltip (files is the default unit)"></v-switch>
-                <v-switch v-model="showCustomMessage" label="Show custom message for missing entry"></v-switch>
+                <v-switch v-model="missingAllowed" label="Autoriser la sélection sur les entrées manquantes"></v-switch>
+                <v-switch v-model="maxDefinedToZero" label="Considérer zero comme la valeur max"></v-switch>
+                <v-switch v-model="showCustomColor" label="Utiliser un gradient de couleur personnalisé"></v-switch>
+                <v-switch v-model="showCount" label="Afficher le compte dans le tooltip (files est l'unité par défaut)"></v-switch>
+                <v-switch v-model="showCustomMessage" label="Afficher un message personnalisé pour les entrées manquantes"></v-switch>
             </v-col>
             <unidoo-heatmap
                 v-model="date"

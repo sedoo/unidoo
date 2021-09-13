@@ -6,7 +6,7 @@
               :label="label"
               :data="values"
             ></unidoo-player>
-            <a href="https://misva.aeris-data.fr/">* Images from MISVA web site</a>
+            <a href="https://misva.aeris-data.fr/">* Images provenant du site web MISVA</a>
         </v-col>
     </v-app>
 </template>

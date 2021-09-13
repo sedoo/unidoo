@@ -6,7 +6,7 @@
 function install(Vue) {
     if (install.installed) return
     install.installed = true
-    
+
     // For each matching file name...
     requireComponent.keys().forEach((fileName) => {
             // Get the component config
@@ -61,11 +61,11 @@ function install(Vue) {
         formatError(prefix, error) {
             let message = 'An error has occured'
             if (typeof error === 'object') {
-              if (error.response && error.response.data && error.response.data.message) {
-                message = prefix + ' ' + error.response.data.message
-              } else if (error.message) {
-                message = prefix + ' ' + error.message
-              }
+                if (error.response && error.response.data && error.response.data.message) {
+                    message = prefix + ' ' + error.response.data.message
+                } else if (error.message) {
+                    message = prefix + ' ' + error.message
+                }
             }
             return message
         },
@@ -79,7 +79,7 @@ function install(Vue) {
             if (timeout) {
                 params.timeout = timeout
             }
-            
+
             if (closeButtonLabel) {
                 params.closeButtonLabel = closeButtonLabel
             }
@@ -87,6 +87,16 @@ function install(Vue) {
             params.message = message
             params.type = type
             this.show(params)
+        },
+    }
+
+    Vue.prototype.$unidooUuid = {
+        randomUuidV4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0;
+                var v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
         },
     }
 
@@ -99,7 +109,7 @@ function install(Vue) {
             plugin.EventBus.$emit("unidoo-confirm-dialog-params", params)
         },
 
-        show(callback, message, title) {
+        show(callback, message, title, titleClasses, width, cancelButtonLabel, confirmButtonLabel) {
             const params = {}
             if (callback) {
                 params.callback = callback
@@ -113,14 +123,31 @@ function install(Vue) {
                 params.title = title
             }
 
+            if (titleClasses) {
+                params.titleClasses = titleClasses
+            }
+
+            if (width) {
+                params.width = width
+            }
+
+            if (cancelButtonLabel) {
+                params.cancelButtonLabel = cancelButtonLabel
+            }
+
+            if (confirmButtonLabel) {
+                params.confirmButtonLabel = confirmButtonLabel
+            }
+
             this.showWithParams(params)
         },
+
     }
-    
+
     Vue.prototype.$unidooCrudTable = {
         show(params) {
-            plugin.EventBus.$emit("unidoo-crud-show", params)         
-        },  
+            plugin.EventBus.$emit("unidoo-crud-show", params)
+        },
     }
 }
 

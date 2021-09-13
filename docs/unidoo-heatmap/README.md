@@ -1,28 +1,37 @@
 # Heatmap / Datepicker
 
-## Use 
+## Description
 
-Provide a data availability calendar with selectable date and displayed as an heatmap.
+Un calendrier de disponibilité de données avec dates seclectionnables et affiché comme une heatmap.
 
-To use this component insert the tag **unidoo-heatmap** and pass a  **Date** type parameter in **v-model**.
+*Inspiré par https://github.com/julienr114/vue-calendar-heatmap*
 
-Inspired by https://github.com/julienr114/vue-calendar-heatmap
+## Utilisation
 
-## Props
+Pour utiliser ce composant il faut insérer le tag **unidoo-heatmap** dans un composant **v-app** en passant le une variable de type date au **v-model** :
 
-| Name          | Type           | Default  | Required   | Description  |
+```
+    <unidoo-heatmap
+        v-model="date"
+        :values="availability"
+    ></unidoo-heatmap>
+```
+
+## Propriétés
+
+| Nom          | Type           | Defaut  | Requis   | Description  |
 | ------------- |----------------| --------- | ---------|--------------|
-| **values**          | Array | undefined | yes | List of dates with associated count ( see details above ) |
-| **year**          | Date or String | undefined | yes | Use to determine time range (year coverage). String can be like '2021' |
-| **completeValue**          | Number | undefined | no | Use to set the count rank, if not defined it uses the max of count |
-| **rangeColor**          | Array | Default colors | no | Array of hexadecimal colors, use to set color using rank and count index |
-| **missingAllowed**          | Boolean | false | no | Specify if missing entry selection is allowed |
-| **tooltip**          | Boolean | true | no | Show tooltip |
-| **showCount**          | Boolean | false | no | Show count value in tooltip |
-| **tooltipUnit**          | String | 'files' | no | Count field unit showed in tooltip |
-| **noDataText**          | String | formated date | no | Specify a custom text for missing entry |
+| **values**          | Array | undefined | yes | Liste de dates avec un *count* associé ( voir détails plus bas ) |
+| **year**          | Date or String | undefined | yes | L'année en cours. Peut être un texte comme '2021' |
+| **completeValue**          | Number | undefined | no | Définit le rang maximal des *count*, si non défini la valeur prise est le maximum des *count* |
+| **rangeColor**          | Array | Default colors | no | Tableau de couleurs en hexadécimal, utilisé pour affiché un gradient de couleur selon le rang de *count* |
+| **missingAllowed**          | Boolean | false | no | Specifie si la selection sur les entrées manquantes est autorisée |
+| **tooltip**          | Boolean | true | no | Affiche les tooltip |
+| **showCount**          | Boolean | false | no | Affiche les valeurs des *count* dans le tooltip |
+| **tooltipUnit**          | String | 'files' | no | Unité de champ *count* affichée dans le tooltip |
+| **noDataText**          | String | formated date | no | Définit le text pour les entrées manquantes |
 
-- **values** array format details :
+- Détails du champ **values** :
 
 ```
     "values": [
@@ -33,7 +42,7 @@ Inspired by https://github.com/julienr114/vue-calendar-heatmap
     ]
 ```
 
-## Example
+## Exemple
 
 <demo-heatmap />
 
