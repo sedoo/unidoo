@@ -1,21 +1,31 @@
 # Image player
 
-## Use 
 
-Provide a player to display a set of images filterer by level selector and handled as frames.
+## Description
 
-To use this component insert the tag **unidoo-player** inside a **v-app** component.
+Un player d'images organisées en frames et filtrables par un selecteur de paramètres.
 
-## Props
+## Utilisation
 
-| Name          | Type           | Default  | Required   | Description  |
+Pour utiliser ce composant il faut insérer le tag **unidoo-player** dans un composant **v-app** :
+
+```
+    <unidoo-player
+        :label="label" 
+        :data="values"
+    ></unidoo-player>
+```
+
+## Propriétés
+
+| Nom          | Type           | Defaut  | Requis   | Description  |
 | ------------- |----------------| --------- | ---------|--------------|
-| **label**          | String | 'frame' | no | Label used to prefix frame title |
-| **data**          | Object | undefined | no | Object containing data entries and level definition |
+| **label**          | String | 'frame' | no | Label utilisé pour préfixer le nom des frames |
+| **data**          | Object | undefined | no | Objet contenant les données et la définition des levels |
 
-The **data** parameter has to be filled with an object containing fields **levels** and **entries** :
+le Paramètre **data** doit être un objet contenant les champs **levels** et **entries** :
 
-- the field **levels** is optional, it contains an array of levels definition. Display order use the alphabetical sort of *name* field values. Definition example :
+- le champ **levels** est optionnel, il contient un tableau de définition des levels. Pour organiser les levels, les champs *name* sont utilisés et ordonnés alphabétiquement. Exemple de définition :
 
 ```
     "levels": [
@@ -34,7 +44,7 @@ The **data** parameter has to be filled with an object containing fields **level
     ]
 ```
 
-- the field **entries** contains an array of data entries. Each entry must define fields *type (displayed value on graduation)*, *media.content (image location)* and optionally the field *levels (to define entry/level associations)*. Basic example for one entry with levels :
+- le champ **entries** contient les données sous forme de tableau. Chaque entrée doit définir les champs *type (la valeur affichée sur la graduation)*, *media.content (localisation de l'image)* et optionnellement le champ *levels (pour définir l'association entre les entrées et les levels définis)*. Exemple basique pour une entrée avec levels :
 
 ```
     "entries": [
@@ -61,9 +71,9 @@ The **data** parameter has to be filled with an object containing fields **level
     ]
 ```
 
-*NB : the number of levels in entries objects must be the same as in levels definition.*
+*NB : le nombre et le nom des levels doivent correspondre à la définition des levels.*
 
-## Example
+## Exemple
 
 <demo-unidoo-player/>
 
