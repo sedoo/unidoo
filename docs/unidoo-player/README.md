@@ -3,7 +3,7 @@
 
 ## Description
 
-Un player d'images organisées en frames et filtrables par un selecteur de paramètres.
+Un player d'images organisées en frames et filtrables par un sélecteur de paramètres.
 
 ## Utilisation
 
@@ -20,10 +20,17 @@ Pour utiliser ce composant il faut insérer le tag **unidoo-player** dans un com
 
 | Nom          | Type           | Defaut  | Requis   | Description  |
 | ------------- |----------------| --------- | ---------|--------------|
-| **label**          | String | 'frame' | no | Label utilisé pour préfixer le nom des frames |
+| **label**          | String | 'frame' | no | Label utilisé pour préfixer le titre des frames |
 | **data**          | Object | undefined | no | Objet contenant les données et la définition des levels |
 
-le Paramètre **data** doit être un objet contenant les champs **levels** et **entries** :
+Le Paramètre **data** est un objet contenant les champs **levels** et **entries** :
+
+```
+    "data": {
+      "levels": [],
+      "entries": []
+    }
+```
 
 - le champ **levels** est optionnel, il contient un tableau de définition des levels. Pour organiser les levels, les champs *name* sont utilisés et ordonnés alphabétiquement. Exemple de définition :
 
@@ -44,7 +51,7 @@ le Paramètre **data** doit être un objet contenant les champs **levels** et **
     ]
 ```
 
-- le champ **entries** contient les données sous forme de tableau. Chaque entrée doit définir les champs *type (la valeur affichée sur la graduation)*, *media.content (localisation de l'image)* et optionnellement le champ *levels (pour définir l'association entre les entrées et les levels définis)*. Exemple basique pour une entrée avec levels :
+- le champ **entries** contient les données sous forme de tableau. Chaque entrée doit définir les champs *type (la valeur affichée sur la graduation)*, *media.content (localisation de l'image)* et optionnellement le champ *levels (pour définir l'association entre les entrées et les levels définis plus tôt)*. Exemple basique pour une entrée avec levels :
 
 ```
     "entries": [
@@ -71,7 +78,7 @@ le Paramètre **data** doit être un objet contenant les champs **levels** et **
     ]
 ```
 
-*NB : le nombre et le nom des levels doivent correspondre à la définition des levels.*
+*NB : dans chaque entrée le nombre et le nom des levels doivent correspondre à la définition des levels.*
 
 ## Exemple
 
