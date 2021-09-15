@@ -50,7 +50,6 @@ export default {
 <style scoped>
   [constrained] {
     display: block;
-    height: 610px;
   }
 
   [level-selector]{

@@ -5,96 +5,98 @@
 
       <div mask @click="zoomPlayer"></div>
 
-      <div body style="height: 100%">
-      
-        <v-divider style="order: 1;"></v-divider>
+      <div body style="height: 100%, margin: auto">
 
-        <v-row viewer-part :style="{ order: ((playerBarTop) ? 2 : 4) }">
+        <div sub-body :style="subBodyStyle">
         
-          <v-list-item player-layout-slider-part >
-            <v-col>
+          <v-divider style="order: 1;"></v-divider>
 
-              <div style="display: flex; justify-content: center;">
-                <slot name="frameTitle">
-
-                </slot>
-                <v-btn
-                  v-if="canPlay"
-                  reload-button
-                  icon
-                  x-small
-                  color="grey"
-                  title="reload frames"
-                  @click="emitReloadFrames()"
-                >
-                  <v-icon>mdi-cached</v-icon>
-                </v-btn>
-              </div>
-
-              <unidoo-progress-bar v-if="showProgressBar"
-                :title="progressBarTitle"
-                :current="loadedFrames"
-                :max="max + 1">        
-              </unidoo-progress-bar>
-
-              <v-slider v-else-if="canPlay"
-                style="margin-top: -10px; padding: 0 5px;"
-                v-model="value"
-                ref="slider"
-                :id="id"
-                :max="max"
-                :min="min"
-                :tick-labels="graduation"
-                hide-details
-                ticks="always"
-                tick-size="4"
-                @click="playOrStopSlider"
-              >
-                <template v-slot:prepend>
-                  <div buttons>
-
-                      <v-btn color="primary" fab x-small dark style="margin-right: 5px;" @click="previous">
-                      <v-icon>mdi-skip-previous</v-icon>
-                    </v-btn>
-
-                    <v-btn v-if="!isPlaying" color="primary" fab small dark @click="clicPlay">
-                      <v-icon>mdi-play</v-icon>
-                    </v-btn>
-
-                    <v-btn v-if="isPlaying" color="primary" fab small dark @click="clickStop">
-                      <v-icon>mdi-stop</v-icon>
-                    </v-btn>
-
-                    <v-btn color="primary" fab x-small dark style="margin-left: 5px;" @click="next">
-                      <v-icon>mdi-skip-next</v-icon>
-                    </v-btn>
-                  
-                  </div>
-
-                </template>
-              </v-slider>
-
-            </v-col>
-          </v-list-item>
+          <v-row viewer-part :style="{ order: ((playerBarTop) ? 2 : 4) }">
           
-        </v-row>
+            <v-list-item player-layout-slider-part >
+              <v-col>
 
-        <v-divider style="order: 3;"></v-divider>
+                <div style="display: flex; justify-content: center;">
+                  <slot name="frameTitle">
 
-        <v-row player-part :style="{ order: ((playerBarTop) ? 4 : 2) }">
+                  </slot>
+                  <v-btn
+                    v-if="canPlay"
+                    reload-button
+                    icon
+                    x-small
+                    color="grey"
+                    title="reload frames"
+                    @click="emitReloadFrames()"
+                  >
+                    <v-icon>mdi-cached</v-icon>
+                  </v-btn>
+                </div>
 
-          <v-list-item player-layout-displayer v-if="clickableFrame" :ripple="false" @click="playOrStopFrame">
+                <unidoo-progress-bar v-if="showProgressBar"
+                  :title="progressBarTitle"
+                  :current="loadedFrames"
+                  :max="max + 1">        
+                </unidoo-progress-bar>
 
-            <slot name="displayer"></slot>
+                <v-slider v-else-if="canPlay"
+                  style="margin-top: -10px; padding: 0 5px;"
+                  v-model="value"
+                  ref="slider"
+                  :id="id"
+                  :max="max"
+                  :min="min"
+                  :tick-labels="graduation"
+                  hide-details
+                  ticks="always"
+                  tick-size="4"
+                  @click="playOrStopSlider"
+                >
+                  <template v-slot:prepend>
+                    <div buttons>
 
-          </v-list-item>
+                        <v-btn color="primary" fab x-small dark style="margin-right: 5px;" @click="previous">
+                        <v-icon>mdi-skip-previous</v-icon>
+                      </v-btn>
 
-          <slot v-else player-layout-displayer name="displayer"></slot>
+                      <v-btn v-if="!isPlaying" color="primary" fab small dark @click="clicPlay">
+                        <v-icon>mdi-play</v-icon>
+                      </v-btn>
 
-        </v-row>
+                      <v-btn v-if="isPlaying" color="primary" fab small dark @click="clickStop">
+                        <v-icon>mdi-stop</v-icon>
+                      </v-btn>
 
-        <v-divider style="order: 5;"></v-divider>
+                      <v-btn color="primary" fab x-small dark style="margin-left: 5px;" @click="next">
+                        <v-icon>mdi-skip-next</v-icon>
+                      </v-btn>
+                    
+                    </div>
 
+                  </template>
+                </v-slider>
+
+              </v-col>
+            </v-list-item>
+            
+          </v-row>
+
+          <v-divider style="order: 3;"></v-divider>
+
+          <v-row player-part :style="{ order: ((playerBarTop) ? 4 : 2) }">
+
+            <v-list-item player-layout-displayer v-if="clickableFrame" :ripple="false" @click="playOrStopFrame">
+
+              <slot name="displayer"></slot>
+
+            </v-list-item>
+
+            <slot v-else player-layout-displayer name="displayer"></slot>
+
+          </v-row>
+
+          <v-divider style="order: 5;"></v-divider>
+        </div>
       </div>
     </div>
   </div>
@@ -135,6 +137,11 @@ export default {
 
     canPlay() {
       return this.max > 0 && this.loadedFrames >= this.max + 1
+    },
+
+    subBodyStyle(){
+      const vh = (this.isZoomed) ? '60vh' : '40vh';
+      return { gridTemplateRows: ((this.playerBarTop) ? '10px 140px 10px ' + vh + ' 10px' : '10px ' + vh + ' 10px 140px 10px')};
     }
   },
 
@@ -358,19 +365,20 @@ export default {
 }
 </script>
 <style scoped>
-  [root]{
-    height: 100%;
-  }
-  [player-layout]{
-    height: 100%;
-  }
   [player-layout] [body] {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100%;
     max-width: 91vw;
     background: white;
     transition: opacity 0.2s ease-in-out;
     transition: margin 0.2s ease-in-out;
+  }
+
+  [player-layout] [body] [sub-body] {
+    display: grid;
+    background: white;
   }
 
   [player-layout] [mask] {
@@ -397,7 +405,7 @@ export default {
   }
 
   [player-part] [player-layout-displayer] {
-    height: 450px;
+    height: 100%;
   }
 
   [right-top] {

@@ -1,5 +1,5 @@
 <template>
-  <v-col justify="center" style="display: flex; height : inherit">
+  <v-col justify="center" style="display: flex; height : 100%">
     <v-row justify="center" style="height : 100%" >
 
       <img 
