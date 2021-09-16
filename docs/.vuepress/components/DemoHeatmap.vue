@@ -24,6 +24,7 @@
                 <v-switch v-model="showCustomColor" label="Utiliser un gradient de couleur personnalisé"></v-switch>
                 <v-switch v-model="showCount" label="Afficher le compte dans le tooltip (files est l'unité par défaut)"></v-switch>
                 <v-switch v-model="showCustomMessage" label="Afficher un message personnalisé pour les entrées manquantes"></v-switch>
+                <v-switch v-model="returnObject" label="Retourner l'objet"></v-switch>
             </v-col>
             <unidoo-heatmap
                 v-model="date"
@@ -34,6 +35,7 @@
                 :showCount="showCount"
                 :rangeColor="(showCustomColor) ? customRangeColor : undefined"
                 :noDataText="(showCustomMessage) ? customMessage : undefined"
+                :returnObject="returnObject"
             ></unidoo-heatmap>
             <UnidooAlert />
         </v-col>
@@ -53,6 +55,7 @@ export default {
             year: '2021',
             showCount: false,
             showCustomMessage: false,
+            returnObject: false,
             customMessage: 'This is a custom message for no data',
             customRangeColor: ['#E7FFD4', '#CBFFA3', '#ACFF6B', '#9af356', '#70ea12', '#62B621'],
             availability
@@ -60,7 +63,11 @@ export default {
     },
     watch: {
         date (val) {
-            this.$unidooAlert.showSuccess("Selected date : ", val.toLocaleDateString('en-EN'));
+            if(val instanceof Date){
+                this.$unidooAlert.showSuccess("Date sélectionnée : ", val.toLocaleDateString('fr-FR'));
+            } else {
+                this.$unidooAlert.showSuccess("Entrée sélectionnée : ", val);
+            }
         }
     },
     computed: {

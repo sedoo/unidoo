@@ -35,7 +35,7 @@ export default {
   },
   props: {
     value: {
-      type: Date
+      type: [Date, Object]
     },
     values: {
       required: true,
@@ -73,13 +73,17 @@ export default {
     noDataText: {
       type: String,
       default: null
+    },
+    returnObject: {
+      type: Boolean,
+      detault: false
     }
   },
   data: () => ({
     now: new Date() 
   }),
   watch: {
-    value (val) {
+    dateValue (val) {
       this.focusDate(val)
     },
     year (val) {
@@ -88,7 +92,7 @@ export default {
         rects.forEach(element => {
           element.classList.remove('day-focus')
         });
-        this.focusDate(this.value)
+        this.focusDate(this.dateValue)
       }
     }
   },
@@ -107,11 +111,14 @@ export default {
         }
       }
       return DEFAULT_LOCALE
+    },
+    dateValue() {
+      return (this.value instanceof Date) ? this.value : this.value.date;
     }
   },
   methods: {
     computeClass (day) {
-      return `monthday ${((day.date < this.now) ? 'clickable' : 'not-clickable')} ${(this.isSameDay(day.date, this.value) ? 'day-focus' : '')}`
+      return `monthday ${((day.date < this.now) ? 'clickable' : 'not-clickable')} ${(this.isSameDay(day.date, this.dateValue) ? 'day-focus' : '')}`
     },
     tooltipOptions (day) {
       if (this.tooltip) {
@@ -143,14 +150,18 @@ export default {
     },
     handleClick (e, day) {
       if (day) {
-        if (day.date < this.now && (typeof day.count === 'number' || this.missingAllowed)) {
-          this.$emit('input', day.date);
+        if(this.returnObject){
+          this.$emit('input', day);
+        } else {
+          if (day.date < this.now && (typeof day.count === 'number' || this.missingAllowed)) {
+            this.$emit('input', day.date);
+          }
         }
       }
     },
     focusDate (d) {
       if (!d) return
-      const date = this.formatDate(d)
+      const date = this.formatDate(d);
       const el = this.$el.querySelector(`[data-day='${date}']`)
       if (el) {
         this.focusElement(el)

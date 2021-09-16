@@ -30,6 +30,7 @@ Pour utiliser ce composant il faut insérer le tag **unidoo-heatmap** dans un co
 | **showCount**          | Boolean | false | no | Affiche les valeurs des *count* dans le tooltip |
 | **tooltipUnit**          | String | 'files' | no | Unité du champ *count* affichée dans le tooltip |
 | **noDataText**          | String | formated date | no | Définit le texte pour les entrées manquantes |
+| **returnObject**          | Boolean | false | no | Retourne une date ou l'object contenant la date, le *count* et color index |
 
 - Détails du champ **values** :
 
