@@ -12,6 +12,7 @@
           :key="dayIndex"
           :data-day="formatDate(day.date)"
           :data-count="day.count"
+          :data-color="day.colorIndex"
           :style="{ opacity : ((day.date < now) ? 1 : 0.3), backgroundColor: getColor(day.colorIndex) }"
           v-tooltip="tooltipOptions(day)"
           @click="handleClick($event,day)">
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import Plugin from '../../plugin.js'
 import { VTooltip } from 'v-tooltip'
 import Heatmap from './Heatmap'
 import { DEFAULT_LOCALE, DEFAULT_RANGE_COLOR, DEFAULT_TOOLTIP_UNIT } from './consts.js'
@@ -77,6 +79,10 @@ export default {
     returnObject: {
       type: Boolean,
       detault: false
+    },
+    heatmapKey: {
+      type: String,
+      default: ""
     }
   },
   data: () => ({
@@ -120,6 +126,17 @@ export default {
       }
     }
   },
+  beforeMount () {
+    Plugin.EventBus.$on("unidoo-heatmap-set-date", params => {
+      if(this.heatmapKey && params.key === this.heatmapKey){
+        if(params.date){
+          this.setDate(params.date)
+        }
+      } else if(params.date) {
+        this.setDate(params.date)
+      }
+    })
+  },
   methods: {
     computeClass (day) {
       return `monthday ${((day.date < this.now) ? 'clickable' : 'not-clickable')} ${(this.isSameDay(day.date, this.dateValue) ? 'day-focus' : '')}`
@@ -161,6 +178,19 @@ export default {
             this.$emit('input', day.date);
           }
         }
+      }
+    },
+    setDate (d) {
+      if (!d) return
+      const date = this.formatDate(d);
+      const el = this.$el.querySelector(`[data-day='${date}']`)
+      if (el) {
+        const day = {
+            date: new Date(el.dataset.day),
+            count: Number(el.dataset.count),
+            colorIndex: Number(el.dataset.color)
+          }
+        this.handleClick(null, day); 
       }
     },
     focusDate (d) {
