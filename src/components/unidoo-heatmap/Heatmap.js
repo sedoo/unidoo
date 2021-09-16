@@ -56,17 +56,16 @@ export default class CalendarHeatmap {
     }
   }
 
-  getDayFromDate(entry){
-    if(entry){ 
+  getDayFromDate(entry) {
+    if (entry) { 
       const sdate = this._valuesDateFormat(entry);
-      let day = this.values.filter(d => d.date === sdate)[0];
-      if(day){
-        const result = {
+      const day = this.values.filter(d => d.date === sdate)[0];
+      if (day) {
+        return {
           date: new Date(day.date),
           count: day.count,
           colorIndex: this.getColorIndex(day.count)
-        }
-        return result;
+        };
       } else {
         return { date: new Date(entry), count: NaN, colorIndex: 0 };
       }
