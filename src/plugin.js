@@ -152,7 +152,7 @@ function install(Vue) {
 
     Vue.prototype.$unidooHeatmap = {
         setDate(date, key) {
-            plugin.EventBus.$emit("unidoo-heatmap-set-date", { date : date, key: key } )
+            plugin.EventBus.$emit("unidoo-heatmap-set-date", { date: date, key: key })
         },
     }
 }
