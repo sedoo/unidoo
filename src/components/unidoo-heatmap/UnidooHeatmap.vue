@@ -154,10 +154,10 @@ export default {
     },
     handleClick (e, day) {
       if (day) {
-        if(this.returnObject){
-          this.$emit('input', day);
-        } else {
-          if (day.date < this.now && (typeof day.count === 'number' || this.missingAllowed)) {
+        if (day.date < this.now && (typeof day.count === 'number' || this.missingAllowed)) {
+          if(this.returnObject){
+            this.$emit('input', day);
+          } else {
             this.$emit('input', day.date);
           }
         }
