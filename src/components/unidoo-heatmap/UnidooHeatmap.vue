@@ -113,7 +113,11 @@ export default {
       return DEFAULT_LOCALE
     },
     dateValue() {
-      return (this.value instanceof Date) ? this.value : this.value.date;
+      if(this.value){
+        return (this.value instanceof Date) ? this.value : this.value.date;
+      } else {
+        return this.value;
+      }
     }
   },
   methods: {
