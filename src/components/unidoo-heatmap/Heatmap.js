@@ -7,7 +7,7 @@ export default class CalendarHeatmap {
     } else {
       this.max = Math.ceil((Math.max(...values.map(day => day.count)) / 5) * 4)
     }
-    this.values = values
+    this.values = values.map(v => { return { date: this._valuesDateFormat(v.date), count: v.count } })
   }
 
   get activities () {
@@ -54,6 +54,29 @@ export default class CalendarHeatmap {
     } else {
       return (Math.ceil(((value * 100) / this.max) * (0.03))) + 1
     }
+  }
+
+  getDayFromDate(entry){
+    if(entry){ 
+      const sdate = this._valuesDateFormat(entry);
+      let day = this.values.filter(d => d.date === sdate)[0];
+      if(day){
+        const result = {
+          date: new Date(day.date),
+          count: day.count,
+          colorIndex: this.getColorIndex(day.count)
+        }
+        return result;
+      } else {
+        return { date: new Date(entry), count: NaN, colorIndex: 0 };
+      }
+    }
+  }
+
+  _valuesDateFormat (d) {
+    if (!d) return ''
+    const date = (d instanceof Date) ? d : (new Date(d));
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
   }
 
   _parseDate (entry) {

@@ -182,16 +182,9 @@ export default {
     },
     setDate (d) {
       if (!d) return
-      const date = this.formatDate(d);
-      const el = this.$el.querySelector(`[data-day='${date}']`)
-      if (el) {
-        const day = {
-            date: new Date(el.dataset.day),
-            count: Number(el.dataset.count),
-            colorIndex: Number(el.dataset.color)
-          }
-        this.handleClick(null, day); 
-      }
+      const day = this.heatmap.getDayFromDate(d);
+      this.handleClick(null, day); 
+    
     },
     focusDate (d) {
       if (!d) return
