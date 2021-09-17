@@ -278,6 +278,7 @@ export default {
   }
   section[heatmap-calendar] [month] .monthday{
     margin-right: 2px;
+    margin-bottom: 2px;
     width:15px;
     height:15px;
     text-align: center;
