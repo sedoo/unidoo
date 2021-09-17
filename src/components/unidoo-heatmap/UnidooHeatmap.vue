@@ -13,7 +13,7 @@
           :data-day="formatDate(day.date)"
           :data-count="day.count"
           :data-color="day.colorIndex"
-          :style="{ opacity : ((day.date < now) ? 1 : 0.3), backgroundColor: getColor(day.colorIndex) }"
+          :style="{ opacity : ((day.date <= now) ? 1 : 0.3), backgroundColor: getColor(day.colorIndex) }"
           v-tooltip="tooltipOptions(day)"
           @click="handleClick($event,day)">
             <div v-if="day.date < now" :style="{ color: getTextColor(day) }">{{ dayIndex + 1 }}</div> 
@@ -86,7 +86,7 @@ export default {
     }
   },
   data: () => ({
-    now: new Date() 
+    now: new Date(new Date().setHours(23,59,59,999)) 
   }),
   watch: {
     dateValue (val) {
@@ -139,7 +139,7 @@ export default {
   },
   methods: {
     computeClass (day) {
-      return `monthday ${((day.date < this.now) ? 'clickable' : 'not-clickable')} ${(this.isSameDay(day.date, this.dateValue) ? 'day-focus' : '')}`
+      return `monthday ${((day.date <= this.now) ? 'clickable' : 'not-clickable')} ${(this.isSameDay(day.date, this.dateValue) ? 'day-focus' : '')}`
     },
     tooltipOptions (day) {
       if (this.tooltip) {
@@ -171,7 +171,7 @@ export default {
     },
     handleClick (e, day) {
       if (day) {
-        if (day.date < this.now && (typeof day.count === 'number' || this.missingAllowed)) {
+        if (day.date <= this.now && (typeof day.count === 'number' || this.missingAllowed)) {
           if(this.returnObject){
             this.$emit('input', day);
           } else {
