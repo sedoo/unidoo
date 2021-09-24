@@ -55,7 +55,11 @@ export default {
   watch: {
     availableOptions(val) {
       if (val.length) {
-        this.$emit('input', val[0]);
+        if(this.value && val.includes(this.value)){
+          this.$emit('input', this.value);
+        } else {
+          this.$emit('input', val[0]);
+        }
       }
     }
     

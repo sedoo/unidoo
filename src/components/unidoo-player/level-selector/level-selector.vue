@@ -53,23 +53,7 @@ export default {
 
     selector: {
       handler(val) {
-        // update options by level
-        if (val) {
-          if (!this.availableOptions) {
-            this.availableOptions = {};
-          }
-          const keys = Object.keys(val);
-          keys.sort();
-          const self = this;
-          keys.forEach(k => {
-            const values = self.optionsFromLevel(k);
-            if (JSON.stringify(values) != JSON.stringify(self.availableOptions[k])) {
-              self.availableOptions[k] = values;
-            }
-          })
-        }
-        // return data from entries map and selector value
-        this.$emit('input', this.sort(this.entries[this.getLevelIdFromSelector(val)]));
+        this.loadSelector(val);
       },
       deep: true
     },
@@ -96,6 +80,26 @@ export default {
       } else {
         this.$emit('input', []);
       }
+    },
+
+    loadSelector(val){
+      // update options by level
+      if (val) {
+        if (!this.availableOptions) {
+          this.availableOptions = {};
+        }
+        const keys = Object.keys(val);
+        keys.sort();
+        const self = this;
+        keys.forEach(k => {
+          const values = self.optionsFromLevel(k);
+          if (JSON.stringify(values) != JSON.stringify(self.availableOptions[k])) {
+            self.availableOptions[k] = values;
+          }
+        })
+      }
+      // return data from entries map and selector value
+      this.$emit('input', this.sort(this.entries[this.getLevelIdFromSelector(val)]));
     },
 
    initLevels(levels, entries){
@@ -161,19 +165,21 @@ export default {
           }
 
         });
+        
+        this.levelOptions = tempOptions;
+  
         if(this.selector){
           // try to return data from entries map and last selector value
           // else use selector default value
           let lastSelectionEntries = this.entries[this.getLevelIdFromSelector(this.selector)];
           if(lastSelectionEntries && lastSelectionEntries.length > 0){
-            this.$emit('input', this.sort(lastSelectionEntries));
+            this.loadSelector(this.selector);
           } else {
             this.selector = defaultSelector;
           }
         } else {
           this.selector = defaultSelector;
         }
-        this.levelOptions = tempOptions;
       }
     },
 
