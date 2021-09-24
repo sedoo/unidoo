@@ -104,7 +104,6 @@ export default {
         this.levelKeys = [];
         this.levels = {};
         this.entries = {};
-        this.selector = {};
         this.levelOptions = {};
 
         levels.forEach(l => {
@@ -113,10 +112,11 @@ export default {
         });
 
         this.levelKeys.sort();
-
-        // init selector using first entry
-        entries[0].levels.forEach(l => {  
-          this.$set(this.selector, l.name, l.value);
+        
+        // init default selector using first entry
+        let defaultSelector = {};
+        entries[0].levels.forEach(l => {
+          defaultSelector[l.name] = l.value;
         });
 
         // init options tree
@@ -159,7 +159,20 @@ export default {
             // store data by options combination
             this.entries[levelId].push(entry);
           }
+
         });
+        if(this.selector){
+          // try to return data from entries map and last selector value
+          // else use selector default value
+          let lastSelectionEntries = this.entries[this.getLevelIdFromSelector(this.selector)];
+          if(lastSelectionEntries && lastSelectionEntries.length > 0){
+            this.$emit('input', this.sort(lastSelectionEntries));
+          } else {
+            this.selector = defaultSelector;
+          }
+        } else {
+          this.selector = defaultSelector;
+        }
         this.levelOptions = tempOptions;
       }
     },
