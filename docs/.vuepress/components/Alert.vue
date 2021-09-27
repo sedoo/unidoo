@@ -5,14 +5,14 @@
                 <v-col>
                     <v-btn
                         color="success"
-                        @click="$unidooAlert.showSuccess('Success Message')"
+                        @click="showSuccessMessage"
                         >show success</v-btn
                     >
                 </v-col>
                 <v-col>
                     <v-btn
                         color="error"
-                        @click="$unidooAlert.showError('error message')"
+                        @click="showErrorMessage"
                         >show Error</v-btn
                     >
                 </v-col>
@@ -29,27 +29,19 @@
 </template>
 
 <script>
-// import UnidooAlert from "../../../src/components/UnidooAlert.vue";
 export default {
-    // data() {
-    //     return { UnidooAlert: null };
-    // },
-    // mounted() {
-    //     import("../../../src/components/UnidooAlert.vue").then((module) => {
-    //         this.UnidooAlert = module.default;
-    //     });
-    // },
 
     methods: {
         showSuccessMessage: function () {
-            this.$unidooAlert.showError(" message de succès");
-            // this.$unidooAlert;
+            this.$unidooAlert.showSuccess("Message de succès");
+        },
+        showErrorMessage: function () {
+            this.$unidooAlert.showError("Message d'erreur!");
         },
         showMessage: function () {
             const message = {
                 message: "I am a custom message",
                 type: "warning",
-                // position: "top",
             };
             this.$unidooAlert.show(message);
         },

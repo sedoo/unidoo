@@ -34,6 +34,7 @@ module.exports = {
                     sidebarDepth: 0,
                     children: [
                         '/unidoo-uuid/',
+                        '/unidoo-formatError/',
                     ]
                 }
             ],
