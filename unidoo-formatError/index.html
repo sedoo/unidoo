@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>$unidooAlert.formatError | UNIDOO Library</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css">
+    <meta name="description" content="by Sedoo">
+    
+    <link rel="preload" href="/unidoo/assets/css/0.styles.e019f1d7.css" as="style"><link rel="preload" href="/unidoo/assets/js/app.56c72beb.js" as="script"><link rel="preload" href="/unidoo/assets/js/2.36025e1d.js" as="script"><link rel="preload" href="/unidoo/assets/js/19.699a52bf.js" as="script"><link rel="prefetch" href="/unidoo/assets/js/10.198ed441.js"><link rel="prefetch" href="/unidoo/assets/js/11.2cd63518.js"><link rel="prefetch" href="/unidoo/assets/js/12.38d1bb95.js"><link rel="prefetch" href="/unidoo/assets/js/13.9ad81b24.js"><link rel="prefetch" href="/unidoo/assets/js/14.03407b50.js"><link rel="prefetch" href="/unidoo/assets/js/15.e9df2692.js"><link rel="prefetch" href="/unidoo/assets/js/16.4a4599f2.js"><link rel="prefetch" href="/unidoo/assets/js/17.6cc3cd9d.js"><link rel="prefetch" href="/unidoo/assets/js/18.760e6ee7.js"><link rel="prefetch" href="/unidoo/assets/js/20.8cf94dc9.js"><link rel="prefetch" href="/unidoo/assets/js/21.b43cebed.js"><link rel="prefetch" href="/unidoo/assets/js/22.84bc6af3.js"><link rel="prefetch" href="/unidoo/assets/js/3.f99a1a63.js"><link rel="prefetch" href="/unidoo/assets/js/4.6f1d7ec6.js"><link rel="prefetch" href="/unidoo/assets/js/5.b1f49026.js"><link rel="prefetch" href="/unidoo/assets/js/6.26d8a256.js"><link rel="prefetch" href="/unidoo/assets/js/7.31b295cd.js"><link rel="prefetch" href="/unidoo/assets/js/8.cc8e3db3.js"><link rel="prefetch" href="/unidoo/assets/js/9.942417a3.js">
+    <link rel="stylesheet" href="/unidoo/assets/css/0.styles.e019f1d7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/unidoo/" class="home-link router-link-active"><img src="/unidoo/img/unidoo.png" alt="UNIDOO Library" class="logo"> <span class="site-name can-hide">UNIDOO Library</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/unidoo/" class="nav-link">
+  root
+</a></div><div class="nav-item"><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  git
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/unidoo/" class="nav-link">
+  root
+</a></div><div class="nav-item"><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  git
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>composants</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/unidoo/unidoo-alert/" class="sidebar-link">Alert / Snackbar</a></li><li><a href="/unidoo/captcha/" class="sidebar-link">Captcha</a></li><li><a href="/unidoo/confirm-dialog/" class="sidebar-link">Modal de confirmation d'action</a></li><li><a href="/unidoo/crud-table/" class="sidebar-link">CRUD Table</a></li><li><a href="/unidoo/unidoo-heatmap/" class="sidebar-link">Heatmap / Datepicker</a></li><li><a href="/unidoo/unidoo-player/" class="sidebar-link">Image player</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>plugin</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/unidoo/unidoo-uuid/" class="sidebar-link">$unidooUuid</a></li><li><a href="/unidoo/unidoo-formatError/" aria-current="page" class="active sidebar-link">$unidooAlert.formatError</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="unidooalert-formaterror"><a href="#unidooalert-formaterror" class="header-anchor">#</a> $unidooAlert.formatError</h1> <h2 id="objectif"><a href="#objectif" class="header-anchor">#</a> Objectif</h2> <p>Fournir des messages d'erreurs clairs aux utilisateurs.</p> <h3 id="formaterror"><a href="#formaterror" class="header-anchor">#</a> formatError</h3> <p>Retourne le message d'erreur d'un object Exception de type ResponseStatusException ou RuntimeException.</p> <h4 id="syntax"><a href="#syntax" class="header-anchor">#</a> Syntax</h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code>    self <span class="token operator">=</span> <span class="token keyword">this</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">axios</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+        url<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>service <span class="token operator">+</span> <span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// fait quelque chose</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        self<span class="token punctuation">.</span>$unidooAlert<span class="token punctuation">.</span><span class="token function">showError</span><span class="token punctuation">(</span>
+
+            self<span class="token punctuation">.</span>$unidooAlert<span class="token punctuation">.</span><span class="token function">formatError</span><span class="token punctuation">(</span>
+                self<span class="token punctuation">.</span><span class="token function">$t</span><span class="token punctuation">(</span><span class="token string">'error.notification'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+                error
+            <span class="token punctuation">)</span><span class="token punctuation">,</span> 
+
+            self<span class="token punctuation">.</span><span class="token function">$t</span><span class="token punctuation">(</span><span class="token string">'button.close'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">finally</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// fait quelque chose</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="example"><a href="#example" class="header-anchor">#</a> Example</h4></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/unidoo/unidoo-uuid/" class="prev">
+        $unidooUuid
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/unidoo/assets/js/app.56c72beb.js" defer></script><script src="/unidoo/assets/js/2.36025e1d.js" defer></script><script src="/unidoo/assets/js/19.699a52bf.js" defer></script>
+  </body>
+</html>
