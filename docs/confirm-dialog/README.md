@@ -18,7 +18,7 @@ Type de composant : `Modal`
 | **cancelButtonLabel**          | String | Cancel | no | Label du bouton d'annulation |
 | **confirmButtonLabel**          | String | Confirm | no | Label du bouton de confirmation |
 
-## Exemple
+## Synthax
 
 ```html
 
@@ -47,4 +47,20 @@ export default {
 
 ``` 
 
-<ConfirmDialog/>s
+## Exemple synthax multilangue + customisation
+``` js
+    this.$unidooConfirmDialog.show(this.goToMyCertificationReports, 
+        this.$t('report.screen.return.confirmation.message'), 
+        this.$t('report.screen.return.confirmation.title'),
+        'headline grey lighten-2',
+        this.$store.getters.getDialogWidth,
+        this.$t('button.cancel'),
+        this.$t('button.confirm'));
+```
+
+## Exemple
+
+<ConfirmDialog/>
+
+
+
