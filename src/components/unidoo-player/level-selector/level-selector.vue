@@ -2,7 +2,7 @@
   <div selector>
     <v-col level-selector v-if="levels && data">
 
-      <v-row v-for="(key) in levelKeys"
+      <v-row style="margin: 0 -12px;" v-for="(key) in levelKeys"
         :key="key"
       >
         <level-selector-row
