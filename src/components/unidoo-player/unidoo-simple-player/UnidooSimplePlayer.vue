@@ -78,7 +78,7 @@ export default {
   computed: {
 
     frameTitle() {
-      return ((this.label) ? this.label : 'no value') + ((this.currentQualifier) ? ' : ' + this.currentQualifier : '');
+      return ((this.label) ? this.label : 'no value') + ((this.max && this.currentQualifier) ? ' : ' + this.currentQualifier : '');
     },
 
     max() {
