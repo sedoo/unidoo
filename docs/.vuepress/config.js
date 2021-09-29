@@ -36,6 +36,14 @@ module.exports = {
                         '/unidoo-uuid/',
                         '/unidoo-formatError/',
                     ]
+                },
+                {
+                    title: 'utilisateurs',
+                    collapsable: false,
+                    sidebarDepth: 0,
+                    children: [
+                        '/unidoo-integration/'
+                    ]
                 }
             ],
             // '/unidoo-alert': [{
