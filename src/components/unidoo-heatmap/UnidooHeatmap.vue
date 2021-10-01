@@ -6,18 +6,20 @@
         v-for="(month, monthIndex) in heatmap.monthCalendar"
         :key="monthIndex">
         <header>{{ lo.months[monthIndex] }}</header>
-        <div
-          :class="computeClass(day)"
-          v-for="(day, dayIndex) in month"
-          :key="dayIndex"
-          :data-day="formatDate(day.date)"
-          :data-count="day.count"
-          :data-color="day.colorIndex"
-          :style="{ opacity : ((day.date <= now) ? 1 : 0.3), backgroundColor: getColor(day.colorIndex) }"
-          v-tooltip="tooltipOptions(day)"
-          @click="handleClick($event,day)">
+        <div days>
+          <div
+            :class="computeClass(day)"
+            v-for="(day, dayIndex) in month"
+            :key="dayIndex"
+            :data-day="formatDate(day.date)"
+            :data-count="day.count"
+            :data-color="day.colorIndex"
+            :style="{ opacity : ((day.date <= now) ? 1 : 0.3), backgroundColor: getColor(day.colorIndex) }"
+            v-tooltip="tooltipOptions(day)"
+            @click="handleClick($event,day)">
             <div v-if="day.date < now" :style="{ color: getTextColor(day) }">{{ dayIndex + 1 }}</div> 
           </div>
+        </div>
       </div>
     </section>
   </v-container>
@@ -268,13 +270,20 @@ export default {
   section[heatmap-calendar] [month] {
     flex:1 0 570px;
     display:flex;
-    flex-flow:row wrap;
-    align-items: center;
+    flex-flow:row nowrap;
+    align-items: top;
   }
   section[heatmap-calendar] [month] header {
     width: 40px;
+    min-width: 20px;
     color:#767676;
     font-size: 12px;
+  }
+  section[heatmap-calendar] [month] [days] {
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    margin: 1px 5px;
   }
   section[heatmap-calendar] [month] .monthday{
     margin-right: 2px;
