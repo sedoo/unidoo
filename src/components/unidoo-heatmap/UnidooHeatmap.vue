@@ -267,14 +267,13 @@ export default {
     line-height: 1.5;
   }
   section[heatmap-calendar] [month] {
-    flex: auto;
     display:flex;
+    flex: 0 0 580px;
     flex-flow:row nowrap;
     align-items: top;
   }
   section[heatmap-calendar] [month] header {
     flex: 0 0 30px;
-    min-width: 20px;
     color:#767676;
     font-size: 12px;
   }
@@ -319,6 +318,11 @@ export default {
     height: 15px;
     width: 15px;
     background: rgba(255,55,43,0.5);
+  }
+  @media screen and (max-width: 1160px) {
+    section[heatmap-calendar] [month] {
+      flex:auto;
+    }
   }
 </style>
 <style>
