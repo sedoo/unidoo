@@ -262,7 +262,6 @@ export default {
   section[heatmap-calendar] {
     display:flex;
     flex-flow:row wrap;
-    justify-content:space-evenly;
     max-width: 1300px;
     line-height: 1.5;
   }
