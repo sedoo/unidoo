@@ -338,16 +338,18 @@ export default {
     initGraduation(){
       let result = [];
       if(this.graduation){
-        const size = this.sliderSize;
-
         const gradsLength = this.graduation.length;
         let delta = 1;
-        if(size && gradsLength){
+        if(this.sliderSize && gradsLength && this.graduation[0]){
           const firstGrad = this.graduation[0].length * 9; // nb chars * number of pixels for 1 character
-          let exceed = Math.ceil(this.sliderSize - (gradsLength * firstGrad) - 30);
+          let exceed = Math.ceil(this.sliderSize - (gradsLength * firstGrad) - 30); // add 30px of margin
           exceed = (exceed < 0) ? - exceed : 0;
           const gradsExceed = exceed / firstGrad;
-          delta = Math.ceil(gradsLength / (gradsLength - gradsExceed)); 
+          if(gradsLength - gradsExceed){
+            delta = Math.ceil(gradsLength / (gradsLength - gradsExceed)); 
+          } else {
+            delta = Math.ceil(gradsLength);
+          }
         }
 
         let n = 0;
