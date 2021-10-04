@@ -399,7 +399,7 @@ export default {
           self.sliderSize = sliderWidth;
         }
         self.time = null;
-      }, 500);
+      }, 200);
     },
 
     create_UUID() {
