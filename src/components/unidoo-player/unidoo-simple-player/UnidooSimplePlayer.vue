@@ -144,27 +144,10 @@ export default {
     
     initGraduation() {
       if (this.entries && this.entries.length) {
-        const entriesLength = this.entries.length;
-        if (entriesLength <= 8) {
           this.graduation = []
           this.entries.forEach(element => {
             this.graduation.push(element.type);
           });
-        } else {
-          const firstType = this.entries[0].type;
-          const typeLengthFactor = (firstType.length < 5) ? 1 : (firstType.length / 6);
-          const delta = (entriesLength <= 30) ? 2 : Math.round((entriesLength * typeLengthFactor) / 10);
-          this.graduation = []
-          let n = 0;
-          this.entries.forEach(element => {
-            if (n % delta) {
-              this.graduation.push(null);
-            } else {
-              this.graduation.push(element.type);
-            }
-            n++;
-          });
-        }
       }
     },
 

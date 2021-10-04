@@ -46,7 +46,7 @@
                   :id="id"
                   :max="max"
                   :min="min"
-                  :tick-labels="graduation"
+                  :tick-labels="filteredGraduation"
                   hide-details
                   ticks="always"
                   tick-size="4"
@@ -75,7 +75,7 @@
 
                   </template>
                 </v-slider>
-
+                <iframe ref="sizeHandlerIframe" src="about:blank" style="width:100%; height:0; border:0;"></iframe>
               </v-col>
             </v-list-item>
             
@@ -127,7 +127,9 @@ export default {
     isPlaying: false,
     clickedValue: null,
     id: null,
-    isZoomed: false
+    isZoomed: false,
+    filteredGraduation: [],
+    sliderSize: null
   }),
 
   computed: {
@@ -143,6 +145,7 @@ export default {
       const vh = (this.isZoomed) ? '60vh' : '40vh';
       return { gridTemplateRows: ((this.playerBarTop) ? '10px 140px 10px ' + vh + ' 10px' : '10px ' + vh + ' 10px 140px 10px')};
     }
+
   },
 
   watch: {
@@ -172,7 +175,17 @@ export default {
           self.focusSlider();
         })
       }
+    },
+
+    graduation(){
+      this.initGraduation();
+    },
+
+    sliderSize(){
+      this.initGraduation();
     }
+
+
   },
 
   created() {
@@ -189,10 +202,12 @@ export default {
       this.play();
     }
     document.dispatchEvent(new CustomEvent('show-play'));
+    this.initIframe();
   },
 
   beforeDestroy() {
     this.stop();
+    this.clearIframe();
   },
 
   destroyed() {
@@ -204,7 +219,6 @@ export default {
   },
 
   methods: {
-
     play() {
       if (this.max === 0 || !this.canPlay) {
         return;
@@ -319,6 +333,73 @@ export default {
     emitReloadFrames() {
       this.stop();
       this.$emit('reload-frames');
+    },
+
+    initGraduation(){
+      let result = [];
+      if(this.graduation){
+        const size = this.sliderSize;
+
+        const gradsLength = this.graduation.length;
+        let delta = 1;
+        if(size && gradsLength){
+          const firstGrad = this.graduation[0].length * 9; // nb chars * number of pixels for 1 character
+          let exceed = Math.ceil(this.sliderSize - (gradsLength * firstGrad) - 30);
+          exceed = (exceed < 0) ? - exceed : 0;
+          const gradsExceed = exceed / firstGrad;
+          delta = Math.ceil(gradsLength / (gradsLength - gradsExceed)); 
+        }
+
+        let n = 0;
+        this.graduation.forEach(element => {
+          if (n % delta) {
+            result.push(null);
+            } else {
+            result.push(element);
+          }
+          n++;
+        });
+      } 
+        
+      this.filteredGraduation = result;
+    },
+
+    initIframe(){
+      const iframe = this.$refs.sizeHandlerIframe;
+      if(iframe){
+        const box = iframe.getBoundingClientRect();
+        this.sliderSize = box.width - 114 -9 -32 -10; // - padding and margin
+        const iframeWin = iframe.contentWindow;
+        this.resizeListener = this.handleResize.bind(this);
+        iframeWin.addEventListener('resize', this.resizeListener);
+      }
+    },
+
+    clearIframe(){
+      const iframe = this.$refs.sizeHandlerIframe;
+      if(iframe){
+        const iframeWin = iframe.contentWindow;
+        if(iframeWin){
+          iframeWin.removeEventListener('resize', this.resizeListener);
+        }
+        this.resizeListener = null;
+      }
+    },
+
+    handleResize(){
+      // add a delay of 500ms to handle slider width resize
+      if(this.timer !== null){
+        clearTimeout(this.timer);
+      }
+      const self = this;
+      this.timer = setTimeout(() => {
+        const box = self.$refs.sizeHandlerIframe.getBoundingClientRect();
+        const sliderWidth = box.width - 114 -9 -32 -10;
+        if(self.sliderSize != sliderWidth){
+          self.sliderSize = sliderWidth;
+        }
+        self.time = null;
+      }, 500);
     },
 
     create_UUID() {
