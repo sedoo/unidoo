@@ -272,7 +272,7 @@ export default {
     align-items: top;
   }
   section[heatmap-calendar] [month] header {
-    flex: 0 0 30px;
+    flex: 0 0 35px;
     color:#767676;
     font-size: 12px;
   }
