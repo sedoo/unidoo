@@ -25,7 +25,8 @@ module.exports = {
                         '/confirm-dialog/',
                         '/crud-table/',
                         '/unidoo-heatmap/',
-                        '/unidoo-player/'
+                        '/unidoo-player/',
+                        '/unidoo-trajectorymap/'
                     ]
                 },
                 {
