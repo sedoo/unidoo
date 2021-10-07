@@ -6,7 +6,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn @click="confirmDialog=false">{{ cancelButtonLabel }}</v-btn>
-          <v-btn color="info" @click="confirm">{{ confirmButtonLabel }}</v-btn>
+          <v-btn color="info" @click="confirm" :loading="loading">{{ confirmButtonLabel }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -27,13 +27,16 @@ export default {
       width: '500px',
       cancelButtonLabel: "Cancel",
       confirmButtonLabel: "Confirm",
-      callback: {}
+      callback: {},
+      loading: false
     }
   },
   methods: {
-    confirm: function() {
+    async confirm () {
+      this.loading = true
+      await this.callback()
       this.confirmDialog = false
-      this.callback()
+      this.loading = false
     },
 
     show (params) {

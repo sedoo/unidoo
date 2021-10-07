@@ -17,10 +17,30 @@ export default {
             this.$unidooConfirmDialog.show(this.callback);
         },
 
-        callback: function() {
-            console.log(this)
-            this.$unidooAlert.showSuccess('Callback has been called')
-        }
+        callback() {
+            self = this
+            
+            console.log("starting slow promise")
+            self = this
+            return new Promise(resolve => {
+                setTimeout(function() {
+                resolve("slow")
+                console.log("slow promise is done")
+                self.$unidooAlert.showSuccess('Callback has been called')
+                }, 1000)
+            })
+            /**
+            return this.axios
+                .get("http://localhost:8485/statistics/v1_0/statistics")
+                .then(response => {
+                    console.log("Fini")
+                    self.$unidooAlert.showSuccess('Callback has been called')
+                }).catch(e => {
+                    console.log(e);
+                    self.$unidooAlert.showError(e)
+                })*/
+            }
+
     },
 };
 </script>
