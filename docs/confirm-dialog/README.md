@@ -10,7 +10,7 @@ Type de composant : `Modal`
 
 | Name          | Type           | Default  | Required   | Description  |
 | ------------- |----------------| --------- | ---------|--------------|
-| **callback**          | function | {} | yes | Fonction a appler à la confirmation. Doit une méthode VueJS sans paranthèses |
+| **callback**          | function | {} | yes | Fonction a appler à la confirmation. Doit une méthode VueJS sans paranthèses. Si la méthode retourne un object Promise l'appelle sera asynchrone, une animation de loading sera visible sur le bouton de confirmation. |
 | **message**          | String | Do you confirm this action ? | no | Message principal dans la fenêtre de confirmation |
 | **title**          | String | Confirmation | no | Tite de la fenêtre |
 | **titleClasses**          | String | headline | no | Classes CSSde la zone titre |
@@ -49,13 +49,30 @@ export default {
 
 ## Exemple synthax multilangue + customisation
 ``` js
-    this.$unidooConfirmDialog.show(this.goToMyCertificationReports, 
+    this.$unidooConfirmDialog.show(this.callback, 
         this.$t('report.screen.return.confirmation.message'), 
         this.$t('report.screen.return.confirmation.title'),
         'headline grey lighten-2',
         this.$store.getters.getDialogWidth,
         this.$t('button.cancel'),
         this.$t('button.confirm'));
+```
+
+## Exemple de méthode callback pour animation loading
+``` js
+    export default {
+        methods: {
+            showConfirmDialog: function () {
+                this.$unidooConfirmDialog.show(this.callback);
+            },
+
+            callback: function() {
+                return this.axios.delete(this.service+'/delete/'+this.Id)
+                    .then( () => console.log('The item has been deleted'))
+                    .catch((error) => console.log(error))
+            }
+        },
+    };
 ```
 
 ## Exemple
