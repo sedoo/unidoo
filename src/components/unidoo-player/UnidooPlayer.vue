@@ -13,7 +13,11 @@
       constrained
       :label="label"
       :entries="entries"
-    ></unidoo-simple-player>
+    >
+      <template v-slot:customField>
+        <slot name="customField"></slot>    
+      </template>
+    </unidoo-simple-player>
 
   </v-col>
 </template>

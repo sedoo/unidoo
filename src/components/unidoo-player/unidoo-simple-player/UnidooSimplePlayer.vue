@@ -41,6 +41,10 @@
         
       </template>
 
+      <template v-slot:customField>
+        <slot name="customField"></slot>
+      </template>
+
     </unidoo-player-layout>
   
   </div>

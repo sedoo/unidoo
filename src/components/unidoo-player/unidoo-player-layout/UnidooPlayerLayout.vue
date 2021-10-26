@@ -9,13 +9,15 @@
 
         <div sub-body :style="subBodyStyle">
         
-          <v-divider style="order: 1;"></v-divider>
+          <v-divider style="order: 1;"></v-divider>  
 
           <v-row viewer-part :style="{ order: ((playerBarTop) ? 2 : 4) }">
           
             <v-list-item player-layout-slider-part >
               <v-col>
-
+                <div custom-top-left >
+                  <slot name="customField"></slot>
+                </div>
                 <div style="display: flex; justify-content: center;">
                   <slot name="frameTitle">
 
@@ -32,7 +34,7 @@
                     <v-icon>mdi-cached</v-icon>
                   </v-btn>
                 </div>
-
+       
                 <unidoo-progress-bar v-if="showProgressBar"
                   :title="progressBarTitle"
                   :current="loadedFrames"
@@ -55,7 +57,7 @@
                   <template v-slot:prepend>
                     <div buttons>
 
-                        <v-btn color="primary" fab x-small dark style="margin-right: 5px;" @click="previous">
+                      <v-btn color="primary" fab x-small dark style="margin-right: 5px;" @click="previous">
                         <v-icon>mdi-skip-previous</v-icon>
                       </v-btn>
 
@@ -75,6 +77,7 @@
 
                   </template>
                 </v-slider>
+
                 <iframe ref="sizeHandlerIframe" src="about:blank" style="width:100%; height:0; border:0;"></iframe>
               </v-col>
             </v-list-item>
@@ -487,22 +490,14 @@ export default {
     margin: 10px 0;
   }
 
+  [player-layout-slider-part] [custom-top-left]{
+    position: absolute;
+    top: -5px;
+    left: 30px;
+  }
+
   [player-part] [player-layout-displayer] {
     height: 100%;
-  }
-
-  [right-top] {
-    padding: 10px 0;
-    border-left: 1px solid rgba(0, 0, 0, 0.12);
-    text-align: center;
-  }
-
-  [right-bottom] {
-    margin: 0;
-  }
-
-  [right-bottom]>* {
-    padding: 0 10px;
   }
 
   [buttons] {
@@ -562,12 +557,6 @@ export default {
       flex: 0 0 100%;
       max-width: 100%;
     }
-
-    [right-top] {
-      padding: 0 20px 0 0;
-      text-align: end;
-      border: none;
-    } 
     
     [viewer-part] {
       flex-direction: column;
@@ -576,10 +565,6 @@ export default {
     [slider-part] {
       flex: 0 0 100%;
       max-width: 100%;
-    }
-
-    [right-bottom] {
-      margin-left: 35px;
     }
   }
 
