@@ -50,6 +50,9 @@ export default {
   [date-switch]{
     display: flex;
     align-items: center;
+    padding: 1px;
+    background: rgb(245,245,245);
+    border-radius: 5px;
   }
 </style>
 
