@@ -9,31 +9,8 @@
             >
                 <template v-if="showCustom" v-slot:customField>
                     
-                    <v-menu
-                        bottom
-                        right
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                            class="mx-2"
-                            fab
-                            x-small
-                            v-bind="attrs"
-                            v-on="on"
-                        >
-                            <v-icon>mdi-dots-horizontal</v-icon>
-                        </v-btn>
-                        </template>
-
-                        <v-list>
-                        <v-list-item
-                            v-for="(item, i) in items"
-                            :key="i"
-                        >
-                            <v-list-item-title>{{ item.title }}</v-list-item-title>
-                        </v-list-item>
-                        </v-list>
-                    </v-menu>
+                    
+                    <date-switcher></date-switcher>
                 
                 </template>
             </unidoo-player>
@@ -43,7 +20,9 @@
 </template>
 
 <script>
+import dateSwitcher from '../../../src/components/unidoo-heatmap/date-switcher.vue';
 export default {
+  components: { dateSwitcher },
     data() {
         return {
             label: '2021-09-01',
