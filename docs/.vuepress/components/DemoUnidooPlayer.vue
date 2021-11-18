@@ -20,9 +20,8 @@
 </template>
 
 <script>
-import dateSwitcher from '../../../src/components/unidoo-heatmap/date-switcher.vue';
+
 export default {
-  components: { dateSwitcher },
     data() {
         return {
             label: '2021-09-01',
