@@ -18,22 +18,23 @@
                 <div custom-top-left >
                   <slot name="customField"></slot>
                 </div>
-                <div style="display: flex; justify-content: center;">
+                <div style="display: flex; justify-content: center; margin-top: 25px;">
                   <slot name="frameTitle">
 
                   </slot>
-                  <v-btn
-                    v-if="canPlay"
-                    reload-button
-                    icon
-                    x-small
-                    color="grey"
-                    title="reload frames"
-                    @click="emitReloadFrames()"
-                  >
-                    <v-icon>mdi-cached</v-icon>
-                  </v-btn>
                 </div>
+
+                <v-btn
+                  v-if="canPlay"
+                  reload-button
+                  icon
+                  x-small
+                  color="grey"
+                  title="reload frames"
+                  @click="emitReloadFrames()"
+                >
+                  <v-icon>mdi-cached</v-icon>
+                </v-btn>
        
                 <unidoo-progress-bar v-if="showProgressBar"
                   :title="progressBarTitle"
@@ -488,6 +489,7 @@ export default {
   [player-layout-slider-part] {
     position: relative;
     margin: 10px 0;
+    max-height: 100%;
   }
 
   [player-layout-slider-part] [custom-top-left]{
