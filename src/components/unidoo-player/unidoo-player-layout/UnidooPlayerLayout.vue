@@ -5,7 +5,7 @@
 
       <div mask @click="zoomPlayer"></div>
 
-      <div body style="height: 100%, margin: auto">
+      <div body>
 
         <div sub-body :style="subBodyStyle">
         
@@ -523,12 +523,15 @@ export default {
     top: 6vh;
     left: 4vw;
     right: 4vw;
-    max-height: 92vh;
     overflow: auto;
     margin-top: -5px;
     margin-bottom: 5px;
+    padding-top: 5px;
     padding-left : 15px; 
     padding-right : 15px;
+    height: auto;
+    max-height: 92vh;
+    border-radius: 5px;
   }
 
   [player-layout].zoomed [mask] {
