@@ -14,11 +14,11 @@
           <v-row viewer-part :style="{ order: ((playerBarTop) ? 2 : 4) }">
           
             <v-list-item player-layout-slider-part >
-              <v-col>
+              <div style="display: flex; flex-direction: column; width: 100%">
                 <div custom-top-left >
                   <slot name="customField"></slot>
                 </div>
-                <div style="display: flex; justify-content: center; margin-top: 25px;">
+                <div style="display: flex; justify-content: center; margin-top: 10px;">
                   <slot name="frameTitle">
 
                   </slot>
@@ -80,7 +80,7 @@
                 </v-slider>
 
                 <iframe ref="sizeHandlerIframe" src="about:blank" style="width:100%; height:0; border:0;"></iframe>
-              </v-col>
+              </div>
             </v-list-item>
             
           </v-row>
@@ -466,6 +466,7 @@ export default {
   [player-layout] [body] [sub-body] {
     display: grid;
     background: white;
+    align-items: center;
   }
 
   [player-layout] [mask] {
@@ -484,6 +485,7 @@ export default {
   [viewer-part] {
     margin-top: 0;
     margin-bottom: 0;
+    height: 100%;
   }
 
   [player-layout-slider-part] {
@@ -513,7 +515,7 @@ export default {
 
   [reload-button] {
     position: absolute;
-    top: 0;
+    top: -5px;
     right: 15px;
   }
 
