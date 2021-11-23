@@ -521,6 +521,7 @@ export default {
 
   [player-layout].zoomed [body] {
     position: fixed;
+    display: block;
     z-index: 99999;
     top: 6vh;
     left: 4vw;
@@ -528,7 +529,6 @@ export default {
     overflow: auto;
     margin-top: -5px;
     margin-bottom: 5px;
-    padding-top: 5px;
     padding-left : 15px; 
     padding-right : 15px;
     height: auto;
