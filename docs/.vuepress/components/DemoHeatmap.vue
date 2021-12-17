@@ -25,6 +25,7 @@
                 <v-switch v-model="showCount" label="Afficher le compte dans le tooltip (files est l'unité par défaut)"></v-switch>
                 <v-switch v-model="showCustomMessage" label="Afficher un message personnalisé pour les entrées manquantes"></v-switch>
                 <v-switch v-model="returnObject" label="Retourner l'objet"></v-switch>
+                
             </v-col>
             <unidoo-heatmap
                 v-model="date"
@@ -37,6 +38,7 @@
                 :noDataText="(showCustomMessage) ? customMessage : undefined"
                 :returnObject="returnObject"
             ></unidoo-heatmap>
+            <v-row>In addition, the date switcher component : <v-spacer></v-spacer><date-switcher :date="dateValue"></date-switcher></v-row>
             <UnidooAlert />
         </v-col>
     </v-app>
@@ -73,6 +75,15 @@ export default {
     computed: {
         nextYear() {
             return (new Date().getFullYear() + 1).toString()
+        },
+        dateValue() {
+            if(this.date){
+                if(this.date instanceof Date) {
+                    return this.date
+                } else if (this.date instanceof Object) {
+                    return this.date.date
+                }
+            }
         }
     },
 

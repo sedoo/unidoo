@@ -93,6 +93,7 @@ export default {
   watch: {
     dateValue (val) {
       this.focusDate(val)
+      this.updateDateSwitcher(val)
     },
     year (val) {
       if (val !== this.year) {
@@ -130,12 +131,21 @@ export default {
   },
   beforeMount () {
     Plugin.EventBus.$on("unidoo-heatmap-set-date", params => {
-      if(this.heatmapKey && params.key === this.heatmapKey){
-        if(params.date){
+      if(this.heatmapKey) {
+        if (params.key === this.heatmapKey && params.date){
           this.setDate(params.date)
-        }
+        } 
       } else if(params.date) {
         this.setDate(params.date)
+      }
+    })
+    Plugin.EventBus.$on("unidoo-heatmap-get-date", params => {
+      if(this.heatmapKey) {
+        if (params.key === this.heatmapKey){
+          this.updateDateSwitcher(this.dateValue)
+        } 
+      } else { 
+        this.updateDateSwitcher(this.dateValue)
       }
     })
   },
@@ -185,8 +195,28 @@ export default {
     setDate (d) {
       if (!d) return
       const day = this.heatmap.getDayFromDate(d);
-      this.handleClick(null, day); 
-    
+      this.handleClick(null, day);
+    },
+    updateDateSwitcher (d) {
+      this.$unidooDateSwitcher.update({
+        hasPrevious: this.hasPreviousDate(d), 
+        hasNext : this.hasNextDate(d), 
+        previousAvailable : this.heatmap.getPreviousAvailableDate(d),
+        nextAvailable : this.heatmap.getNextAvailableDate(d) 
+      }, this.heatmapKey);
+    },
+    hasPreviousDate (d) {
+      if(!d || this.year != d.getFullYear()) return false
+      const firstDay = new Date(this.year, 0, 1);
+      if(d <= firstDay) return false;
+      return true; 
+    },
+    hasNextDate (d) {
+      if(!d || this.year != d.getFullYear()) return false
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      if(d >= today) return false;
+      return true;
     },
     focusDate (d) {
       if (!d) return
