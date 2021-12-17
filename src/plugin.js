@@ -154,6 +154,16 @@ function install(Vue) {
         setDate(date, key) {
             plugin.EventBus.$emit("unidoo-heatmap-set-date", { date: date, key: key })
         },
+
+        getDate(key) {
+            plugin.EventBus.$emit("unidoo-heatmap-get-date", { key: key })
+        }
+    }
+
+    Vue.prototype.$unidooDateSwitcher = {
+        update(data, key) {
+            plugin.EventBus.$emit("unidoo-dateswitcher-update", { data: data, key: key })
+        },
     }
 }
 

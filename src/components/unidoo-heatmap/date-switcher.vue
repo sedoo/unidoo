@@ -1,46 +1,112 @@
 <template>
   <div date-switch>
-    <v-btn icon x-small  style="margin-right: 5px;" @click="switchDate(-1)">
+    <v-btn icon x-small :disabled="!previousAvailable" style="margin-right: 4px;" @click="goToPreviousAvailable(1)">
       <v-icon>mdi-skip-previous</v-icon>
     </v-btn>
+    <v-btn icon x-small :disabled="!hasPrevious" style="margin-right: 8px;" @click="switchDate(-1)">
+      <v-icon>mdi-rewind</v-icon>
+    </v-btn>
     <v-icon>mdi-calendar-month</v-icon>
-    <v-btn icon x-small  style="margin-left: 5px;" @click="switchDate(1)">
+    <v-btn icon x-small :disabled="!hasNext" style="margin-left: 8px;" @click="switchDate(1)">
+      <v-icon>mdi-fast-forward</v-icon>
+    </v-btn>
+    <v-btn icon x-small :disabled="!nextAvailable" style="margin-left: 4px;" @click="goToNextAvailable(1)">
       <v-icon>mdi-skip-next</v-icon>
     </v-btn>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'date-switcher',
+import Plugin from '../../plugin.js'
 
+export default {
   props: {
     date : {
       type : [String, Date],
       default: null
+    },
+    heatmapKey: {
+      type: String,
+      default: null
     }
   },
-
+  data () {
+    return {
+      hasNext: false,
+      hasPrevious: false,
+      nextAvailable: {
+        type: Date,
+        default: null
+      }, 
+      previousAvailable: {
+        type: Date,
+        default: null
+      },
+    }
+  },
   computed:{
     cleanedDate(){
-      if(this.date){
-        if(typeof this.date === 'date'){
-          return date;
-        } else if(typeof this.date === 'string'){
-          return new Date(this.date);
-        }
-      } 
-      return null;
+      return this.cleanDate(this.date);
     }
+  },
+  beforeMount () {
+    Plugin.EventBus.$on("unidoo-dateswitcher-update", params => {
+      if(this.heatmapKey) {
+        if (params.key === this.heatmapKey && params.data){
+          this.updateNearDates(params.data);
+        } 
+      } else if(params.data) {
+        this.updateNearDates(params.data);
+      }
+    })
+  },
+
+  mounted () {
+    this.$unidooHeatmap.getDate(this.heatmapKey);
   },
 
   methods: {
+  
+    goToNextAvailable() {
+      if(this.hasNext) {
+        this.$unidooHeatmap.setDate(this.cleanDate(this.nextAvailable), this.heatmapKey);
+      }
+    },
+
+    goToPreviousAvailable() {
+      if(this.hasPrevious) {
+        this.$unidooHeatmap.setDate(this.cleanDate(this.previousAvailable), this.heatmapKey);
+      }
+    },
+
     switchDate(n){
       if(this.cleanedDate && n){
-        let newDate = new Date(this.cleanedDate);
-        newDate.setDate(this.cleanedDate.getDate() + n);
-        this.$unidooHeatmap.setDate(newDate);
+        if((n > 0 && this.hasNext) || (n < 0 && this.hasPrevious)){
+          let newDate = new Date(this.cleanedDate);
+          newDate.setDate(this.cleanedDate.getDate() + n);
+          this.$unidooHeatmap.setDate(newDate, this.heatmapKey);
+        }
       }
+    },
+
+    updateNearDates(data){
+      if(data){
+        this.hasNext = data.hasNext
+        this.hasPrevious = data.hasPrevious
+        this.nextAvailable = data.nextAvailable
+        this.previousAvailable = data.previousAvailable
+      }
+    },
+
+    cleanDate(date){
+      if(date){
+        if(date instanceof Date){
+          return date;
+        } else if(typeof date === 'string'){
+          return new Date(date);
+        }
+      } 
+      return null;
     }
   }
 }
@@ -51,6 +117,7 @@ export default {
     display: flex;
     align-items: center;
     padding: 1px;
+    width: fit-content;
     background: rgb(245,245,245);
     border-radius: 5px;
   }

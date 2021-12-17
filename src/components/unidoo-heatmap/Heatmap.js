@@ -7,7 +7,11 @@ export default class CalendarHeatmap {
     } else {
       this.max = Math.ceil((Math.max(...values.map(day => day.count)) / 5) * 4)
     }
-    this.values = values.map(v => { return { date: this._valuesDateFormat(v.date), count: v.count } })
+    this.values = values.map(v => { return { date: this._valuesDateFormat(v.date), count: v.count }})
+    const date = new Date(year, 0, 1)
+    let n = 0
+    this.times = this._getTimes(year)
+    this.times.sort()
   }
 
   get activities () {
@@ -44,6 +48,13 @@ export default class CalendarHeatmap {
     return new Date(year, month + 1, 0).getDate()
   }
 
+  daysInYear(year) {
+    const start = new Date(year, 0, 0)
+    const end = new Date(year, 11, 31)
+    const diff = end - start
+    return Math.floor(diff / (1000 * 60 * 60 * 24))
+  }
+
   getColorIndex (value) {
     if (value == null || value === undefined) {
       return 0
@@ -72,10 +83,96 @@ export default class CalendarHeatmap {
     }
   }
 
+  getNextAvailableDate(date, countGreaterThanZero) {
+    if (date) {
+      date.setHours(0, 0, 0)
+      if(this.times && this.times.length) {
+        let index = this.times.indexOf(this._encodeDate(date, null))
+        if (index < 0) index = this.times.indexOf(this._encodeDate(date, 1))
+        if (index < 0) index = this.times.indexOf(this._encodeDate(date, 0))
+        if(index >= 0) {
+          const maxIndex = this.times.length - 1
+          let n = index + 1
+          if(countGreaterThanZero) {
+            while (n < maxIndex){
+              const curr = this.times[n]
+              if(curr.endsWith('i')) return this._decodeDate(curr)
+              n++
+            }
+          } else {
+            while (n < maxIndex) {
+              const curr = this.times[n]
+              if(!curr.endsWith('n')) return this._decodeDate(curr)
+              n++
+            }
+          }
+        } 
+      }
+    }
+    return null
+  }
+
+  getPreviousAvailableDate(date, countGreaterThanZero) {
+    if (date) { 
+      date.setHours(0, 0, 0)
+      if(this.times && this.times.length) {
+        let index = this.times.indexOf(this._encodeDate(date, null))
+        if (index < 0) index = this.times.indexOf(this._encodeDate(date, 1))
+        if (index < 0) index = this.times.indexOf(this._encodeDate(date, 0))
+        if (index > 0) {
+          let n = index - 1
+          if (countGreaterThanZero) {
+            while (n > 0) {
+              const curr = this.times[n]
+              if(curr.endsWith('i')) return this._decodeDate(curr)
+              n--
+            }
+          } else {
+            while (n > 0) {
+              const curr = this.times[n]
+              if(!curr.endsWith('n')) return this._decodeDate(curr)
+              n--
+            }
+          }
+        }
+      }
+    }
+    return null
+  }
+
+  _getTimes (year) {
+    const date = new Date(year, 0, 1)
+    let n = 0
+    return Array.from({ length : this.daysInYear(year) }, 
+      () => {
+        const dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+        dDate.setHours(0, 0, 0)
+        const dayValues = this.activities[this._keyDayParser(dDate)]
+        date.setDate(date.getDate() + 1)
+        return this._encodeDate(dDate, (dayValues) ? dayValues.count : null)
+      }
+    )
+  }
+  
   _valuesDateFormat (d) {
     if (!d) return ''
-    const date = (d instanceof Date) ? d : (new Date(d));
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    const date = this._parseDate(d)
+    return `${date.getFullYear()}-${this._paddNumber(date.getMonth() + 1)}-${this._paddNumber(date.getDate())}`
+  }
+
+  _paddNumber (n) {
+    return new String(n).padStart(2, '0')
+  }
+
+  _encodeDate (d, count) {
+    const date = this._parseDate(d)
+    return this._valuesDateFormat(date) + ((Number.isFinite(count)) ? ((count > 0) ? 'i' : 'o') : 'n')
+  }
+
+  _decodeDate (d) {
+    if (!d) return null
+    const sdate = d.slice(0, -1)
+    return new Date(sdate)
   }
 
   _parseDate (entry) {
