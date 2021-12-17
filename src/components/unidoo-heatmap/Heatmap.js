@@ -7,9 +7,9 @@ export default class CalendarHeatmap {
     } else {
       this.max = Math.ceil((Math.max(...values.map(day => day.count)) / 5) * 4)
     }
-    this.values = values.map(v => { return { date: this._valuesDateFormat(v.date), count: v.count }})
-    const date = new Date(year, 0, 1)
-    let n = 0
+    this.values = values.map(v => { return { date: this._valuesDateFormat(v.date), count: v.count } })
+
+
     this.times = this._getTimes(year)
     this.times.sort()
   }
@@ -86,23 +86,23 @@ export default class CalendarHeatmap {
   getNextAvailableDate(date, countGreaterThanZero) {
     if (date) {
       date.setHours(0, 0, 0)
-      if(this.times && this.times.length) {
+      if (this.times && this.times.length) {
         let index = this.times.indexOf(this._encodeDate(date, null))
         if (index < 0) index = this.times.indexOf(this._encodeDate(date, 1))
         if (index < 0) index = this.times.indexOf(this._encodeDate(date, 0))
-        if(index >= 0) {
+        if (index >= 0) {
           const maxIndex = this.times.length - 1
           let n = index + 1
-          if(countGreaterThanZero) {
-            while (n < maxIndex){
+          if (countGreaterThanZero) {
+            while (n < maxIndex) {
               const curr = this.times[n]
-              if(curr.endsWith('i')) return this._decodeDate(curr)
+              if (curr.endsWith('i')) return this._decodeDate(curr)
               n++
             }
           } else {
             while (n < maxIndex) {
               const curr = this.times[n]
-              if(!curr.endsWith('n')) return this._decodeDate(curr)
+              if (!curr.endsWith('n')) return this._decodeDate(curr)
               n++
             }
           }
@@ -124,13 +124,13 @@ export default class CalendarHeatmap {
           if (countGreaterThanZero) {
             while (n > 0) {
               const curr = this.times[n]
-              if(curr.endsWith('i')) return this._decodeDate(curr)
+              if (curr.endsWith('i')) return this._decodeDate(curr)
               n--
             }
           } else {
             while (n > 0) {
               const curr = this.times[n]
-              if(!curr.endsWith('n')) return this._decodeDate(curr)
+              if (!curr.endsWith('n')) return this._decodeDate(curr)
               n--
             }
           }
@@ -143,7 +143,7 @@ export default class CalendarHeatmap {
   _getTimes (year) {
     const date = new Date(year, 0, 1)
     let n = 0
-    return Array.from({ length : this.daysInYear(year) }, 
+    return Array.from({ length: this.daysInYear(year) }, 
       () => {
         const dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
         dDate.setHours(0, 0, 0)
@@ -161,7 +161,7 @@ export default class CalendarHeatmap {
   }
 
   _paddNumber (n) {
-    return new String(n).padStart(2, '0')
+    return ('' + n).padStart(2, '0')
   }
 
   _encodeDate (d, count) {
