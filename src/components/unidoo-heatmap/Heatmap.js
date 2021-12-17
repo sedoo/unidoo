@@ -8,8 +8,6 @@ export default class CalendarHeatmap {
       this.max = Math.ceil((Math.max(...values.map(day => day.count)) / 5) * 4)
     }
     this.values = values.map(v => { return { date: this._valuesDateFormat(v.date), count: v.count } })
-
-
     this.times = this._getTimes(year)
     this.times.sort()
   }
@@ -115,7 +113,7 @@ export default class CalendarHeatmap {
   getPreviousAvailableDate(date, countGreaterThanZero) {
     if (date) { 
       date.setHours(0, 0, 0)
-      if(this.times && this.times.length) {
+      if (this.times && this.times.length) {
         let index = this.times.indexOf(this._encodeDate(date, null))
         if (index < 0) index = this.times.indexOf(this._encodeDate(date, 1))
         if (index < 0) index = this.times.indexOf(this._encodeDate(date, 0))
@@ -142,7 +140,6 @@ export default class CalendarHeatmap {
 
   _getTimes (year) {
     const date = new Date(year, 0, 1)
-    let n = 0
     return Array.from({ length: this.daysInYear(year) }, 
       () => {
         const dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
