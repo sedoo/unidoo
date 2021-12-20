@@ -57,6 +57,8 @@ export default {
         } 
       } else if(params.data) {
         this.updateNearDates(params.data);
+      } else {
+        this.reset();
       }
     })
   },
@@ -66,7 +68,12 @@ export default {
   },
 
   methods: {
-  
+    reset(){
+      this.hasNext = false
+      this.hasPrevious = false
+      this.nextAvailable = null
+      this.previousAvailable = null
+    },
     goToNextAvailable() {
       if(this.hasNext) {
         this.$unidooHeatmap.setDate(this.cleanDate(this.nextAvailable), this.heatmapKey);

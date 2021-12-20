@@ -95,13 +95,14 @@ export default {
       this.focusDate(val)
       this.updateDateSwitcher(val)
     },
-    year (val) {
-      if (val !== this.year) {
+    year (val, old) {
+      if (val !== old) {
         const rects = document.querySelectorAll('[heatmap-calendar] [month] .monthday')
         rects.forEach(element => {
           element.classList.remove('day-focus')
         });
         this.focusDate(this.dateValue)
+        this.updateDateSwitcher(null)
       }
     }
   },
@@ -206,13 +207,14 @@ export default {
       }, this.heatmapKey);
     },
     hasPreviousDate (d) {
-      if(!d || this.year != d.getFullYear()) return false
-      const firstDay = new Date(this.year, 0, 1);
+      if(!d || !this.compairDateWithYear(d)) return false
+      const syear = (this.year instanceof Date) ? this.year.getFullYear() : this.year;
+      const firstDay = new Date(syear, 0, 1);
       if(d <= firstDay) return false;
       return true; 
     },
     hasNextDate (d) {
-      if(!d || this.year != d.getFullYear()) return false
+      if(!d || !this.compairDateWithYear(d)) return false
       const today = new Date();
       today.setHours(0,0,0,0);
       if(d >= today) return false;
@@ -284,6 +286,15 @@ export default {
       return first.getFullYear() === second.getFullYear() &&
         first.getMonth() === second.getMonth() &&
         first.getDate() === second.getDate()
+    },
+    compairDateWithYear (d) { 
+      if(this.year && d){
+        const sd = '' + ((d instanceof Date) ? d.getFullYear() : d);
+        const syear = '' + ((this.year instanceof Date) ? this.year.getFullYear() : this.year);
+        return syear === sd;
+      } else {
+        return false
+      }
     }
   }
 }
