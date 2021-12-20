@@ -8,7 +8,7 @@ export default class CalendarHeatmap {
       this.max = Math.ceil((Math.max(...values.map(day => day.count)) / 5) * 4)
     }
     this.values = values.map(v => { return { date: this._valuesDateFormat(v.date), count: v.count } })
-    this.times = this._getTimes(year)
+    this.times = this._getTimes(this.year.getFullYear())
     this.times.sort()
   }
 
