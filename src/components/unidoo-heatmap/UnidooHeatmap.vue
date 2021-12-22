@@ -208,7 +208,7 @@ export default {
       }, this.heatmapKey);
     },
     hasPreviousDate (d) {
-      if (!d || !this.compairDateWithYear(d)) return false;
+      if (!d || !this.isDateInYear(d)) return false;
       const syear = (this.year instanceof Date) ? this.year.getFullYear() : this.year;
       const firstDay = new Date(syear, 0, 1);
       d.setHours(0, 0, 0, 0);
@@ -295,7 +295,7 @@ export default {
         first.getMonth() === second.getMonth() &&
         first.getDate() === second.getDate()
     },
-    compairDateWithYear (d) { 
+    isDateInYear (d) { 
       if (this.year && d) {
         const sd = '' + ((d instanceof Date) ? d.getFullYear() : d);
         const syear = '' + ((this.year instanceof Date) ? this.year.getFullYear() : this.year);
