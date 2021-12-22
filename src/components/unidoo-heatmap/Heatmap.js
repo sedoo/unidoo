@@ -92,13 +92,13 @@ export default class CalendarHeatmap {
           const maxIndex = this.times.length - 1
           let n = index + 1
           if (countGreaterThanZero) {
-            while (n < maxIndex) {
+            while (n <= maxIndex) {
               const curr = this.times[n]
               if (curr.endsWith('i')) return this._decodeDate(curr)
               n++
             }
           } else {
-            while (n < maxIndex) {
+            while (n <= maxIndex) {
               const curr = this.times[n]
               if (!curr.endsWith('n')) return this._decodeDate(curr)
               n++
@@ -117,16 +117,16 @@ export default class CalendarHeatmap {
         let index = this.times.indexOf(this._encodeDate(date, null))
         if (index < 0) index = this.times.indexOf(this._encodeDate(date, 1))
         if (index < 0) index = this.times.indexOf(this._encodeDate(date, 0))
-        if (index > 0) {
+        if (index >= 0) {
           let n = index - 1
           if (countGreaterThanZero) {
-            while (n > 0) {
+            while (n >= 0) {
               const curr = this.times[n]
               if (curr.endsWith('i')) return this._decodeDate(curr)
               n--
             }
           } else {
-            while (n > 0) {
+            while (n >= 0) {
               const curr = this.times[n]
               if (!curr.endsWith('n')) return this._decodeDate(curr)
               n--
