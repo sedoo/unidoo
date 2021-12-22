@@ -1,3 +1,4 @@
+/* eslint-disable keyword-spacing */
 <template>
   <v-container>
     <section heatmap-calendar>
@@ -215,10 +216,16 @@ export default {
       return true; 
     },
     hasNextDate (d) {
-      if (!d || !this.compairDateWithYear(d)) return false
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      if (d >= today) return false;
+      if (!d || !this.isDateInYear(d)) return false;
+      const syear = (this.year instanceof Date) ? this.year.getFullYear() : this.year;
+      let lastDay = null;
+      if (new Date(syear, 0, 1).getFullYear() === new Date().getFullYear()) {
+        lastDay = new Date();
+      } else {
+        lastDay = new Date(syear, 11, 31);
+      }
+      lastDay.setHours(0, 0, 0, 0);
+      if (d >= lastDay) return false;
       return true;
     },
     focusDate (d) {
