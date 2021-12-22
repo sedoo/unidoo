@@ -21,8 +21,8 @@ import Plugin from '../../plugin.js'
 
 export default {
   props: {
-    date : {
-      type : [String, Date],
+    date: {
+      type: [String, Date],
       default: null
     },
     heatmapKey: {
@@ -44,18 +44,18 @@ export default {
       },
     }
   },
-  computed:{
-    cleanedDate(){
+  computed: {
+    cleanedDate() {
       return this.cleanDate(this.date);
     }
   },
   beforeMount () {
     Plugin.EventBus.$on("unidoo-dateswitcher-update", params => {
-      if(this.heatmapKey) {
-        if (params.key === this.heatmapKey && params.data){
+      if (this.heatmapKey) {
+        if (params.key === this.heatmapKey && params.data) {
           this.updateNearDates(params.data);
         } 
-      } else if(params.data) {
+      } else if (params.data) {
         this.updateNearDates(params.data);
       } else {
         this.reset();
@@ -68,36 +68,36 @@ export default {
   },
 
   methods: {
-    reset(){
+    reset() {
       this.hasNext = false
       this.hasPrevious = false
       this.nextAvailable = null
       this.previousAvailable = null
     },
     goToNextAvailable() {
-      if(this.hasNext) {
+      if (this.hasNext) {
         this.$unidooHeatmap.setDate(this.cleanDate(this.nextAvailable), this.heatmapKey);
       }
     },
 
     goToPreviousAvailable() {
-      if(this.hasPrevious) {
+      if (this.hasPrevious) {
         this.$unidooHeatmap.setDate(this.cleanDate(this.previousAvailable), this.heatmapKey);
       }
     },
 
-    switchDate(n){
-      if(this.cleanedDate && n){
-        if((n > 0 && this.hasNext) || (n < 0 && this.hasPrevious)){
-          let newDate = new Date(this.cleanedDate);
+    switchDate(n) {
+      if (this.cleanedDate && n) {
+        if ((n > 0 && this.hasNext) || (n < 0 && this.hasPrevious)) {
+          const newDate = new Date(this.cleanedDate);
           newDate.setDate(this.cleanedDate.getDate() + n);
           this.$unidooHeatmap.setDate(newDate, this.heatmapKey);
         }
       }
     },
 
-    updateNearDates(data){
-      if(data){
+    updateNearDates(data) {
+      if (data) {
         this.hasNext = data.hasNext
         this.hasPrevious = data.hasPrevious
         this.nextAvailable = data.nextAvailable
@@ -105,11 +105,11 @@ export default {
       }
     },
 
-    cleanDate(date){
-      if(date){
-        if(date instanceof Date){
+    cleanDate(date) {
+      if (date) {
+        if (date instanceof Date) {
           return date;
-        } else if(typeof date === 'string'){
+        } else if (typeof date === 'string') {
           return new Date(date);
         }
       } 
@@ -129,5 +129,3 @@ export default {
     border-radius: 5px;
   }
 </style>
-
-

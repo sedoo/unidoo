@@ -88,7 +88,7 @@ export default {
     }
   },
   data: () => ({
-    now: new Date(new Date().setHours(23,59,59,999)) 
+    now: new Date(new Date().setHours(23, 59, 59, 999)) 
   }),
   watch: {
     dateValue (val) {
@@ -123,7 +123,7 @@ export default {
       return DEFAULT_LOCALE
     },
     dateValue() {
-      if(this.value){
+      if (this.value) {
         return (this.value instanceof Date) ? this.value : this.value.date;
       } else {
         return this.value;
@@ -132,17 +132,17 @@ export default {
   },
   beforeMount () {
     Plugin.EventBus.$on("unidoo-heatmap-set-date", params => {
-      if(this.heatmapKey) {
-        if (params.key === this.heatmapKey && params.date){
+      if (this.heatmapKey) {
+        if (params.key === this.heatmapKey && params.date) {
           this.setDate(params.date)
         } 
-      } else if(params.date) {
+      } else if (params.date) {
         this.setDate(params.date)
       }
     })
     Plugin.EventBus.$on("unidoo-heatmap-get-date", params => {
-      if(this.heatmapKey) {
-        if (params.key === this.heatmapKey){
+      if (this.heatmapKey) {
+        if (params.key === this.heatmapKey) {
           this.updateDateSwitcher(this.dateValue)
         } 
       } else { 
@@ -185,7 +185,7 @@ export default {
     handleClick (e, day) {
       if (day) {
         if (day.date <= this.now && (typeof day.count === 'number' || this.missingAllowed)) {
-          if(this.returnObject){
+          if (this.returnObject) {
             this.$emit('input', day);
           } else {
             this.$emit('input', day.date);
@@ -201,23 +201,24 @@ export default {
     updateDateSwitcher (d) {
       this.$unidooDateSwitcher.update({
         hasPrevious: this.hasPreviousDate(d), 
-        hasNext : this.hasNextDate(d), 
-        previousAvailable : this.heatmap.getPreviousAvailableDate(d),
-        nextAvailable : this.heatmap.getNextAvailableDate(d) 
+        hasNext: this.hasNextDate(d), 
+        previousAvailable: this.heatmap.getPreviousAvailableDate(d),
+        nextAvailable: this.heatmap.getNextAvailableDate(d) 
       }, this.heatmapKey);
     },
     hasPreviousDate (d) {
-      if(!d || !this.compairDateWithYear(d)) return false
+      if (!d || !this.compairDateWithYear(d)) return false;
       const syear = (this.year instanceof Date) ? this.year.getFullYear() : this.year;
       const firstDay = new Date(syear, 0, 1);
-      if(d <= firstDay) return false;
+      d.setHours(0, 0, 0, 0);
+      if (d <= firstDay) return false;
       return true; 
     },
     hasNextDate (d) {
-      if(!d || !this.compairDateWithYear(d)) return false
+      if (!d || !this.compairDateWithYear(d)) return false
       const today = new Date();
-      today.setHours(0,0,0,0);
-      if(d >= today) return false;
+      today.setHours(0, 0, 0, 0);
+      if (d >= today) return false;
       return true;
     },
     focusDate (d) {
@@ -288,7 +289,7 @@ export default {
         first.getDate() === second.getDate()
     },
     compairDateWithYear (d) { 
-      if(this.year && d){
+      if (this.year && d) {
         const sd = '' + ((d instanceof Date) ? d.getFullYear() : d);
         const syear = '' + ((this.year instanceof Date) ? this.year.getFullYear() : this.year);
         return syear === sd;
