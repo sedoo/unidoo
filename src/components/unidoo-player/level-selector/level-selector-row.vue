@@ -1,6 +1,6 @@
 <template>
   <div selector-row>
-    <v-row container>
+    <div container>
       
       <span label>{{label}} : </span>
 
@@ -21,7 +21,7 @@
         >{{key}}</span>
       </span>
     
-    </v-row>  
+    </div>  
     
   </div>
 </template>
@@ -55,7 +55,7 @@ export default {
   watch: {
     availableOptions(val) {
       if (val.length) {
-        if(this.value && val.includes(this.value)){
+        if (this.value && val.includes(this.value)) {
           this.$emit('input', this.value);
         } else {
           this.$emit('input', val[0]);
@@ -67,14 +67,14 @@ export default {
 
   methods: {
 
-    emitInput(key, available){
-      if(available){
+    emitInput(key, available) {
+      if (available) {
         this.$emit('input', key);
       }
     },
 
     focus(key) {
-      return this.value == key ? 'level-focused' : '';
+      return this.value === key ? 'level-focused' : '';
     }
   }
 
@@ -87,6 +87,7 @@ export default {
 
   [selector-row] [container]{
     display: flex;
+    flex-wrap: wrap;
     justify-items: center;
     align-items: center;
   }
@@ -139,4 +140,3 @@ export default {
   }
 
 </style>
-

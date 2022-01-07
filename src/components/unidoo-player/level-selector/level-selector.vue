@@ -2,7 +2,7 @@
   <div selector>
     <v-col level-selector v-if="levels && data">
 
-      <v-row style="margin: 0 -12px;" v-for="(key) in levelKeys"
+      <div style="display: flex; flex-wrap: wrap; margin: 0 -12px;" v-for="(key) in levelKeys"
         :key="key"
       >
         <level-selector-row
@@ -12,7 +12,7 @@
           :options="getAllOptions(key)"
         ></level-selector-row>
 
-      </v-row>
+      </div>
     </v-col>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
       type: Array
     },
 
-    showUnavailable:{
+    showUnavailable: {
       type: Boolean,
       default: true
     }
@@ -41,7 +41,7 @@ export default {
     selector: null,
     levelOptions: null, // tree used to update options
     options: null,
-    entries:  null,
+    entries: null,
     levelKeys: null,
     availableOptions: null
   }),
@@ -60,16 +60,16 @@ export default {
     
   },
 
-  mounted(){
+  mounted() {
     this.initData(this.data);
   },
 
   methods: {
 
     initData(data) {
-      if(data){
-        if(data.entries && data.entries.length){
-          if(data.levels){
+      if (data) {
+        if (data.entries && data.entries.length) {
+          if (data.levels) {
             this.initLevels(data.levels, data.entries);
           } else {
             this.$emit('input', this.sort(data.entries));
@@ -82,7 +82,7 @@ export default {
       }
     },
 
-    loadSelector(val){
+    loadSelector(val) {
       // update options by level
       if (val) {
         if (!this.availableOptions) {
@@ -93,7 +93,7 @@ export default {
         const self = this;
         keys.forEach(k => {
           const values = self.optionsFromLevel(k);
-          if (JSON.stringify(values) != JSON.stringify(self.availableOptions[k])) {
+          if (JSON.stringify(values) !== JSON.stringify(self.availableOptions[k])) {
             self.availableOptions[k] = values;
           }
         })
@@ -102,9 +102,8 @@ export default {
       this.$emit('input', this.sort(this.entries[this.getLevelIdFromSelector(val)]));
     },
 
-   initLevels(levels, entries){
-
-      if(levels.length > 0 && entries.length > 0){
+   initLevels(levels, entries) {
+      if (levels.length > 0 && entries.length > 0) {
         this.levelKeys = [];
         this.levels = {};
         this.entries = {};
@@ -112,67 +111,61 @@ export default {
 
         levels.forEach(l => {
           this.levelKeys.push(l.name);
-          this.levels[l.name] = { label : l.label };
+          this.levels[l.name] = { label: l.label };
         });
 
         this.levelKeys.sort();
         
         // init default selector using first entry
-        let defaultSelector = {};
+        const defaultSelector = {};
         entries[0].levels.forEach(l => {
           defaultSelector[l.name] = l.value;
         });
 
         // init options tree
-        let tempOptions = {};
+        const tempOptions = {};
         entries.forEach(entry => {
-          if(entry.levels){
-            
-            
-            let entryLevels = [...entry.levels];
+          if (entry.levels) {
+            const entryLevels = [...entry.levels];
             entryLevels.sort((a, b) => b.name.localeCompare(a.name));            
 
             let branch = null;
             entryLevels.forEach(l => {
-              let tuple = {};
+              const tuple = {};
               tuple[l.value] = branch
               branch = tuple;
-              
             });
 
             this.mergeDeep(tempOptions, branch);
 
-            let curLevels = entry.levels;
+            const curLevels = entry.levels;
             curLevels.sort((a, b) => a.name.localeCompare(b.name));
 
             let levelId = '';
             curLevels.forEach(l => {
-              
-              if(this.levels[l.name]){
-                if(!this.levels[l.name].values) this.levels[l.name].values = [];
+              if (this.levels[l.name]) {
+                if (!this.levels[l.name].values) this.levels[l.name].values = [];
                 this.pushIfNotExist(this.levels[l.name].values, l.value);
-
               }
 
               // compute id with options combination
               levelId += ((levelId) ? SEPARATOR : '') + l.value;
             });
 
-            if(!this.entries[levelId]) this.entries[levelId] = [];
+            if (!this.entries[levelId]) this.entries[levelId] = [];
 
             // store data by options combination
             this.entries[levelId].push(entry);
           }
-
         });
         
         this.levelOptions = tempOptions;
   
-        if(this.selector){
+        if (this.selector) {
           // try to return data from entries map and last selector value
           // else use selector default value
-          let lastSelectionEntries = this.entries[this.getLevelIdFromSelector(this.selector)];
-          if(lastSelectionEntries && lastSelectionEntries.length > 0){
+          const lastSelectionEntries = this.entries[this.getLevelIdFromSelector(this.selector)];
+          if (lastSelectionEntries && lastSelectionEntries.length > 0) {
             this.loadSelector(this.selector);
           } else {
             this.selector = defaultSelector;
@@ -195,7 +188,7 @@ export default {
         const sourceValue = source[key];
 
         if (isObject(targetValue) && isObject(sourceValue)) {
-          let t = Object.assign({}, targetValue);
+          const t = Object.assign({}, targetValue);
           target[key] = this.mergeDeep(t, sourceValue);
         } else {
           target[key] = sourceValue;
@@ -205,10 +198,10 @@ export default {
       return target;
     },
 
-    getLevelIdFromSelector(selectorValue){
+    getLevelIdFromSelector(selectorValue) {
       let levelId = '';
-      if(selectorValue){
-        let keys = Object.keys(selectorValue);  
+      if (selectorValue) {
+        const keys = Object.keys(selectorValue);  
         keys.sort();
 
         keys.forEach(k => {
@@ -218,21 +211,20 @@ export default {
       return levelId;
     },
 
-    optionsFromLevel(key){
-      if(this.levelOptions && this.selector){
-
+    optionsFromLevel(key) {
+      if (this.levelOptions && this.selector) {
         const selectorKeys = Object.keys(this.selector);
         selectorKeys.sort();
 
         const index = selectorKeys.indexOf(key);
-        const indexes = selectorKeys.slice(0,index);
+        const indexes = selectorKeys.slice(0, index);
 
         // traverse levelOptions by level using selector values
         let result = this.levelOptions;
         const self = this;
         indexes.forEach(k => {
           const tmp = result[self.selector[k]];
-          if(tmp){
+          if (tmp) {
             result = tmp;
           } else {
             result = result[Object.keys(result)[0]];
@@ -243,8 +235,8 @@ export default {
       }
     },
 
-    getAllOptions(key){
-      if(this.showUnavailable && this.levels[key]){
+    getAllOptions(key) {
+      if (this.showUnavailable && this.levels[key]) {
         return this.levels[key].values;
       } else {
         return null;
@@ -257,9 +249,9 @@ export default {
         }
     },
 
-    sort(array){
+    sort(array) {
       if (array) {
-        if (array.length > 1){
+        if (array.length > 1) {
           let compare = null;
       
           compare = function(a, b) {
@@ -271,10 +263,10 @@ export default {
               second = parseInt(b.type);
             }
 
-            if ( first > second ){
+            if (first > second) {
               return 1;
             }
-            if ( first < second ){
+            if (first < second) {
               return -1;
             }
             return 0;
@@ -287,14 +279,11 @@ export default {
       } else {
         return array;
       }
-      
     },
   }
 
 }
 </script>
 <style scoped>
- 
 
 </style>
-
