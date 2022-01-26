@@ -1,16 +1,16 @@
 <template>
   <div date-switch>
-    <v-btn icon x-small :disabled="!previousAvailable" style="margin-right: 4px;" @click="goToPreviousAvailable(1)">
+    <v-btn icon x-small :disabled="!previousAvailable" title="Previous available" style="margin-right: 4px;" @click="goToPreviousAvailable(1)">
       <v-icon>mdi-skip-previous</v-icon>
     </v-btn>
-    <v-btn icon x-small :disabled="!hasPrevious" style="margin-right: 8px;" @click="switchDate(-1)">
+    <v-btn icon x-small :disabled="!hasPrevious" title="Previous day" style="margin-right: 8px;" @click="switchDate(-1)">
       <v-icon>mdi-rewind</v-icon>
     </v-btn>
     <v-icon>mdi-calendar-month</v-icon>
-    <v-btn icon x-small :disabled="!hasNext" style="margin-left: 8px;" @click="switchDate(1)">
+    <v-btn icon x-small :disabled="!hasNext" title="Next day" style="margin-left: 8px;" @click="switchDate(1)">
       <v-icon>mdi-fast-forward</v-icon>
     </v-btn>
-    <v-btn icon x-small :disabled="!nextAvailable" style="margin-left: 4px;" @click="goToNextAvailable(1)">
+    <v-btn icon x-small :disabled="!nextAvailable" title="Next available" style="margin-left: 4px;" @click="goToNextAvailable(1)">
       <v-icon>mdi-skip-next</v-icon>
     </v-btn>
   </div>
