@@ -6,7 +6,6 @@
 
       <span line v-if="options && options.length > 0">
         <span v-for="item in options"
-          value
           :key="item.value"
           :title="item.legend"
           :class="'level ' + ((availableOptions.includes(item.value)) ? 'clickable-level ' : 'disabled-level ')  + focus(item.value)"
@@ -15,7 +14,6 @@
       </span>
       <span line v-else>
         <span v-for="item in availableOptions"
-          value
           :key="item.value"
           :title="item.legend"
           :class="'level ' + 'clickable-level ' + focus(item.value)"
