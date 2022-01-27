@@ -41,6 +41,7 @@ export default {
         loadItems(){
             const self = this;
             this.axios
+                //.get("https://services.aeris-data.fr/campaigns/data/v1_0/request?product=Obs_Series&filter=2021-09-01&campaign=MISVA") 
                 .get("https://services.aeris-data.fr/campaigns/data/v1_0/request?product=Synopt_Cartes_Prevues&filter=2021-09-01&campaign=MISVA")
                 .then(response => {
                     if(response.data){

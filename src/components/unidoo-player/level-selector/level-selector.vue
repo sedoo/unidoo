@@ -145,7 +145,8 @@ export default {
             curLevels.forEach(l => {
               if (this.levels[l.name]) {
                 if (!this.levels[l.name].values) this.levels[l.name].values = [];
-                this.pushIfNotExist(this.levels[l.name].values, l.value);
+                this.pushIfObjectNotExist(this.levels[l.name].values, { value: l.value, legend: this.getLegend(l.value) });
+                // this.pushIfNotExist(this.levels[l.name].values, l.value);
               }
 
               // compute id with options combination
@@ -172,6 +173,17 @@ export default {
           }
         } else {
           this.selector = defaultSelector;
+        }
+      }
+    },
+
+    getLegend(value){
+      if(value && this.data && this.data.legend){
+        const legend = this.data.legend.find(el => (el.code && el.code.toUpperCase() === value.toUpperCase()));
+        if(legend) {
+          return legend.label;
+        } else {
+          return null;
         }
       }
     },
@@ -248,6 +260,13 @@ export default {
             array.push(element);
         }
     },
+
+    pushIfObjectNotExist(array, element) { 
+        if (array && !array.some(e => e.value === element.value)) {
+            array.push(element);
+        }
+    },
+
 
     sort(array) {
       if (array) {

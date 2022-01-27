@@ -5,20 +5,22 @@
       <span label>{{label}} : </span>
 
       <span line v-if="options && options.length > 0">
-        <span v-for="key in options"
+        <span v-for="item in options"
           value
-          :key="key"
-          :class="'level ' + ((availableOptions.includes(key)) ? 'clickable-level ' : 'disabled-level ')  + focus(key)"
-          @click="emitInput(key, (availableOptions.includes(key)))"
-        >{{key}}</span>
+          :key="item.value"
+          :title="item.legend"
+          :class="'level ' + ((availableOptions.includes(item.value)) ? 'clickable-level ' : 'disabled-level ')  + focus(item.value)"
+          @click="emitInput(item.value, (availableOptions.includes(item.value)))"
+        >{{item.value}}</span>
       </span>
       <span line v-else>
-        <span v-for="key in availableOptions"
+        <span v-for="item in availableOptions"
           value
-          :key="key"
-          :class="'level ' + 'clickable-level ' + focus(key)"
-          @click="$emit('input', key)"
-        >{{key}}</span>
+          :key="item.value"
+          :title="item.legend"
+          :class="'level ' + 'clickable-level ' + focus(item.value)"
+          @click="$emit('input', item.value)"
+        >{{item.value}}</span>
       </span>
     
     </div>  
