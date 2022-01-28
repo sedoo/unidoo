@@ -146,7 +146,7 @@ export default {
     },
 
     subBodyStyle(){
-      const vh = (this.isZoomed) ? '60vh' : '40vh';
+      const vh = (this.isZoomed) ? 'auto' : '40vh';
       return { gridTemplateRows: ((this.playerBarTop) ? '10px 140px 10px ' + vh + ' 10px' : '10px ' + vh + ' 10px 140px 10px')};
     }
 
