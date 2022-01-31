@@ -511,6 +511,7 @@ export default {
 
   [player-part] [player-layout-displayer] {
     height: 100%;
+    width: 100%;
   }
 
   [player-layout] [viewer-container] {
@@ -579,8 +580,8 @@ export default {
     min-height: 60vh;
   }
   [player-layout].zoomed [player-part] [player-layout-displayer] {
+    margin: 0 3px;
     padding: 0;
-    height: 100%;
   }
 
   @media screen and (max-width: 890px) {
