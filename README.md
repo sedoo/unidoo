@@ -50,7 +50,7 @@ npm run build:demo
 
 ### Publishing of the online application
 
-The publishing if the library is an automated mechanism based on Github workflow system. No other method should be used.
+The publishing of the library is an automated mechanism based on Github workflow system. No other method should be used.
 After each push on the *main* branch, the online application is launched.
 
 
