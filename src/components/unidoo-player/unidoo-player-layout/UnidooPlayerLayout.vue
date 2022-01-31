@@ -88,14 +88,23 @@
           <v-divider style="order: 3;"></v-divider>
 
           <v-row player-part :style="{ order: ((playerBarTop) ? 4 : 2) }">
-
+            
             <v-list-item player-layout-displayer v-if="clickableFrame" :ripple="false" @click="playOrStopFrame">
-
-              <slot name="displayer"></slot>
+              <div viewer-container>
+                <div viewer-slot-container>
+                  <slot name="displayer"></slot>
+                </div>
+              </div>
 
             </v-list-item>
 
-            <slot v-else player-layout-displayer name="displayer"></slot>
+            <div v-else player-layout-displayer >
+              <div viewer-container>
+                <div viewer-slot-container>
+                  <slot name="displayer"></slot>
+                </div>
+              </div>
+            </div>
 
           </v-row>
 
@@ -146,7 +155,7 @@ export default {
     },
 
     subBodyStyle(){
-      const vh = (this.isZoomed) ? 'auto' : '40vh';
+      const vh = (this.isZoomed) ? '65vh' : '40vh';
       return { gridTemplateRows: ((this.playerBarTop) ? '10px 140px 10px ' + vh + ' 10px' : '10px ' + vh + ' 10px 140px 10px')};
     }
 
@@ -504,6 +513,25 @@ export default {
     height: 100%;
   }
 
+  [player-layout] [viewer-container] {
+    display: flex;
+    height: inherit;
+    width: 100%;
+    overflow: auto;
+  }
+
+  [player-layout] [viewer-container] [viewer-slot-container] {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin:auto;
+  }
+
+  [player-layout].zoomed [viewer-container] [viewer-slot-container] {
+    height: fit-content;
+  }
+
   [buttons] {
     display: flex;
     align-items: baseline;
@@ -551,7 +579,8 @@ export default {
     min-height: 60vh;
   }
   [player-layout].zoomed [player-part] [player-layout-displayer] {
-    height : inherit;
+    padding: 0;
+    height: 100%;
   }
 
   @media screen and (max-width: 890px) {
@@ -578,7 +607,7 @@ export default {
 </style>
 <style>
   [player-layout] .v-slider__tick-label {
-    font-size: 0.8em;
+    font-size: 0.65em;
   }
 
   [player-layout] .v-slider__tick {
