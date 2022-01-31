@@ -1,6 +1,6 @@
 {
     "name": "@sedoo/unidoo",
-    "version": "0.0.74",
+    "version": "0.0.75",
     "private": false,
     "scripts": {
         "build": "vue-cli-service build --target lib --name unidoo src/plugin.js",

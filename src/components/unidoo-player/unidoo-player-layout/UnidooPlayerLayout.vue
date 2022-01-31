@@ -580,7 +580,6 @@ export default {
     min-height: 60vh;
   }
   [player-layout].zoomed [player-part] [player-layout-displayer] {
-    margin: 0 3px;
     padding: 0;
   }
 
