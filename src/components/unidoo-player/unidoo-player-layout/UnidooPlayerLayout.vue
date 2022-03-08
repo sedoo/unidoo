@@ -155,7 +155,7 @@ export default {
     },
 
     subBodyStyle(){
-      const vh = (this.isZoomed) ? '65vh' : '40vh';
+      const vh = (this.isZoomed) ? '72vh' : '40vh';
       return { gridTemplateRows: ((this.playerBarTop) ? '10px 140px 10px ' + vh + ' 10px' : '10px ' + vh + ' 10px 140px 10px')};
     }
 
@@ -552,7 +552,7 @@ export default {
     position: fixed;
     display: block;
     z-index: 99999;
-    top: 6vh;
+    top: 4vh;
     left: 4vw;
     right: 4vw;
     overflow: auto;
