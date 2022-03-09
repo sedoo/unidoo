@@ -1,6 +1,6 @@
 <template>
   <div selector>
-    <v-col level-selector v-if="levels && data">
+    <v-col level-selector v-if="levels">
 
       <div style="display: flex; flex-wrap: wrap; margin: 0 -12px;" v-for="(key) in levelKeys"
         :key="key"

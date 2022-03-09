@@ -2,13 +2,21 @@
     <v-app>
         <v-col>
             <v-switch v-model="showCustom" label="Afficher custom field"></v-switch>
+            <v-switch v-model="hasData" label="Données disponibles"></v-switch>
+            <v-text-field label="no data message" v-model="noDataMessage"/>
+            <v-switch v-model="noVisibleData" label="Données non visibles"></v-switch>
+            <v-text-field label="no visible data message" v-model="noQuicklooksMessage"/>
+            <v-switch v-model="isLoading" label="Chargement"></v-switch>
             <v-text-field label="label" v-model="label"/>
             <unidoo-player
               :label="label"
-              :data="values"
+              :data="(!hasData) ? null : values"
+              :isLoading="isLoading"
+              :noVisibleData="noVisibleData"
+              :noDataMessage="noDataMessage"
+              :noVisibleDataMessage="noQuicklooksMessage"
             >
                 <template v-if="showCustom" v-slot:customField>
-                    
                     
                     <date-switcher></date-switcher>
                 
@@ -26,6 +34,11 @@ export default {
         return {
             label: '2021-09-01',
             showCustom: false,
+            hasData: true,
+            noDataMessage: "No available data",
+            noVisibleData: false,
+            noQuicklooksMessage: "Existing data, no quicklook available",
+            isLoading: false,
             values: null,
             items: [
                 { title: 'Click Me' },

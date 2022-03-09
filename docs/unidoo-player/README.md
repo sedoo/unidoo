@@ -22,6 +22,10 @@ Pour utiliser ce composant il faut insérer le tag **unidoo-player** dans un com
 | ------------- |----------------| --------- | ---------|--------------|
 | **label**          | String | 'frame' | no | Label utilisé pour préfixer le titre des frames |
 | **data**          | Object | undefined | no | Objet contenant les données et la définition des levels |
+| **noDataMessage**          | String | 'No available data' | no | Message affiché si il n'y a pas de données |
+| **noVisibleData**          | Boolean | false | no | Si *true* et pas de données, affiche le message *no visible data* |
+| **noVisibleDataMessage**          | String | 'Existing data, no quicklook available' | no | Message affiché si il n'y a pas de données et que *noVisibleData* est à *true* |
+| **isLoading**          | Boolean | false | no | Affiche un masque sur le player |
 
 Le Paramètre **data** est un objet contenant les champs **levels** et **entries** :
 
