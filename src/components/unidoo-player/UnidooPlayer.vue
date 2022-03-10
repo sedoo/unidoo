@@ -1,37 +1,39 @@
 <template>
-  <v-col container>
-    <div level-selector >
+  <div>
+    <v-col container>
+      <div level-selector >
 
-     <level-selector
-        v-model="entries"
-        :data="data"
-      ></level-selector>
+      <level-selector
+          v-model="entries"
+          :data="data"
+        ></level-selector>
 
-    </div>
+      </div>
 
-    <unidoo-simple-player
-      v-if="hasData"
-      class="constrained"
-      :label="label"
-      :entries="entries"
-    >
+      <unidoo-simple-player
+        v-if="hasData"
+        class="constrained"
+        :label="label"
+        :entries="entries"
+      >
 
-      <template v-slot:customField>
-        <slot name="customField"></slot>    
-      </template>
+        <template v-slot:customField>
+          <slot name="customField"></slot>    
+        </template>
 
-    </unidoo-simple-player>
+      </unidoo-simple-player>
 
-    <div v-else-if="noVisibleData" class="constrained placeholder">
-      <div style="position: absolute; top: 0; left: 0;"><slot name="customField"></slot></div><b>{{ noVisibleDataMessage }}</b>
-    </div>
-    
-    <div v-else class="constrained placeholder">
-      <div style="position: absolute; top: 0; left: 0;"><slot name="customField"></slot></div><b>{{ noDataMessage }}</b>
-    </div>
+      <div v-else-if="noVisibleData" class="constrained placeholder">
+        <div style="position: absolute; top: 0; left: 0;"><slot name="customField"></slot></div><b>{{ noVisibleDataMessage }}</b>
+      </div>
+      
+      <div v-else class="constrained placeholder">
+        <div style="position: absolute; top: 0; left: 0;"><slot name="customField"></slot></div><b>{{ noDataMessage }}</b>
+      </div>
 
-    <div v-if="isLoading" mask></div>
-  </v-col>
+      <div v-if="isLoading" mask></div>
+    </v-col>
+  </div>
 </template>
 
 <script>

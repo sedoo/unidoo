@@ -1,5 +1,5 @@
 <template>
-  <div root>
+  <div>
 
     <div player-layout elevation="0" :class="{ zoomed: isZoomed }">
 
@@ -155,8 +155,8 @@ export default {
     },
 
     subBodyStyle(){
-      const vh = (this.isZoomed) ? '72vh' : '40vh';
-      return { gridTemplateRows: ((this.playerBarTop) ? '10px 140px 10px ' + vh + ' 10px' : '10px ' + vh + ' 10px 140px 10px')};
+      const vh = (this.isZoomed) ? '75vh' : '43vh';
+      return { gridTemplateRows: ((this.playerBarTop) ? '10px 120px 10px ' + vh + ' 10px' : '10px ' + vh + ' 10px 120px 10px')};
     }
 
   },
