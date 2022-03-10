@@ -1,5 +1,5 @@
 <template>
-  <v-col style="position: relative">
+  <v-col container>
     <div level-selector >
 
      <level-selector
@@ -83,6 +83,10 @@ export default {
 }
 </script>
 <style scoped>
+  [container]{
+    position: relative;
+  }
+
   .constrained {
     position: relative;
     min-height: 15vh;
