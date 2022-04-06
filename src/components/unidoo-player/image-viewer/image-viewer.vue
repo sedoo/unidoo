@@ -1,6 +1,6 @@
 <template>
   <v-col justify="center" style="display: flex; height: inherit">
-    <v-row justify="center" style="height : 100%" >
+    <v-row justify="center" style="margin: auto; height : 100%" >
 
       <img 
         viewer-img
