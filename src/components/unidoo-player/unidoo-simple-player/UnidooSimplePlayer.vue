@@ -10,7 +10,7 @@
       :graduation="graduation"
       :frequency="300"
       :loadedFrames="loadedFrames"
-      @reload-frames="preloadFrames(loadIndex)"
+      @reload-frames="refreshPreload(loadIndex)"
       progressBarTitle="Loading image"
     >
 
@@ -203,6 +203,11 @@ export default {
           this.isLoadingFirstFrame = false;
         }
       }
+    },
+
+    refreshPreload(loadIndex){
+      this.lastFrameQualifier = this.currentQualifier;
+      this.preloadFrames(loadIndex);
     },
 
     incrementPreload() {
