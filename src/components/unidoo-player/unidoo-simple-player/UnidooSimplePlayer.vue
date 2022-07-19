@@ -205,7 +205,7 @@ export default {
       }
     },
 
-    refreshPreload(loadIndex){
+    refreshPreload(loadIndex) {
       this.lastFrameQualifier = this.currentQualifier;
       this.preloadFrames(loadIndex);
     },

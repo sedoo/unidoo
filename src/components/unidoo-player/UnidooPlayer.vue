@@ -46,27 +46,27 @@ export default {
       default: 'frame'
     },
 
-    data:{
+    data: {
       type: Object,
       default: () => null
     },
 
-    noVisibleData:{
+    noVisibleData: {
       type: Boolean,
       default: false
     },
 
-    noDataMessage:{
+    noDataMessage: {
       type: String,
       default: "No available data"
     },
 
-    noVisibleDataMessage:{
+    noVisibleDataMessage: {
       type: String,
       default: "Existing data, no quicklook available"
     },
 
-    isLoading:{
+    isLoading: {
       type: Boolean,
       default: false
     }
@@ -76,8 +76,8 @@ export default {
     entries: null
   }),
 
-  computed:{
-    hasData(){
+  computed: {
+    hasData() {
       return this.data && this.data.entries && this.data.entries.length;
     },
   }
