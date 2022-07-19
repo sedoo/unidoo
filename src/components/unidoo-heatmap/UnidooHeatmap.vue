@@ -31,6 +31,7 @@ import Plugin from '../../plugin.js'
 import { VTooltip } from 'v-tooltip'
 import Heatmap from './Heatmap'
 import { DEFAULT_LOCALE, DEFAULT_RANGE_COLOR, DEFAULT_TOOLTIP_UNIT } from './consts.js'
+import { utcToZonedTime } from 'date-fns-tz'
 
 VTooltip.enabled = window.innerWidth > 768
 
@@ -86,10 +87,14 @@ export default {
     heatmapKey: {
       type: String,
       default: ""
+    },
+    timeZone: {
+      type: String,
+      default: "Europe/Paris"
     }
   },
   data: () => ({
-    now: new Date(new Date().setHours(23, 59, 59, 999)) 
+    
   }),
   watch: {
     dateValue (val) {
@@ -108,6 +113,9 @@ export default {
     }
   },
   computed: {
+    now(){
+      return new Date(new Date().setHours(23, 59, 59, 999)).toUnidooUTC();
+    },
     heatmap () {
       return new Heatmap(this.year, this.values, this.completeValue)
     },
@@ -132,6 +140,10 @@ export default {
     }
   },
   beforeMount () {
+    const self = this;
+    Date.prototype.toUnidooUTC = function() {
+        return utcToZonedTime(this, self.timeZone);
+    }
     Plugin.EventBus.$on("unidoo-heatmap-set-date", params => {
       if (this.heatmapKey) {
         if (params.key === this.heatmapKey && params.date) {
@@ -210,7 +222,7 @@ export default {
     hasPreviousDate (d) {
       if (!d || !this.isDateInYear(d)) return false;
       const syear = (this.year instanceof Date) ? this.year.getFullYear() : this.year;
-      const firstDay = new Date(syear, 0, 1);
+      const firstDay = new Date(syear, 0, 1).toUnidooUTC();
       d.setHours(0, 0, 0, 0);
       if (d <= firstDay) return false;
       return true; 
@@ -219,10 +231,10 @@ export default {
       if (!d || !this.isDateInYear(d)) return false;
       const syear = (this.year instanceof Date) ? this.year.getFullYear() : this.year;
       let lastDay = null;
-      if (new Date(syear, 0, 1).getFullYear() === new Date().getFullYear()) {
-        lastDay = new Date();
+      if (new Date(syear, 0, 1).toUnidooUTC().getFullYear() === new Date().toUnidooUTC().getFullYear()) {
+        lastDay = new Date().toUnidooUTC();
       } else {
-        lastDay = new Date(syear, 11, 31);
+        lastDay = new Date(syear, 11, 31).toUnidooUTC();
       }
       lastDay.setHours(0, 0, 0, 0);
       if (d >= lastDay) return false;
@@ -282,7 +294,7 @@ export default {
     },
     formatDate (d) {
       if (!d) return ''
-      const date = new Date(d)
+      const date = new Date(d).toUnidooUTC()
       if (!date) return ''
       const dd = date.getDate()
       const mm = date.getMonth() + 1

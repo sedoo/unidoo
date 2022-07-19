@@ -89,7 +89,7 @@ export default {
     switchDate(n) {
       if (this.cleanedDate && n) {
         if ((n > 0 && this.hasNext) || (n < 0 && this.hasPrevious)) {
-          const newDate = new Date(this.cleanedDate);
+          const newDate = new Date(this.cleanedDate).toUnidooUTC();
           newDate.setDate(this.cleanedDate.getDate() + n);
           this.$unidooHeatmap.setDate(newDate, this.heatmapKey);
         }
@@ -110,7 +110,7 @@ export default {
         if (date instanceof Date) {
           return date;
         } else if (typeof date === 'string') {
-          return new Date(date);
+          return new Date(date).toUnidooUTC();
         }
       } 
       return null;
