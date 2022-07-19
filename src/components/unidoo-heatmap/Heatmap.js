@@ -1,4 +1,6 @@
 
+
+
 export default class CalendarHeatmap {
   constructor (year, values, max) {
     this.year = this._parseDate(year)
@@ -24,12 +26,12 @@ export default class CalendarHeatmap {
 
   get monthCalendar () {
     const year = this.year.getFullYear()
-    const date = new Date(year, 0, 1)
+    const date = new Date(year, 0, 1).toUnidooUTC()
     let i = 0
     return Array.from({ length: 12 },
       () => Array.from({ length: this.daysInMonth(year, i++) },
         () => {
-          const dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+          const dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()).toUnidooUTC()
           const dayValues = this.activities[this._keyDayParser(dDate)]
           date.setDate(date.getDate() + 1)
           return {
@@ -43,12 +45,12 @@ export default class CalendarHeatmap {
   }
 
   daysInMonth (year, month) {
-    return new Date(year, month + 1, 0).getDate()
+    return new Date(year, month + 1, 0).toUnidooUTC().getDate()
   }
 
   daysInYear(year) {
-    const start = new Date(year, 0, 0)
-    const end = new Date(year, 11, 31)
+    const start = new Date(year, 0, 0).toUnidooUTC()
+    const end = new Date(year, 11, 31).toUnidooUTC()
     const diff = end - start
     return Math.floor(diff / (1000 * 60 * 60 * 24))
   }
@@ -71,12 +73,12 @@ export default class CalendarHeatmap {
       const day = this.values.filter(d => d.date === sdate)[0];
       if (day) {
         return {
-          date: new Date(day.date),
+          date: new Date(day.date).toUnidooUTC(),
           count: day.count,
           colorIndex: this.getColorIndex(day.count)
         };
       } else {
-        return { date: new Date(entry), count: NaN, colorIndex: 0 };
+        return { date: new Date(entry).toUnidooUTC(), count: NaN, colorIndex: 0 };
       }
     }
   }
@@ -139,10 +141,10 @@ export default class CalendarHeatmap {
   }
 
   _getTimes (year) {
-    const date = new Date(year, 0, 1)
+    const date = new Date(year, 0, 1).toUnidooUTC()
     return Array.from({ length: this.daysInYear(year) }, 
       () => {
-        const dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+        const dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()).toUnidooUTC()
         dDate.setHours(0, 0, 0)
         const dayValues = this.activities[this._keyDayParser(dDate)]
         date.setDate(date.getDate() + 1)
@@ -169,11 +171,11 @@ export default class CalendarHeatmap {
   _decodeDate (d) {
     if (!d) return null
     const sdate = d.slice(0, -1)
-    return new Date(sdate)
+    return new Date(sdate).toUnidooUTC()
   }
 
   _parseDate (entry) {
-    return (entry instanceof Date) ? entry : (new Date(entry))
+    return (entry instanceof Date) ? entry : (new Date(entry).toUnidooUTC())
   }
 
   _keyDayParser (date) {
