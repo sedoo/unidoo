@@ -1,6 +1,6 @@
 {
     "name": "@sedoo/unidoo",
-    "version": "0.0.82",
+    "version": "0.0.83",
     "private": false,
     "scripts": {
         "build": "vue-cli-service build --target lib --name unidoo src/plugin.js",
@@ -27,7 +27,7 @@
         "@vue/cli-plugin-eslint": "4.5.7",
         "@vue/cli-service": "4.5.7",
         "@vue/eslint-config-standard": "5.1.2",
-        "axios": "0.19.2",
+        "axios": "0.27.2",
         "babel-eslint": "10.1.0",
         "core-js": "3.6.5",
         "eslint": "7.10.0",
