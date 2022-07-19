@@ -13,7 +13,6 @@
 
 <script>
 
-
 export default {
   components: {
   },
@@ -45,23 +44,21 @@ export default {
   methods: {
 
     refresh() {
-      this.text=""
+      this.text = ""
       this.generateCaptcha();
     },
 
     generateCaptcha() {
-       let captcha = []
-       let charsArray =
+       const captcha = []
+       const charsArray =
         "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
-        let size = Number.parseInt(this.size)
+        const size = Number.parseInt(this.size)
        for (var i = 0; i < size; i++) {
-        //Eviter la repetition des characters
+        // Eviter la repetition des characters
         var index = Math.floor(Math.random() * charsArray.length + 1); 
-        if (captcha.indexOf(charsArray[index]) == -1)
-          captcha.push(charsArray[index]);
-        else i--;
+        if (captcha.indexOf(charsArray[index]) == -1) { captcha.push(charsArray[index]); } else i--;
         }
-        this.width = 20*captcha.length;
+        this.width = 20 * captcha.length;
         this.captcha = captcha;
 
          var canv = document.createElement("canvas");
@@ -72,22 +69,18 @@ export default {
       ctx.font = "25px Georgia";
       ctx.strokeText(this.captcha.join(""), 0, 30);
 
-       let captchaElement = this.$refs.captcha 
+       const captchaElement = this.$refs.captcha 
 
        if (captchaElement != null) {
          captchaElement.innerHTML = "";
          captchaElement.appendChild(canv); 
        }
-
     }
   },
   beforeMount () {
   },
   mounted() {
     this.generateCaptcha()
-    
-    
-    
   },
 
    props: {
@@ -116,6 +109,5 @@ export default {
 </script>
 
 <style scoped>
-
 
 </style>

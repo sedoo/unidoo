@@ -177,10 +177,10 @@ export default {
       }
     },
 
-    getLegend(value){
-      if(value && this.data && this.data.legend){
+    getLegend(value) {
+      if (value && this.data && this.data.legend) {
         const legend = this.data.legend.find(el => (el.code && el.code.toUpperCase() === value.toUpperCase()));
-        if(legend) {
+        if (legend) {
           return legend.label;
         } else {
           return null;
@@ -266,7 +266,6 @@ export default {
             array.push(element);
         }
     },
-
 
     sort(array) {
       if (array) {

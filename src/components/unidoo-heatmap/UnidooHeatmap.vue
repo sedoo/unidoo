@@ -113,7 +113,7 @@ export default {
     }
   },
   computed: {
-    now(){
+    now() {
       return new Date(new Date().setHours(23, 59, 59, 999)).toUnidooUTC();
     },
     heatmap () {

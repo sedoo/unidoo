@@ -21,14 +21,14 @@ if (process.env.npm_lifecycle_event == "build:demo") {
         new WebpackCdnUploadPlugin({
             async upload(content, name) {
                 if (!name.endsWith("app.js")) {
-                    //We ignore sourcemap file
+                    // We ignore sourcemap file
                     return;
                 }
                 let repo = "release";
                 if (pkgVersion.toLowerCase().endsWith("snapshot")) {
                     repo = "snapshot";
                 }
-                //let url = "http://localhost:8491/jsrepo/v1_0/webpackupload/sandbox/" + repo + "/" + pkgName + "/" + pkgVersion
+                // let url = "http://localhost:8491/jsrepo/v1_0/webpackupload/sandbox/" + repo + "/" + pkgName + "/" + pkgVersion
                 let url =
                     "https://services.aeris-data.fr/cdn/jsrepo/v1_0/webpackupload/sandbox/" +
                     repo +

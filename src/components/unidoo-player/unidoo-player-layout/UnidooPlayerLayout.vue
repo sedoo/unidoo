@@ -154,9 +154,9 @@ export default {
       return this.max > 0 && this.loadedFrames >= this.max + 1
     },
 
-    subBodyStyle(){
+    subBodyStyle() {
       const vh = (this.isZoomed) ? '75vh' : '43vh';
-      return { gridTemplateRows: ((this.playerBarTop) ? '10px 120px 10px ' + vh + ' 10px' : '10px ' + vh + ' 10px 120px 10px')};
+      return { gridTemplateRows: ((this.playerBarTop) ? '10px 120px 10px ' + vh + ' 10px' : '10px ' + vh + ' 10px 120px 10px') };
     }
 
   },
@@ -190,14 +190,13 @@ export default {
       }
     },
 
-    graduation(){
+    graduation() {
       this.initGraduation();
     },
 
-    sliderSize(){
+    sliderSize() {
       this.initGraduation();
     }
-
 
   },
 
@@ -348,17 +347,17 @@ export default {
       this.$emit('reload-frames');
     },
 
-    initGraduation(){
-      let result = [];
-      if(this.graduation){
+    initGraduation() {
+      const result = [];
+      if (this.graduation) {
         const gradsLength = this.graduation.length;
         let delta = 1;
-        if(this.sliderSize && gradsLength && this.graduation[0]){
+        if (this.sliderSize && gradsLength && this.graduation[0]) {
           const firstGrad = this.graduation[0].length * 9; // nb chars * number of pixels for 1 character
           let exceed = Math.ceil(this.sliderSize - (gradsLength * firstGrad) - 30); // add 30px of margin
-          exceed = (exceed < 0) ? - exceed : 0;
+          exceed = (exceed < 0) ? -exceed : 0;
           const gradsExceed = exceed / firstGrad;
-          if(gradsLength - gradsExceed){
+          if (gradsLength - gradsExceed) {
             delta = Math.ceil(gradsLength / (gradsLength - gradsExceed)); 
           } else {
             delta = Math.ceil(gradsLength);
@@ -379,38 +378,38 @@ export default {
       this.filteredGraduation = result;
     },
 
-    initIframe(){
+    initIframe() {
       const iframe = this.$refs.sizeHandlerIframe;
-      if(iframe){
+      if (iframe) {
         const box = iframe.getBoundingClientRect();
-        this.sliderSize = box.width - 114 -9 -32 -10; // - padding and margin
+        this.sliderSize = box.width - 114 - 9 - 32 - 10; // - padding and margin
         const iframeWin = iframe.contentWindow;
         this.resizeListener = this.handleResize.bind(this);
         iframeWin.addEventListener('resize', this.resizeListener);
       }
     },
 
-    clearIframe(){
+    clearIframe() {
       const iframe = this.$refs.sizeHandlerIframe;
-      if(iframe){
+      if (iframe) {
         const iframeWin = iframe.contentWindow;
-        if(iframeWin){
+        if (iframeWin) {
           iframeWin.removeEventListener('resize', this.resizeListener);
         }
         this.resizeListener = null;
       }
     },
 
-    handleResize(){
+    handleResize() {
       // add a delay of 500ms to handle slider width resize
-      if(this.timer !== null){
+      if (this.timer !== null) {
         clearTimeout(this.timer);
       }
       const self = this;
       this.timer = setTimeout(() => {
         const box = self.$refs.sizeHandlerIframe.getBoundingClientRect();
-        const sliderWidth = box.width - 114 -9 -32 -10;
-        if(self.sliderSize != sliderWidth){
+        const sliderWidth = box.width - 114 - 9 - 32 - 10;
+        if (self.sliderSize != sliderWidth) {
           self.sliderSize = sliderWidth;
         }
         self.time = null;

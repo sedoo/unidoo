@@ -1,6 +1,4 @@
 
-
-
 export default class CalendarHeatmap {
   constructor (year, values, max) {
     this.year = this._parseDate(year)
